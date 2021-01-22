@@ -1,0 +1,327 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>物件導向實作課程筆記 Day 2 - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/csharp-oo-notes-day2/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,CSharp,物件導向實作課程筆記 Day 2"><meta data-n-head="ssr" data-hid="description" property="description" content='記錄去上"物件導向實作課程"的筆記，一共3天。本篇為第2天課程的筆記'><meta data-n-head="ssr" data-hid="og:description" property="og:description" content='記錄去上"物件導向實作課程"的筆記，一共3天。本篇為第2天課程的筆記'><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="物件導向實作課程筆記 Day 2 - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/csharp-oo-notes-day2/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      June 17, 2017
+    </span> <a href="/tag/CSharp" title="CSharp" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      CSharp
+    </a></div> <h1 data-v-3c54882c><a href="/article/csharp-oo-notes-day2" title="物件導向實作課程筆記 Day 2" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      物件導向實作課程筆記 Day 2
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    記錄去上"物件導向實作課程"的筆記，一共3天。本篇為第2天課程的筆記
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><h3 id="override">override</h3>
+<p>可被覆寫的修飾詞 abstract、virtual與override<br>若加上修飾詞 sealed後，該方法將不可再被覆寫  </p>
+<h3 id="new">new</h3>
+<p>遮蔽的宣告方式<br>盡量不要使用,違反<a target="_blank" href="https://zh.wikipedia.org/wiki/%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99" title="null">里氏替換原則（Liskov Substitution principle)</a>,而且很難預測實際執行的方法為何
+可能使用情境 => 使用第三方元件,發現該元件某方法發生明顯的錯誤,則可透過遮蔽的方式進行"暫時"的修改,加上明確的說明註解並且盡快修正該元件。<br>class定義</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Sample01</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test</span>(<span class="hljs-params"></span>)</span>
+    {
+        Console.WriteLine(<span class="hljs-string">"Sample01"</span>);
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Sample02</span> : <span class="hljs-title">Sample01</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test</span>(<span class="hljs-params"></span>)</span>
+    {
+        Console.WriteLine(<span class="hljs-string">"Sample02"</span>);
+    }
+}</code></pre></code></pre>
+<p>呼叫範例 => output為"Sample01"</p>
+<pre><code class="language-cs"><pre><code class="hljs cs">Sample02 sample = <span class="hljs-keyword">new</span> Sample02();
+Sample01 execSample = sample;
+
+execSample.Test();</code></pre></code></pre>
+<h3 id="多載">多載</h3>
+<p>同樣的方法名稱,不同的參數清單<br><br></p>
+<h3 id="委派">委派</h3>
+<p>delegate,是一種型別,可以宣告在namespace底下<br>可以用來將方法當做引數傳遞給其他方法<br>裡面儲存的都是方法指標<br>多重的  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">namespace</span> <span class="hljs-title">OOPSample</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">delegate</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SomeAction</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message</span>)</span>;
+    <span class="hljs-keyword">class</span> <span class="hljs-title">Sample</span>
+    {
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"></span>)</span>
+        {
+            SomeAction action = Test01; <span class="hljs-comment">// 增加委派的方法</span>
+            action += Test02; <span class="hljs-comment">// 增加委派的方法(多重的)</span>
+            action += Test01; <span class="hljs-comment">// 增加委派的方法(多重的)</span>
+            action.Invoke(<span class="hljs-string">"早安"</span>); <span class="hljs-comment">// 叫用委派的方法</span>
+
+            action -= Test01; <span class="hljs-comment">// 移除委派的方法(後加入的先移除)</span>
+            action(<span class="hljs-string">"晚安"</span>);
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test01</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> s</span>)</span>
+        {
+            Console.WriteLine(<span class="hljs-string">$"Test01 <span class="hljs-subst">{s}</span>"</span>);
+        }
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test02</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> s</span>)</span>
+        {
+            Console.WriteLine(<span class="hljs-string">$"Test02 <span class="hljs-subst">{s}</span>"</span>);
+        }
+    }
+}</code></pre></code></pre>
+<p>呼叫Main()的輸出<br><img src="http://user-image.logdown.io/user/11661/blog/11120/post/1956015/eklFsVC3SQaJxtQUUiY8_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-17%20%E4%B8%8B%E5%8D%8812.55.45.png" alt="呼叫Main方法的輸出"></p>
+<h3 id="action">Action</h3>
+<p>無回傳值的委派,傳入的參數可以有0~16個<br><br></p>
+<h3 id="func">Func</h3>
+<p>有回傳值的委派,傳入的參數可以有0~16個<br>回傳值型別一定在最後  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-comment">// int 為方法回傳值的型別</span>
+Func&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">int</span>> func;</code></pre></code></pre>
+<h3 id="事件">事件</h3>
+<p>event,讓類別或物件在某些相關的事情發生時，告知其他類別或物件<br>一般event寫法  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Sample01</span>
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">event</span> EventHandler XChanged; <span class="hljs-comment">// 使用event</span>
+
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> _x;
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> X {
+        <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> _x; }
+        <span class="hljs-keyword">set</span>
+        {
+            <span class="hljs-keyword">if</span> (_x != <span class="hljs-keyword">value</span>)
+            {
+                _x = <span class="hljs-keyword">value</span>;
+                OnXChanged();
+            }
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnXChanged</span>(<span class="hljs-params"></span>)</span>
+    {
+        <span class="hljs-keyword">if</span> (XChanged != <span class="hljs-literal">null</span>)
+        {
+            XChanged(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> EventArgs());
+        }
+    }
+}</code></pre></code></pre>
+<p>另一種寫法使用property  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Sample02</span>
+{
+    <span class="hljs-keyword">public</span> EventHandler XChanged { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; } <span class="hljs-comment">// 使用property</span>
+
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> _x;
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> X
+    {
+        <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> _x; }
+        <span class="hljs-keyword">set</span>
+        {
+            <span class="hljs-keyword">if</span> (_x != <span class="hljs-keyword">value</span>)
+            {
+                _x = <span class="hljs-keyword">value</span>;
+                OnXChanged();
+            }
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnXChanged</span>(<span class="hljs-params"></span>)</span>
+    {
+        <span class="hljs-keyword">if</span> (XChanged != <span class="hljs-literal">null</span>)
+        {
+            XChanged(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> EventArgs());
+        }
+    }
+}</code></pre></code></pre>
+<h4 id="事件與事件委派函式">事件與事件委派函式</h4>
+<p>以Windows Form應用程式為例<br>如果在Form上面的按扭button1,並撰寫Click應執行的程式碼時<br>Form1.Designer.cs</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-comment">// Click為事件</span>
+<span class="hljs-comment">// this.button1_Click為事件委派函式</span>
+<span class="hljs-keyword">this</span>.button1.Click += <span class="hljs-keyword">new</span> System.EventHandler(<span class="hljs-keyword">this</span>.button1_Click);</code></pre></code></pre>
+<p>Form1.cs 事件委派函式sample code</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">button1_Click</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> sender, EventArgs e</span>)</span>
+{
+    obj.X += <span class="hljs-number">1</span>;
+}</code></pre></code></pre>
+<h4 id="帶有資料的宣告">帶有資料的宣告</h4>
+<p>自訂EventArgs  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CustomEventArgs</span> : <span class="hljs-title">EventArgs</span>
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> OldValue { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; } 
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> NewValue { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+}</code></pre></code></pre>
+<h4 id="自訂委派">自訂委派</h4>
+<p>自訂委派sample code  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">event</span> CustomEventHandler XChanged;
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnXChanged</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> oldvalue, <span class="hljs-built_in">int</span> newvalue</span>)</span>
+{
+    <span class="hljs-keyword">if</span> (XChanged != <span class="hljs-literal">null</span>)
+    {
+      XChanged(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> CustomEventArgs()
+      {
+          OldValue = oldvalue, NewValue = newvalue
+      });
+    }
+}</code></pre></code></pre>
+<h4 id="使用eventhandlert替代自訂委派">使用EventHandler<t>替代自訂委派</t></h4>
+<p>使用EventHandler<t>  </t></p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">event</span> EventHandler&lt;CustomEventArgs> XChanged;
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnXChanged</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> oldvalue, <span class="hljs-built_in">int</span> newvalue</span>)</span>
+{
+    <span class="hljs-keyword">if</span> (XChanged != <span class="hljs-literal">null</span>)
+    {
+        XChanged(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> CustomEventArgs()
+        {
+            OldValue = oldvalue, NewValue = newvalue 
+        });
+    }
+}</code></pre></code></pre>
+<h3 id="建構式">建構式</h3>
+<p>初始化物件的資料成員<br>不使用任何參數的建構函式稱為「預設建構函式」(Default Constructor)<br>建構式不會繼承(但會隱含呼叫父類的預設建構函式)<br>當建構式有多載的狀況下,建議使用類別內部建構式呼叫的方式<br>內部建構式呼叫sample  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Sample01</span>
+{
+    <span class="hljs-built_in">int</span> x;
+    <span class="hljs-built_in">int</span> y;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Sample01</span>(<span class="hljs-params"></span>) : <span class="hljs-title">this</span>(<span class="hljs-params"><span class="hljs-number">10</span>, <span class="hljs-number">10</span></span>)</span>
+    {
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Sample01</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a</span>) : <span class="hljs-title">this</span>(<span class="hljs-params">a, <span class="hljs-number">10</span></span>)</span>
+    {
+        x = a;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Sample01</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span>
+    {
+        x = a;
+        y = b;
+    }
+}</code></pre></code></pre>
+<p>繼承鏈上的建構式呼叫順序<br>繼承鏈上的建構式呼叫順序(建立C類別的執行個體)  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">A</span>
+{
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> _valueA;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">A</span>(<span class="hljs-params"></span>)</span> { }
+}
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">B</span> : <span class="hljs-title">A</span>
+{
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> _valueB;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">B</span>(<span class="hljs-params"></span>)</span> { }
+}
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">C</span> : <span class="hljs-title">B</span>
+{
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> _valueC;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">C</span>(<span class="hljs-params"></span>)</span> { }
+}</code></pre></code></pre>
+<p>上述程式碼的建構式執行流程圖<br><img src="http://user-image.logdown.io/user/11661/blog/11120/post/1956015/y4XzxRSqTRaFjt7onda3_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-18%20%E4%B8%8A%E5%8D%8812.13.59.png" alt="繼承鏈建構式執行流程圖">  </p>
+<p>避免(一定不要)在建構式呼叫虛擬方法<br>因為虛擬方法會依據執行個體來執行,有可能導致不可預期的錯誤<br><img src="http://user-image.logdown.io/user/11661/blog/11120/post/1956015/xtPwJmY3QKqkTRsdkLR8_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-17%20%E4%B8%8B%E5%8D%882.58.16.png" alt="建構式呼叫虛擬方法範例"><br><br></p>
+<h3 id="靜態方法與執行個體方法的選擇">靜態方法與執行個體方法的選擇</h3>
+<p>依據內聚性與情境的狀況來進行選擇<br>舉例：<br>如果是人的身高、體重、身份証字號為例,對每一個人來說都有自已的身高、體重、身份証字號應該為執行個體方法<br>如果是總統因為全台灣的總統對台灣的所有人來說只有一位,所以應該使用靜態方法<br>一個靜態方法與執行個體方法設計的選擇sample code  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span>
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">double</span> Width { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">double</span> Height { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+    <span class="hljs-comment">// 合理的作法</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">double</span> <span class="hljs-title">GetArea</span>(<span class="hljs-params"></span>)</span>
+    {
+        <span class="hljs-keyword">return</span> Width * Height;
+    }
+
+    <span class="hljs-comment">// 還算合理的作法(傳入一個Rectangle), 可抽出寫成擴充方法</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">double</span> <span class="hljs-title">GetArea</span>(<span class="hljs-params">Rectangle rectangle</span>)</span>
+    {
+        <span class="hljs-keyword">return</span> rectangle.Width * rectangle.Height;
+    }
+
+        <span class="hljs-comment">// 不合理的作法，意圖不明確，使用的時候給的值可能會錯</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">double</span> <span class="hljs-title">GetArea</span>(<span class="hljs-params"><span class="hljs-built_in">double</span> width, <span class="hljs-built_in">double</span> height</span>)</span>
+    {
+        <span class="hljs-keyword">return</span> width * height;
+    }
+}</code></pre></code></pre>
+<h3 id="擴充方法">擴充方法</h3>
+<p>擴充方法是一種特殊的"靜態方法"，但是需將它們當成擴充類型上的執行"個體方法(Instance Method)"來呼叫。<br>實作擴充方法sample code  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ExtensionClass</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">string</span>[] <span class="hljs-title">Splitline</span>(<span class="hljs-params"><span class="hljs-keyword">this</span> <span class="hljs-built_in">string</span> str</span>)</span>
+    {
+        <span class="hljs-keyword">return</span> str.Split(<span class="hljs-keyword">new</span> <span class="hljs-built_in">string</span>[] { Environment.NewLine },
+            StringSplitOptions.None);
+    }
+}</code></pre></code></pre>
+<h3 id="介面">介面</h3>
+<p>單一繼承 + 多介面實作<br>介面是一系列方法、屬性、事件與索引的簽章<br>介面不能定義執行個體欄位與建構式<br>C# 不允許在介面中定義靜態成員<br>介面的設計要儘量簡單  </p>
+<h4 id="明確實作介面成員">明確實作介面成員</h4>
+<p>當變數型別為明確實作介面型別時才看的到該實作的方法<br>實務上比較少用到,MSDN文件比較常出現查閱時要特別注意<br><br></p>
+<h4 id="介面與抽象類別如何選擇？">介面與抽象類別如何選擇？</h4>
+<p>如果沒有任何實作的需要就選擇介面,反之則選擇抽象類別<br>介面主要是定義一些方法給彼此較不相關但卻有共同功能的類別使用<br>而抽象類別主要應用在關係密切的類別使用<br>另外要考慮的是一個類別能實作很多介面,但只能繼承一個抽象類別<br><br></p>
+<h3 id="泛型">泛型</h3>
+<p>.Net Framework 2.0後才出現泛型<br>泛型介面 interface Itest<t><br>泛型類別 class Test<t><br>泛型方法 void Test<t> (T value), T Test<t>()<br>泛型委派 delegate void Del<t>(T item)  </t></t></t></t></t></p>
+<h4 id="default關鍵字">default關鍵字</h4>
+<p>參考型別的 null<br>實質型別的 0<br>當沒有條件約束時泛型如何正確回傳<br><br></p>
+<h2 id="泛型條件約束">泛型條件約束</h2>
+<p>將 new() 條件約束與其他條件約束一起使用時，一定要將其指 定為最後一個<br>型別引數必須是實值型別  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">where</span> T: <span class="hljs-keyword">struct</span></code></pre></code></pre>
+<p>型別引數必須是參考型別</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span></code></pre></code></pre>
+<p>型別引數必須擁有公用的無參數建構函式</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">where</span> T : <span class="hljs-keyword">new</span>()</code></pre></code></pre>
+<p>型別引數必須本身是指定的基底類別，或衍生自該類別  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs">where T : &lt;base class name></code></pre></code></pre>
+<p>型別引數必須本身是指定的介面，或實作該介面  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs">where T : &lt;interface name></code></pre></code></pre>
+<p>提供給 T 的型別引數必須是 (或衍生自) 提供給 U 的引數  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">where</span> T : U</code></pre></code></pre>
+<h3 id="共變性">共變性</h3>
+<p>用基底類別取代衍生類別<br><br></p>
+<h3 id="逆變性">逆變性</h3>
+<p>用衍生類別取代基底類別<br>共變性與逆變性的差異  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Gen0</span> { <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> x; }
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Gen1</span> : <span class="hljs-title">Gen0</span> {}
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span>
+{
+    <span class="hljs-comment">// 共變</span>
+    <span class="hljs-comment">//Gen1 obj = OutMethod();</span>
+    Gen0 obj = OutMethod();
+
+    <span class="hljs-comment">// 逆變</span>
+    <span class="hljs-comment">//InMethod(new Gen0());</span>
+    InMethod(<span class="hljs-keyword">new</span> Gen1());
+}
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Gen1 <span class="hljs-title">OutMethod</span>(<span class="hljs-params"></span>)</span>
+{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Gen1(); }
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">InMethod</span>(<span class="hljs-params">Gen0 obj</span>)</span> {}</code></pre></code></pre>
+<h3 id="lambda簡介與原理">Lambda簡介與原理</h3>
+<h4 id="linq-framework">LINQ Framework</h4>
+<p>LINQ to Object<br>LINQ to ADO.NET(LINQ to Entities)<br>LINQ to XML<br><br></p>
+<h4 id="lambda原理">Lambda原理</h4>
+<p><del>其實Lambda是一種擴充方法,並且結合委派</del>(錯誤，2017/06/20修正如下)<br>應用"擴充方法"與"委派"<br>經過一段時間的演進語法才會變的這麼簡潔(也是一種語法糖)<br>Enumerable.Where</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-title">IEnumerable</span>&lt;<span class="hljs-title">TSource</span>> <span class="hljs-title">Where</span>&lt;<span class="hljs-title">TSource</span>>
+(<span class="hljs-params"> <span class="hljs-keyword">this</span> IEnumerable&lt;TSource> source, Func&lt;TSource, <span class="hljs-built_in">bool</span>> predicate </span>)</span></code></pre></code></pre>
+<p>Enumerable.Where使用方法  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs">List&lt;<span class="hljs-built_in">string</span>> data = <span class="hljs-keyword">new</span> List&lt;<span class="hljs-built_in">string</span>>()
+    {
+        <span class="hljs-string">"bill"</span>, <span class="hljs-string">"david"</span>, <span class="hljs-string">"john"</span>
+    };
+<span class="hljs-keyword">var</span> result = data.Where((x) => x == <span class="hljs-string">"david"</span>);</code></pre></code></pre>
+<h3 id="迭代器iterator">迭代器(Iterator)</h3>
+<p>使用 yield 關鍵字時,表示關鍵字所在的方法、運算子或 get 存取子是迭代器<br>當程式碼執行至yield return時,會將值回傳並記住目前程式碼的位置。下次再呼叫此Iterator時,就會從剛剛記住的位置重新開始執行。  </p>
+<h4 id="使用注意事項">使用注意事項</h4>
+<p>傳回類型必須是IEnumerable、IEnumerable<t>、IEnumerator 或 IEnumerator<t><br>不可包含任何 ref 或 out 參數<br><br></t></t></p>
+<h4 id="其他重點">其他重點</h4>
+<p>優先採用 foreach 替代 for<br>不可在 foreach 區塊內修改來源集合  </p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/csharp-oo-notes-day1" title="物件導向實作課程筆記 Day 1" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>物件導向實作課程筆記 Day 1</span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/csharp-oo-notes-day3" title="物件導向實作課程筆記 Day 3" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              物件導向實作課程筆記 Day 3
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/csharp-oo-notes-day2" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(n){return{layout:"default",data:[{id:n,post:{title:"物件導向實作課程筆記 Day 2",id:n,slug:'記錄去上"物件導向實作課程"的筆記，一共3天。本篇為第2天課程的筆記',categoryList:["CSharp"],createDate:"2017-06-17",articleContent:'### override\n可被覆寫的修飾詞 abstract、virtual與override  \n若加上修飾詞 sealed後，該方法將不可再被覆寫  \n\n### new\n遮蔽的宣告方式  \n盡量不要使用,違反[里氏替換原則（Liskov Substitution principle)](https://zh.wikipedia.org/wiki/%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99),而且很難預測實際執行的方法為何\n可能使用情境 => 使用第三方元件,發現該元件某方法發生明顯的錯誤,則可透過遮蔽的方式進行"暫時"的修改,加上明確的說明註解並且盡快修正該元件。  \nclass定義\n``` cs\npublic class Sample01\n{\n    public void Test()\n    {\n        Console.WriteLine("Sample01");\n    }\n}\n\npublic class Sample02 : Sample01\n{\n    public new void Test()\n    {\n        Console.WriteLine("Sample02");\n    }\n}\n```\n呼叫範例 => output為"Sample01"\n``` cs\nSample02 sample = new Sample02();\nSample01 execSample = sample;\n\nexecSample.Test();\n```\n\n### 多載\n同樣的方法名稱,不同的參數清單  \n<br />\n### 委派\ndelegate,是一種型別,可以宣告在namespace底下  \n可以用來將方法當做引數傳遞給其他方法  \n裡面儲存的都是方法指標  \n多重的  \n``` cs\nnamespace OOPSample\n{\n    public delegate void SomeAction(string message);\n    class Sample\n    {\n        public void Main()\n        {\n            SomeAction action = Test01; // 增加委派的方法\n            action += Test02; // 增加委派的方法(多重的)\n            action += Test01; // 增加委派的方法(多重的)\n            action.Invoke("早安"); // 叫用委派的方法\n\n            action -= Test01; // 移除委派的方法(後加入的先移除)\n            action("晚安");\n        }\n\n        public void Test01(string s)\n        {\n            Console.WriteLine($"Test01 {s}");\n        }\n        public void Test02(string s)\n        {\n            Console.WriteLine($"Test02 {s}");\n        }\n    }\n}\n```  \n\n呼叫Main()的輸出  \n![呼叫Main方法的輸出](http://user-image.logdown.io/user/11661/blog/11120/post/1956015/eklFsVC3SQaJxtQUUiY8_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-17%20%E4%B8%8B%E5%8D%8812.55.45.png)\n\n### Action\n無回傳值的委派,傳入的參數可以有0~16個  \n<br />\n### Func\n有回傳值的委派,傳入的參數可以有0~16個  \n回傳值型別一定在最後  \n``` cs\n// int 為方法回傳值的型別\nFunc<string, int> func;\n```  \n\n### 事件\nevent,讓類別或物件在某些相關的事情發生時，告知其他類別或物件  \n一般event寫法  \n``` cs\npublic class Sample01\n{\n    public event EventHandler XChanged; // 使用event\n    \n    private int _x;\n    public int X {\n        get { return _x; }\n        set\n        {\n            if (_x != value)\n            {\n                _x = value;\n                OnXChanged();\n            }\n        }\n    }\n\n    private void OnXChanged()\n    {\n        if (XChanged != null)\n        {\n            XChanged(this, new EventArgs());\n        }\n    }\n}\n```  \n另一種寫法使用property  \n``` cs\npublic class Sample02\n{\n    public EventHandler XChanged { get; set; } // 使用property\n\n    private int _x;\n    public int X\n    {\n        get { return _x; }\n        set\n        {\n            if (_x != value)\n            {\n                _x = value;\n                OnXChanged();\n            }\n        }\n    }\n\n    private void OnXChanged()\n    {\n        if (XChanged != null)\n        {\n            XChanged(this, new EventArgs());\n        }\n    }\n}\n```\n#### 事件與事件委派函式\n以Windows Form應用程式為例  \n如果在Form上面的按扭button1,並撰寫Click應執行的程式碼時  \nForm1.Designer.cs\n``` cs\n// Click為事件\n// this.button1_Click為事件委派函式\nthis.button1.Click += new System.EventHandler(this.button1_Click);\n```\nForm1.cs 事件委派函式sample code\n``` cs\nprivate void button1_Click(object sender, EventArgs e)\n{\n    obj.X += 1;\n}\n```  \n\n#### 帶有資料的宣告\n自訂EventArgs  \n``` cs\npublic class CustomEventArgs : EventArgs\n{\n    public int OldValue { get; set; } \n    public int NewValue { get; set; }\n}\n```  \n\n#### 自訂委派\n自訂委派sample code  \n``` cs\npublic event CustomEventHandler XChanged;\nprivate void OnXChanged(int oldvalue, int newvalue)\n{\n    if (XChanged != null)\n    {\n      XChanged(this, new CustomEventArgs()\n      {\n          OldValue = oldvalue, NewValue = newvalue\n      });\n    }\n}\n```\n#### 使用EventHandler<T>替代自訂委派\n使用EventHandler<T>  \n``` cs\npublic event EventHandler<CustomEventArgs> XChanged;\nprivate void OnXChanged(int oldvalue, int newvalue)\n{\n    if (XChanged != null)\n    {\n        XChanged(this, new CustomEventArgs()\n        {\n            OldValue = oldvalue, NewValue = newvalue \n        });\n    }\n}\n```  \n\n### 建構式\n初始化物件的資料成員  \n不使用任何參數的建構函式稱為「預設建構函式」(Default Constructor)  \n建構式不會繼承(但會隱含呼叫父類的預設建構函式)  \n當建構式有多載的狀況下,建議使用類別內部建構式呼叫的方式  \n內部建構式呼叫sample  \n``` cs\npublic class Sample01\n{\n    int x;\n    int y;\n\n    public Sample01() : this(10, 10)\n    {\n    }\n    \n    public Sample01(int a) : this(a, 10)\n    {\n        x = a;\n    }\n    \n    public Sample01(int a, int b)\n    {\n        x = a;\n        y = b;\n    }\n}\n```  \n繼承鏈上的建構式呼叫順序  \n繼承鏈上的建構式呼叫順序(建立C類別的執行個體)  \n``` cs\npublic class A\n{\n    private int _valueA;\n    public A() { }\n}\npublic class B : A\n{\n    private int _valueB;\n    public B() { }\n}\npublic class C : B\n{\n    private int _valueC;\n    public C() { }\n}\n```  \n上述程式碼的建構式執行流程圖  \n![繼承鏈建構式執行流程圖](http://user-image.logdown.io/user/11661/blog/11120/post/1956015/y4XzxRSqTRaFjt7onda3_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-18%20%E4%B8%8A%E5%8D%8812.13.59.png)  \n\n避免(一定不要)在建構式呼叫虛擬方法  \n因為虛擬方法會依據執行個體來執行,有可能導致不可預期的錯誤  \n![建構式呼叫虛擬方法範例](http://user-image.logdown.io/user/11661/blog/11120/post/1956015/xtPwJmY3QKqkTRsdkLR8_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-06-17%20%E4%B8%8B%E5%8D%882.58.16.png)  \n<br />\n### 靜態方法與執行個體方法的選擇\n依據內聚性與情境的狀況來進行選擇  \n舉例：  \n如果是人的身高、體重、身份証字號為例,對每一個人來說都有自已的身高、體重、身份証字號應該為執行個體方法  \n如果是總統因為全台灣的總統對台灣的所有人來說只有一位,所以應該使用靜態方法  \n一個靜態方法與執行個體方法設計的選擇sample code  \n``` cs\npublic class Rectangle\n{\n    public double Width { get; set; }\n    public double Height { get; set; }\n\t\t\n    // 合理的作法\n    public double GetArea()\n    {\n        return Width * Height;\n    }\n    \n    // 還算合理的作法(傳入一個Rectangle), 可抽出寫成擴充方法\n    public static double GetArea(Rectangle rectangle)\n    {\n        return rectangle.Width * rectangle.Height;\n    }\n    \n\t\t// 不合理的作法，意圖不明確，使用的時候給的值可能會錯\n    public static double GetArea(double width, double height)\n    {\n        return width * height;\n    }\n}\n```\n\n### 擴充方法\n擴充方法是一種特殊的"靜態方法"，但是需將它們當成擴充類型上的執行"個體方法(Instance Method)"來呼叫。  \n實作擴充方法sample code  \n``` cs\npublic static class ExtensionClass\n{\n    public static string[] Splitline(this string str)\n    {\n        return str.Split(new string[] { Environment.NewLine },\n            StringSplitOptions.None);\n    }\n}\n```\n\n### 介面\n單一繼承 + 多介面實作  \n介面是一系列方法、屬性、事件與索引的簽章  \n介面不能定義執行個體欄位與建構式  \nC# 不允許在介面中定義靜態成員  \n介面的設計要儘量簡單  \n#### 明確實作介面成員\n當變數型別為明確實作介面型別時才看的到該實作的方法  \n實務上比較少用到,MSDN文件比較常出現查閱時要特別注意  \n<br />\n#### 介面與抽象類別如何選擇？\n如果沒有任何實作的需要就選擇介面,反之則選擇抽象類別  \n介面主要是定義一些方法給彼此較不相關但卻有共同功能的類別使用  \n而抽象類別主要應用在關係密切的類別使用  \n另外要考慮的是一個類別能實作很多介面,但只能繼承一個抽象類別  \n<br />\n### 泛型\n.Net Framework 2.0後才出現泛型  \n泛型介面 interface Itest<T>  \n泛型類別 class Test<T>  \n泛型方法 void Test<T> (T value), T Test<T>()  \n泛型委派 delegate void Del<T>(T item)  \n#### default關鍵字\n參考型別的 null  \n實質型別的 0  \n當沒有條件約束時泛型如何正確回傳  \n<br />\n## 泛型條件約束\n將 new() 條件約束與其他條件約束一起使用時，一定要將其指 定為最後一個  \n型別引數必須是實值型別  \n``` cs\nwhere T: struct\n```\n型別引數必須是參考型別\n``` cs\nwhere T : class\n```\n型別引數必須擁有公用的無參數建構函式\n``` cs\nwhere T : new()\n```\n型別引數必須本身是指定的基底類別，或衍生自該類別  \n``` cs\nwhere T : <base class name>\n```\n型別引數必須本身是指定的介面，或實作該介面  \n``` cs\nwhere T : <interface name>\n```\n提供給 T 的型別引數必須是 (或衍生自) 提供給 U 的引數  \n``` cs\nwhere T : U\n```\n\n### 共變性\n用基底類別取代衍生類別  \n<br />\n### 逆變性\n用衍生類別取代基底類別  \n共變性與逆變性的差異  \n``` cs\npublic class Gen0 { public int x; }\npublic class Gen1 : Gen0 {}\n\nstatic void Main(string[] args)\n{\n    // 共變\n    //Gen1 obj = OutMethod();\n    Gen0 obj = OutMethod();\n\n    // 逆變\n    //InMethod(new Gen0());\n    InMethod(new Gen1());\n}\n\nprivate static Gen1 OutMethod()\n{ return new Gen1(); }\n\nprivate static void InMethod(Gen0 obj) {}\n```\n\n### Lambda簡介與原理\n#### LINQ Framework\nLINQ to Object  \nLINQ to ADO.NET(LINQ to Entities)  \nLINQ to XML  \n<br />\n#### Lambda原理\n~~其實Lambda是一種擴充方法,並且結合委派~~(錯誤，2017/06/20修正如下)  \n應用"擴充方法"與"委派"  \n經過一段時間的演進語法才會變的這麼簡潔(也是一種語法糖)  \nEnumerable.Where\n``` cs\npublic static IEnumerable<TSource> Where<TSource>\n( this IEnumerable<TSource> source, Func<TSource, bool> predicate )\n```\nEnumerable.Where使用方法  \n``` cs\nList<string> data = new List<string>()\n    {\n        "bill", "david", "john"\n    };\nvar result = data.Where((x) => x == "david");\n```\n\n### 迭代器(Iterator)\n使用 yield 關鍵字時,表示關鍵字所在的方法、運算子或 get 存取子是迭代器  \n當程式碼執行至yield return時,會將值回傳並記住目前程式碼的位置。下次再呼叫此Iterator時,就會從剛剛記住的位置重新開始執行。  \n#### 使用注意事項\n傳回類型必須是IEnumerable、IEnumerable<T>、IEnumerator 或 IEnumerator<T>  \n不可包含任何 ref 或 out 參數  \n<br />\n#### 其他重點\n優先採用 foreach 替代 for  \n不可在 foreach 區塊內修改來源集合  \n'},prevPost:{id:"csharp-oo-notes-day1",createDate:"2017-06-10",title:"物件導向實作課程筆記 Day 1"},nextPost:{id:"csharp-oo-notes-day3",createDate:"2017-06-24",title:"物件導向實作課程筆記 Day 3"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/csharp-oo-notes-day2"}}("csharp-oo-notes-day2")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

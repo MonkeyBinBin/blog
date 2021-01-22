@@ -1,0 +1,446 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>物件導向實作課程筆記 Day 3 - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/csharp-oo-notes-day3/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,CSharp,物件導向實作課程筆記 Day 3"><meta data-n-head="ssr" data-hid="description" property="description" content='記錄去上"物件導向實作課程"的筆記，一共3天。本篇為第3天課程的筆記'><meta data-n-head="ssr" data-hid="og:description" property="og:description" content='記錄去上"物件導向實作課程"的筆記，一共3天。本篇為第3天課程的筆記'><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="物件導向實作課程筆記 Day 3 - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/csharp-oo-notes-day3/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      June 24, 2017
+    </span> <a href="/tag/CSharp" title="CSharp" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      CSharp
+    </a></div> <h1 data-v-3c54882c><a href="/article/csharp-oo-notes-day3" title="物件導向實作課程筆記 Day 3" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      物件導向實作課程筆記 Day 3
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    記錄去上"物件導向實作課程"的筆記，一共3天。本篇為第3天課程的筆記
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><h3 id="索引子">索引子</h3>
+<p>關鍵字 this 用來定義索引子<br>不需要以整數值來索引,可以自行決定如何定義特定的查詢機制<br>可以多載<br>sample code：Xamarin.Android Listview使用的Adapter  </p>
+<pre><code class="language-c"><pre><code class="hljs c"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ParkAdapter</span>:</span> BaseAdapter&lt;ClassA>
+{
+    <span class="hljs-keyword">private</span> List&lt;ClassA> _classA;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> ClassA <span class="hljs-keyword">this</span> [<span class="hljs-keyword">int</span> index]
+    {
+        get {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._classA.ElementAt (index);
+        }
+    }
+}</code></pre></code></pre>
+<p>索引子應用 Read Only Collection<br>sample code</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ReadonlyPeople</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">List</span>&lt;<span class="hljs-title">Person</span>> _items</span> = <span class="hljs-keyword">new</span> List&lt;Person>();
+
+    <span class="hljs-comment">// 建構式</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ReadonlyPeople</span>(<span class="hljs-params"></span>)</span>
+    {
+        SetDataToItems();
+    }
+
+    <span class="hljs-comment">// 索引子</span>
+    <span class="hljs-keyword">public</span> Person <span class="hljs-keyword">this</span>[<span class="hljs-built_in">int</span> index]
+    {
+        <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> _items[index]; }
+    }
+
+    <span class="hljs-comment">// 產生集合內預設資料</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetDataToItems</span>(<span class="hljs-params"></span>)</span>
+    {
+        _items = <span class="hljs-keyword">new</span> List&lt;Person>();
+        _items.Add(<span class="hljs-keyword">new</span> Person() { Name = <span class="hljs-string">"Andy"</span>, Age = <span class="hljs-number">28</span> });
+        _items.Add(<span class="hljs-keyword">new</span> Person() { Name = <span class="hljs-string">"Bill"</span>, Age = <span class="hljs-number">30</span> });
+
+    }
+
+    <span class="hljs-comment">// 提供增加新項目的方法</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Add</span>(<span class="hljs-params">Person person</span>)</span>
+    {
+        <span class="hljs-keyword">var</span> result = _items.FirstOrDefault((x) => x.Name == person.Name);
+
+        <span class="hljs-keyword">if</span> (result == <span class="hljs-literal">null</span>)
+        {
+            _items.Add(person);
+            Console.WriteLine(<span class="hljs-string">"成功"</span>);
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            Console.WriteLine(<span class="hljs-string">"姓名重複 !!!"</span>);
+        }
+    }
+}</code></pre></code></pre>
+<h3 id="類別設計">類別設計</h3>
+<h4 id="流程">流程</h4>
+<p>需求→職責→抽象<br>發散→收斂 重覆的執行(重構程式碼)<br><br></p>
+<h4 id="目標">目標</h4>
+<p>高內聚、低耦合<br>相關的東西放在同一個class(相同的執行個體),相關的東西除了程式上也有可能是"意圖"<br>一個依據"意圖"設計的例子就是我們時常用到的System.Math<br>微軟將所有與計算相關的方法都放在System.Math之下<br>讓開發人員能夠清楚的知道這些方法的用途並且也可以快速找到要用的方法<br><br></p>
+<h4 id="技巧">技巧</h4>
+<p>用畫圖的方式幫助思考<br>理解自已寫的程式,可以解釋程式為何要這樣設計(說的一嘴好程式)<br>程式沒有絕對的寫法,依據需求撰寫多種解決方案再依照情境選擇較好的解決方案(平時練習或專案時間許可)<br>重構很重要,當程式碼出現重覆的狀況就盡可能的進行重構<br>盡可能降低方法的循環複雜度<br>(降低方法的循環複雜度在撰寫測試案例時會有很大的助益)<br><br></p>
+<h4 id="抽象類別與介面的選擇">抽象類別與介面的選擇</h4>
+<p><strong>抽象類別</strong>
+重點在於重用性的設計<br>描述一個同類物件的共通特性<br>舉例：所有動物都具有吃、喝、睡覺等等共同的特性,不過每種動物吃的東西不一樣(人類什麼都吃，老虎吃肉...等),我們可以將這些基本特性,寫成抽象類別與方法讓其他類別來繼承並且實做方法<br><strong>介面</strong>
+著重的則是抽象程度<br>定義物件所需要具備的相同功能<br>舉例：飛機會飛,鳥也會飛,但是兩者飛的方式不一樣。所以我們可以把飛寫成介面,物件只要繼承這個介面並且方法,該物件就具有飛行的特性了<br><br></p>
+<h3 id="設計模式">設計模式</h3>
+<p>依據需求而反覆出現的各種問題,所提出來的解決方案<br>如何在不重新設計下進行改變<br>使用上可能會組合多種設計模式<br><br></p>
+<h3 id="繼承">繼承</h3>
+<p>繼承深度,建議不要超過3層  </p>
+<h4 id="繼承缺點">繼承缺點</h4>
+<p>侵入性的<br>衍生類別會具有基底類別的所有特性,增加衍生類別的約束<br>衍生類別會強耦和基底類別,當基底類別被修改也會影響衍生類別<br><br></p>
+<h3 id="solid-六大原則">SOLID 六大原則</h3>
+<h4 id="單一職責原則single-responsibility-principle">單一職責原則(Single Responsibility Principle)</h4>
+<p>就一個類別而言，應該僅有一個引起它變化的原因  </p>
+<h4 id="里式替換原則liskovs-substitution-principle">里式替換原則(Liskov’s Substitution Principle)</h4>
+<p>使用父類的地方，必須可以使用子類別代替，而不需要任何改變  </p>
+<h4 id="依賴倒置原則dependency-inversion-principle">依賴倒置原則(Dependency-Inversion Principle)</h4>
+<p>高層模組不應倚賴低層模組，兩者都應該倚賴抽象<br>抽象不應該倚賴細節，細節應該倚賴抽象  </p>
+<h4 id="介面隔離原則interface-segregation-principle">介面隔離原則(Interface Segregation Principle)</h4>
+<p>客戶端不應該依賴它不需要的介面<br>類別之間的依賴關係應該建立在最小的介面上  </p>
+<h4 id="開閉原則open-closed-principle">開閉原則(Open-Closed Principle)</h4>
+<p>對擴展開放,對修改封閉  </p>
+<h4 id="最少知識原則迪米特法則law-of-demeter">最少知識原則(迪米特法則)(Law of Demeter)</h4>
+<p>一個物件應該對其他物件有最少的了解  </p>
+<h3 id="ioc控制反轉">Ioc(控制反轉)</h3>
+<p>控制移轉,將產生實體的控制權移轉到一個類別(factory)專門負責產生實體<br>依賴抽象不依賴實作<br>當產生執行個體的程式碼需要修改時，只需要修改專門負責產生實體的類別(factory)的程式碼，可以避免漏改或誤改<br><br></p>
+<h3 id="di依賴注入">DI(依賴注入)</h3>
+<p>當A Class有使用B Class的執行個體時,稱為A Class依賴B Class。將B Class的執行個體由A Class外部提供給A Class使用稱為DI<br><br></p>
+<h4 id="注入方式">注入方式</h4>
+<p>使用介面實作注入(Interface Injection)  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDriver</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Drive</span>(<span class="hljs-params">ICar car</span>)</span>;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Driver</span> : <span class="hljs-title">IDriver</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Drive</span>(<span class="hljs-params">ICar car</span>)</span>
+    {
+        car.Run();
+    }
+}</code></pre></code></pre>
+<p>使用建構子注入(Constructor Injection)</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Driver</span>
+{
+    <span class="hljs-keyword">private</span> ICar _car;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Driver</span>(<span class="hljs-params">ICar car</span>)</span>
+    {
+        _car = car;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Run</span>(<span class="hljs-params"></span>)</span>
+    {
+        _car.Run();
+    }
+}</code></pre></code></pre>
+<p>使用屬性注入(Setter Injection)</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Driver</span>
+{
+    <span class="hljs-keyword">public</span> ICar Car
+    { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Run</span>(<span class="hljs-params"></span>)</span>
+    {
+        Car.Run();
+    }
+}</code></pre></code></pre>
+<h3 id="共用的概念">共用的概念</h3>
+<p>使用同一份程式碼、共用抽象<br><br></p>
+<h3 id="一般化與特殊化">一般化與特殊化</h3>
+<p>一般化 => 父類別為子類別的一般化，因為繼承父類別後的子類別都具備與父類別相同的特性<br>特殊化 => 子類別為父類別的特殊化，因為子類別除了擁有父類別的特性還可以自已擁有不同的特性<br>如果子類別需要增加父類別沒有的其他特別方法時，建議使用"介面"繼承實作<br><br></p>
+<h3 id="單例模式singleton">單例模式(Singleton)</h3>
+<p>確保某個類別只有單一執行個體,而且自行建立執行個體並向系統提供這個執行個體<br>sealed class<br>private靜態方法產生執行個體  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SingletonClass</span>
+{
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// 設為private 外界不可產生執行個體</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">SingletonClass</span>(<span class="hljs-params"></span>)</span>
+    {
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Show</span>(<span class="hljs-params"></span>)</span>
+    {
+        Console.WriteLine(<span class="hljs-string">"Hello "</span> + i.ToString());
+        i += <span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> SingletonClass _singletonObject;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SingletonClass SingletonObject
+    {
+        <span class="hljs-keyword">get</span>
+        {
+            <span class="hljs-keyword">if</span> (_singletonObject == <span class="hljs-literal">null</span>)
+            {
+                GetSingleton();
+            }
+            <span class="hljs-keyword">return</span> _singletonObject;
+        }
+    }
+
+    <span class="hljs-comment">// 靜態方法產生執行個體</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetSingleton</span>(<span class="hljs-params"></span>)</span>
+    {
+        _singletonObject = <span class="hljs-keyword">new</span> SingletonClass();
+    }
+}</code></pre></code></pre>
+<h3 id="反射reflection">反射(Reflection)</h3>
+<p>由記憶體將"型別物件"拿出來看一看、用一用</p>
+<h4 id="載入組件">載入組件</h4>
+<p>Assembly.Load(by AssemblyName、by Assembly name string、by Assembly byte[])<br>Assembly.LoadFrom<br>Assembly.LoadFile<br><br></p>
+<h4 id="建立執行個體">建立執行個體</h4>
+<p>AppDomain.CreateInstance<br>AppDomain.CreateInstanceAndUnwrap<br>Assembly.CreateInstance<br><strong>Activator.CreateInstance</strong><br><strong>Activator.CreateInstanceFrom</strong><br><br></p>
+<h4 id="利用反射存取成員">利用反射存取成員</h4>
+<p>Member：Type.GetMember,Type.GetMembers<br>Method：Type.GetMethod,Type.GetMethods,MethodBase.Invoke<br>Property：Type.GetProperty,Type.GetProperties,PropertyInfo.SetValue,PropertyInfo.GetValue<br>Interface：Type.GetInterface,Type.GetInterfaces<br><br></p>
+<h4 id="使用反射建立泛型實體">使用反射建立泛型實體</h4>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-comment">// 載入GenericLibrary組件</span>
+Assembly asm = AppDomain.CurrentDomain.Load(<span class="hljs-string">"GenericLibrary"</span>);
+<span class="hljs-comment">// 取得泛型類別</span>
+Type type1 = asm.GetType(<span class="hljs-string">"GenericLibrary.GernericType`1"</span>);
+<span class="hljs-comment">// 指定泛型類別的參數具體型別</span>
+Type type11 = type1.MakeGenericType(<span class="hljs-keyword">new</span> Type[] { <span class="hljs-keyword">typeof</span>(String) });
+<span class="hljs-comment">// 建立泛型類別的執行個體</span>
+Object obj = Activator.CreateInstance(type11);</code></pre></code></pre>
+<h3 id="attribute">Attribute</h3>
+<p>宣告式設計<br>當Attribute被加入至某個元素時,該元素就被認為具有此特性的功能或性質<br>被動的,無法存取目標物<br>要建立一個可以當作Attribute的類別,必須繼承Attribute類別<br>在執行階段可以使用"反射"來存取<br>自訂Attribute類別</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">internal</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BoundaryAttribute</span> : <span class="hljs-title">Attribute</span>
+{
+    <span class="hljs-keyword">internal</span> Double Max
+    { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+    <span class="hljs-keyword">internal</span> Double Min
+    { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+    <span class="hljs-comment">// 建構函式, 以便在套用 attribute 時初始化 Min, Max</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">BoundaryAttribute</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> min, <span class="hljs-built_in">int</span> max</span>)</span>
+    {
+        Max = max;
+        Min = min;
+    }
+}</code></pre></code></pre>
+<p>套用Attribute與取得Attribute sample code</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-comment">// 在列舉值中套用Attribute 寫法一</span>
+<span class="hljs-keyword">public</span> <span class="hljs-built_in">enum</span> GenderType
+{
+    [<span class="hljs-meta">BoundaryAttribute(20, 25)</span>]
+    Man = <span class="hljs-number">1</span>,
+    [<span class="hljs-meta">BoundaryAttribute(18, 22)</span>]
+    Woman = <span class="hljs-number">2</span>
+}
+
+<span class="hljs-comment">// 在列舉值中套用Attribute 寫法二</span>
+<span class="hljs-keyword">public</span> <span class="hljs-built_in">enum</span> GenderType
+{
+    [<span class="hljs-meta">Boundary(20, 25)</span>]
+    Man = <span class="hljs-number">1</span>,
+    [<span class="hljs-meta">Boundary(18, 22)</span>]
+    Woman = <span class="hljs-number">2</span>
+}
+
+<span class="hljs-comment">// 取得列舉值的Attribute資料</span>
+<span class="hljs-keyword">internal</span> <span class="hljs-keyword">class</span> <span class="hljs-title">EnumValueBoundryHelper</span>
+{
+    <span class="hljs-keyword">internal</span> Double Max { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">private</span> <span class="hljs-keyword">set</span>; } 
+    <span class="hljs-keyword">internal</span> Double Min { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">private</span> <span class="hljs-keyword">set</span>; } 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">EnumValueBoundryHelper</span>(<span class="hljs-params">GenderType gender</span>)</span> {
+        FieldInfo data = <span class="hljs-keyword">typeof</span>(GenderType).GetField(gender.ToString()); 
+        Attribute attribute = Attribute.GetCustomAttribute(data, <span class="hljs-keyword">typeof</span>(BoundaryAttribute));
+        BoundaryAttribute boundaryattribute = (BoundaryAttribute)attribute;
+        Min = boundaryattribute.Min;
+        Max = boundaryattribute.Max;
+    }
+}
+
+<span class="hljs-comment">// 在型別上套用Attribute</span>
+[<span class="hljs-meta">BoundaryAttribute(0, 100)</span>]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BoundryClass</span>
+{
+}
+
+<span class="hljs-comment">// 取得型別的Attribute資料</span>
+<span class="hljs-keyword">internal</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ClassBoundryHelper</span>
+{
+    <span class="hljs-keyword">internal</span> Double Max { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">private</span> <span class="hljs-keyword">set</span>; }
+    <span class="hljs-keyword">internal</span> Double Min { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">private</span> <span class="hljs-keyword">set</span>; }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetBoundry</span>(<span class="hljs-params">Type type</span>)</span>
+    {
+        <span class="hljs-keyword">if</span> (type.IsDefined(<span class="hljs-keyword">typeof</span>(BoundaryAttribute))) {
+            Attribute attribute = type.GetCustomAttribute(<span class="hljs-keyword">typeof</span>(BoundaryAttribute), <span class="hljs-literal">true</span>);
+            BoundaryAttribute boundaryattribute = (BoundaryAttribute)attribute;
+            Min = boundaryattribute.Min;
+            Max = boundaryattribute.Max;
+        }
+    }
+}</code></pre></code></pre>
+<h3 id="工廠模式">工廠模式</h3>
+<p>定義一個創建物件的介面<br>分離物件的使用與建構+管理<br><br></p>
+<h4 id="簡單工廠simple-factory">簡單工廠(Simple Factory)</h4>
+<p>利用分支運算(if else,switch case)決定實體<br>可以使用資源字典(利用key查找並提供對應的執行個體)或Attribute改善分支運算的問題(避免改錯分支運算的狀況)<br>簡單工廠 sample code</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">StrategyFactory</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> BMIStrategy <span class="hljs-title">GetStrategy</span>(<span class="hljs-params"><span class="hljs-keyword">this</span> Human human</span>)</span>
+    {
+        <span class="hljs-keyword">switch</span> (human.Gender)
+        {
+            <span class="hljs-keyword">case</span> GenderType.Man:
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ManBMIStrategy(human);
+            <span class="hljs-keyword">case</span> GenderType.Woman:
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> WomanBMIStrategy(human);
+            <span class="hljs-literal">default</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ManBMIStrategy(human);
+        }
+    }
+}</code></pre></code></pre>
+<h4 id="工廠方法factory-method">工廠方法(Factory Method)</h4>
+<p>由不同的工廠,決定不同的實體<br>定義一個用於創建物件的介面,由此介面的子類別決定要實體化哪一個工廠<br>工廠方法 sample code</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-comment">// 定義抽象工廠(介面)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IBMIFactory</span>
+{
+    <span class="hljs-function">BMIStrategy <span class="hljs-title">GetStrategy</span>(<span class="hljs-params">Human human</span>)</span>;
+}
+
+<span class="hljs-comment">// 繼承抽象工廠與實作產生實體的方法,依需要實做多個工廠類別</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ManBMIFactory</span> : <span class="hljs-title">IBMIFactory</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> BMIStrategy <span class="hljs-title">GetStrategy</span>(<span class="hljs-params">Human human</span>)</span>
+    {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ManBMIStrategy(human);
+    }
+}
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">WomanBMIFactory</span> : <span class="hljs-title">IBMIFactory</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> BMIStrategy <span class="hljs-title">GetStrategy</span>(<span class="hljs-params">Human human</span>)</span>
+    {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> WomanBMIStrategy(human);
+    }
+}</code></pre></code></pre>
+<p>使用工廠方法 sample code</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-comment">// 由不同的工廠,決定不同的實體</span>
+Human human = <span class="hljs-keyword">new</span> Human() { Age = <span class="hljs-number">19</span>, Gender = GenderType.Woman, Height = <span class="hljs-number">1.72</span>, Weight = <span class="hljs-number">58</span> };
+IBMIFactory bmifactory = <span class="hljs-keyword">new</span> WomanBMIFactory();
+BMIStrategy bmistrategy = bmifactory.GetStrategy(human);</code></pre></code></pre>
+<h4 id="泛型工廠generic-factory">泛型工廠(Generic Factory)</h4>
+<p>使用泛型與反射來產生不同的實體<br>泛型工廠 sample code</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">GenericFactory</span>
+{
+    <span class="hljs-comment">// 透過組件名稱,類別名稱(需含Namespace)產生指定類別的實體</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> T <span class="hljs-title">CreateInastance</span>&lt;<span class="hljs-title">T</span>>(<span class="hljs-params"><span class="hljs-built_in">string</span> assemblyname, <span class="hljs-built_in">string</span> typename</span>)</span>
+    {
+        <span class="hljs-built_in">object</span> instance = Activator.CreateInstance(assemblyname, typename).Unwrap();
+        <span class="hljs-keyword">return</span> (T)instance;
+    }
+    <span class="hljs-comment">// 透過Type產生指定類別的實體</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> T <span class="hljs-title">CreateInastance</span>&lt;<span class="hljs-title">T</span>>(<span class="hljs-params">Type type</span>)</span>
+    {
+        <span class="hljs-keyword">return</span> CreateInastance&lt;T>(type, <span class="hljs-literal">null</span>);
+    }
+    <span class="hljs-comment">// 透過Type產生指定需要提供參數之類別的實體</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> T <span class="hljs-title">CreateInastance</span>&lt;<span class="hljs-title">T</span>>(<span class="hljs-params">Type type, <span class="hljs-built_in">object</span>[] args</span>)</span> {
+        <span class="hljs-built_in">object</span> instance = Activator.CreateInstance(type, args);
+        <span class="hljs-keyword">return</span> (T)instance;
+    }
+}</code></pre></code></pre>
+<h3 id="範本方法模式template-method">範本方法模式(Template Method)</h3>
+<p>減少多餘的程式碼<br>把通用實做放在基底類別<br>範本方法模式 sample code</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-comment">// 定義當做範本的基底類別</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Communication</span>
+{
+    <span class="hljs-comment">// 通用實作,發送Command並回傳結果</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">byte</span>[] <span class="hljs-title">SendCommand</span>(<span class="hljs-params"><span class="hljs-built_in">byte</span> [] command</span>)</span>
+    {
+        Send(command);            
+        <span class="hljs-keyword">return</span> Receive();
+    }
+
+    <span class="hljs-comment">// 繼承此類別者必須實作Send與Receive抽象方法</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Send</span>(<span class="hljs-params"><span class="hljs-built_in">byte</span>[] command</span>)</span>;
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> <span class="hljs-built_in">byte</span>[] <span class="hljs-title">Receive</span>(<span class="hljs-params"></span>)</span>;
+}</code></pre></code></pre>
+<h3 id="策略模式strategy">策略模式(Strategy)</h3>
+<p>定義一組演算法,將每個演算法封裝,並且使它們可以互換<br>策略模式封裝工廠模式 sample code</p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BMIContext</span>
+{
+    BMIStrategy _strategy;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">BMIContext</span>(<span class="hljs-params">Human human</span>)</span>
+    {
+        <span class="hljs-comment">//封裝 Factory 建立實體的過程</span>
+        _strategy = StrategyFactory.GetStrategy(human); 
+    }
+
+    <span class="hljs-keyword">public</span> Double BMI
+    {
+        <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> _strategy.BMI; }
+    }
+
+    <span class="hljs-keyword">public</span> String Result
+    {
+        <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> _strategy.Result; }
+    }
+}</code></pre></code></pre>
+<h3 id="橋接模式bridge">橋接模式(Bridge)</h3>
+<p>將抽象和實作解耦合,使其個別可以獨立變化<br>簡單說就是用組合/聚合替代繼承<br>橋接模式 sample code  </p>
+<pre><code class="language-cs"><pre><code class="hljs cs"><span class="hljs-comment">// 計算BMI應提供的資料介面定義,身高、體重</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMeasurementValue</span>
+{
+    Double Weight
+    { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+    Double Height
+    { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+}
+
+<span class="hljs-comment">// BMI值計算的介面</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IBMIValue</span>
+{
+    <span class="hljs-function">Double <span class="hljs-title">GetBMIValue</span>(<span class="hljs-params">Double weight, Double height</span>)</span>;
+}
+
+<span class="hljs-comment">// BMI結果回應字串介面,不同的最大最小值與回應字串</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IBMIComment</span>
+{
+    Double Min
+    { <span class="hljs-keyword">get</span>; }
+
+    Double Max
+    { <span class="hljs-keyword">get</span>; }
+
+    <span class="hljs-function">String <span class="hljs-title">GetBMIComment</span>(<span class="hljs-params">Double bmi</span>)</span>;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BMIBridge</span>
+{
+    <span class="hljs-keyword">private</span> Double _bmi;
+
+    <span class="hljs-keyword">public</span> IMeasurementValue Measurement
+    { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+    <span class="hljs-keyword">public</span> IBMIValue BMIValue
+    { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+    <span class="hljs-keyword">public</span> IBMIComment Comment
+    { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Double <span class="hljs-title">GetBMI</span>(<span class="hljs-params"></span>)</span>
+    {
+        _bmi = BMIValue.GetBMIValue(Measurement.Weight, Measurement.Height);
+        <span class="hljs-keyword">return</span> _bmi;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> <span class="hljs-title">GetComment</span>(<span class="hljs-params"></span>)</span>
+    {
+        <span class="hljs-keyword">return</span> Comment.GetBMIComment(_bmi);
+    }
+}</code></pre></code></pre>
+<h3 id="預設計與重構">預設計與重構</h3>
+<p>面對熟悉的需求與情境,可以依據先前的經驗快速的進行預設計,免去曾經進行過的重構過程(縮短開發時間)<br>如果是不熟悉的需求與情境,則可以先進行開發再透過重構改善程式碼的結構,以免發生過度設計的狀況<br><br></p>
+<h3 id="心得">心得</h3>
+<p>三天的課程非常的充實<br>從基本概念到實際應用,也有很多程式碼的範例<br>非常推薦剛開始學習寫程式或是已經寫程式一段時間的朋友可以聽聽看,相信會很有幫助<br><br>
+~ End ~</p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/csharp-oo-notes-day2" title="物件導向實作課程筆記 Day 2" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>物件導向實作課程筆記 Day 2</span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/set-sass-dev-environment" title="建立 Sass 開發與轉譯產出 CSS 環境配置" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              建立 Sass 開發與轉譯產出 CSS 環境配置
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/csharp-oo-notes-day3" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(n){return{layout:"default",data:[{id:n,post:{title:"物件導向實作課程筆記 Day 3",id:n,slug:'記錄去上"物件導向實作課程"的筆記，一共3天。本篇為第3天課程的筆記',categoryList:["CSharp"],createDate:"2017-06-24",articleContent:'### 索引子\n關鍵字 this 用來定義索引子  \n不需要以整數值來索引,可以自行決定如何定義特定的查詢機制  \n可以多載  \nsample code：Xamarin.Android Listview使用的Adapter  \n``` c\npublic class ParkAdapter: BaseAdapter<ClassA>\n{\n    private List<ClassA> _classA;\n    public override ClassA this [int index]\n    {\n        get {\n            return this._classA.ElementAt (index);\n        }\n    }\n}\n```  \n索引子應用 Read Only Collection  \nsample code\n``` cs\npublic class ReadonlyPeople\n{\n    private List<Person> _items = new List<Person>();\n    \n    // 建構式\n    public ReadonlyPeople()\n    {\n        SetDataToItems();\n    }\n    \n    // 索引子\n    public Person this[int index]\n    {\n        get { return _items[index]; }\n    }\n\n    // 產生集合內預設資料\n    private void SetDataToItems()\n    {\n        _items = new List<Person>();\n        _items.Add(new Person() { Name = "Andy", Age = 28 });\n        _items.Add(new Person() { Name = "Bill", Age = 30 });\n\n    }\n    \n    // 提供增加新項目的方法\n    public void Add(Person person)\n    {\n        var result = _items.FirstOrDefault((x) => x.Name == person.Name);\n\n        if (result == null)\n        {\n            _items.Add(person);\n            Console.WriteLine("成功");\n        }\n        else\n        {\n            Console.WriteLine("姓名重複 !!!");\n        }\n    }\n}\n```\n\n### 類別設計\n#### 流程\n需求→職責→抽象  \n發散→收斂 重覆的執行(重構程式碼)  \n<br/>\n#### 目標\n高內聚、低耦合  \n相關的東西放在同一個class(相同的執行個體),相關的東西除了程式上也有可能是"意圖"  \n一個依據"意圖"設計的例子就是我們時常用到的System.Math  \n微軟將所有與計算相關的方法都放在System.Math之下  \n讓開發人員能夠清楚的知道這些方法的用途並且也可以快速找到要用的方法  \n<br/>\n#### 技巧\n用畫圖的方式幫助思考  \n理解自已寫的程式,可以解釋程式為何要這樣設計(說的一嘴好程式)  \n程式沒有絕對的寫法,依據需求撰寫多種解決方案再依照情境選擇較好的解決方案(平時練習或專案時間許可)  \n重構很重要,當程式碼出現重覆的狀況就盡可能的進行重構  \n盡可能降低方法的循環複雜度  \n(降低方法的循環複雜度在撰寫測試案例時會有很大的助益)  \n<br/>\n#### 抽象類別與介面的選擇\n**抽象類別**\n重點在於重用性的設計  \n描述一個同類物件的共通特性  \n舉例：所有動物都具有吃、喝、睡覺等等共同的特性,不過每種動物吃的東西不一樣(人類什麼都吃，老虎吃肉...等),我們可以將這些基本特性,寫成抽象類別與方法讓其他類別來繼承並且實做方法  \n**介面**\n著重的則是抽象程度  \n定義物件所需要具備的相同功能  \n舉例：飛機會飛,鳥也會飛,但是兩者飛的方式不一樣。所以我們可以把飛寫成介面,物件只要繼承這個介面並且方法,該物件就具有飛行的特性了  \n<br/>\n### 設計模式\n依據需求而反覆出現的各種問題,所提出來的解決方案  \n如何在不重新設計下進行改變  \n使用上可能會組合多種設計模式  \n<br/>\n### 繼承\n繼承深度,建議不要超過3層  \n#### 繼承缺點\n侵入性的  \n衍生類別會具有基底類別的所有特性,增加衍生類別的約束  \n衍生類別會強耦和基底類別,當基底類別被修改也會影響衍生類別  \n<br/>\n### SOLID 六大原則\n#### 單一職責原則(Single Responsibility Principle)\n就一個類別而言，應該僅有一個引起它變化的原因  \n#### 里式替換原則(Liskov’s Substitution Principle)\n使用父類的地方，必須可以使用子類別代替，而不需要任何改變  \n#### 依賴倒置原則(Dependency-Inversion Principle)\n高層模組不應倚賴低層模組，兩者都應該倚賴抽象  \n抽象不應該倚賴細節，細節應該倚賴抽象  \n#### 介面隔離原則(Interface Segregation Principle)\n客戶端不應該依賴它不需要的介面  \n類別之間的依賴關係應該建立在最小的介面上  \n#### 開閉原則(Open-Closed Principle)\n對擴展開放,對修改封閉  \n#### 最少知識原則(迪米特法則)(Law of Demeter)\n一個物件應該對其他物件有最少的了解  \n\n### Ioc(控制反轉)\n控制移轉,將產生實體的控制權移轉到一個類別(factory)專門負責產生實體  \n依賴抽象不依賴實作  \n當產生執行個體的程式碼需要修改時，只需要修改專門負責產生實體的類別(factory)的程式碼，可以避免漏改或誤改  \n<br/>\n\n### DI(依賴注入)\n當A Class有使用B Class的執行個體時,稱為A Class依賴B Class。將B Class的執行個體由A Class外部提供給A Class使用稱為DI  \n<br/>\n#### 注入方式\n使用介面實作注入(Interface Injection)  \n``` cs\npublic interface IDriver\n{\n    void Drive(ICar car);\n}\n\npublic class Driver : IDriver\n{\n    public void Drive(ICar car)\n    {\n        car.Run();\n    }\n}\n```\n使用建構子注入(Constructor Injection)\n``` cs\npublic class Driver\n{\n    private ICar _car;\n    public Driver(ICar car)\n    {\n        _car = car;\n    }\n\n    public void Run()\n    {\n        _car.Run();\n    }\n}\n```\n使用屬性注入(Setter Injection)\n``` cs\npublic class Driver\n{\n    public ICar Car\n    { get; set; }\n\n    public void Run()\n    {\n        Car.Run();\n    }\n}\n```\n\n### 共用的概念\n使用同一份程式碼、共用抽象  \n<br />\n### 一般化與特殊化\n一般化 => 父類別為子類別的一般化，因為繼承父類別後的子類別都具備與父類別相同的特性  \n特殊化 => 子類別為父類別的特殊化，因為子類別除了擁有父類別的特性還可以自已擁有不同的特性  \n如果子類別需要增加父類別沒有的其他特別方法時，建議使用"介面"繼承實作  \n<br />\n### 單例模式(Singleton)\n確保某個類別只有單一執行個體,而且自行建立執行個體並向系統提供這個執行個體  \nsealed class  \nprivate靜態方法產生執行個體  \n``` cs\npublic sealed class SingletonClass\n{\n    private int i = 0;\n    // 設為private 外界不可產生執行個體\n    private SingletonClass()\n    {\n    }\n\n    public void Show()\n    {\n        Console.WriteLine("Hello " + i.ToString());\n        i += 1;\n    }\n\n    private static SingletonClass _singletonObject;\n    public static SingletonClass SingletonObject\n    {\n        get\n        {\n            if (_singletonObject == null)\n            {\n                GetSingleton();\n            }\n            return _singletonObject;\n        }\n    }\n    \n    // 靜態方法產生執行個體\n    private static void GetSingleton()\n    {\n        _singletonObject = new SingletonClass();\n    }\n}\n```\n\n### 反射(Reflection)\n由記憶體將"型別物件"拿出來看一看、用一用\n#### 載入組件\nAssembly.Load(by AssemblyName、by Assembly name string、by Assembly byte[])  \nAssembly.LoadFrom  \nAssembly.LoadFile  \n<br />\n#### 建立執行個體\nAppDomain.CreateInstance  \nAppDomain.CreateInstanceAndUnwrap  \nAssembly.CreateInstance  \n**Activator.CreateInstance**  \n**Activator.CreateInstanceFrom**  \n<br />\n#### 利用反射存取成員\nMember：Type.GetMember,Type.GetMembers  \nMethod：Type.GetMethod,Type.GetMethods,MethodBase.Invoke  \nProperty：Type.GetProperty,Type.GetProperties,PropertyInfo.SetValue,PropertyInfo.GetValue  \nInterface：Type.GetInterface,Type.GetInterfaces  \n<br />\n#### 使用反射建立泛型實體\n``` cs\n// 載入GenericLibrary組件\nAssembly asm = AppDomain.CurrentDomain.Load("GenericLibrary");\n// 取得泛型類別\nType type1 = asm.GetType("GenericLibrary.GernericType`1");\n// 指定泛型類別的參數具體型別\nType type11 = type1.MakeGenericType(new Type[] { typeof(String) });\n// 建立泛型類別的執行個體\nObject obj = Activator.CreateInstance(type11);\n```\n\n### Attribute\n宣告式設計  \n當Attribute被加入至某個元素時,該元素就被認為具有此特性的功能或性質  \n被動的,無法存取目標物  \n要建立一個可以當作Attribute的類別,必須繼承Attribute類別  \n在執行階段可以使用"反射"來存取  \n自訂Attribute類別\n``` cs\ninternal class BoundaryAttribute : Attribute\n{\n    internal Double Max\n    { get; set; }\n\n    internal Double Min\n    { get; set; }\n\n    // 建構函式, 以便在套用 attribute 時初始化 Min, Max\n    public BoundaryAttribute(int min, int max)\n    {\n        Max = max;\n        Min = min;\n    }\n}\n```\n套用Attribute與取得Attribute sample code\n``` cs\n// 在列舉值中套用Attribute 寫法一\npublic enum GenderType\n{\n    [BoundaryAttribute(20, 25)]\n    Man = 1,\n    [BoundaryAttribute(18, 22)]\n    Woman = 2\n}\n\n// 在列舉值中套用Attribute 寫法二\npublic enum GenderType\n{\n    [Boundary(20, 25)]\n    Man = 1,\n    [Boundary(18, 22)]\n    Woman = 2\n}\n\n// 取得列舉值的Attribute資料\ninternal class EnumValueBoundryHelper\n{\n    internal Double Max { get; private set; } \n    internal Double Min { get; private set; } \n    public EnumValueBoundryHelper(GenderType gender) {\n        FieldInfo data = typeof(GenderType).GetField(gender.ToString()); \n        Attribute attribute = Attribute.GetCustomAttribute(data, typeof(BoundaryAttribute));\n        BoundaryAttribute boundaryattribute = (BoundaryAttribute)attribute;\n        Min = boundaryattribute.Min;\n        Max = boundaryattribute.Max;\n    }\n}\n\n// 在型別上套用Attribute\n[BoundaryAttribute(0, 100)]\npublic class BoundryClass\n{\n}\n\n// 取得型別的Attribute資料\ninternal class ClassBoundryHelper\n{\n    internal Double Max { get; private set; }\n    internal Double Min { get; private set; }\n    public void GetBoundry(Type type)\n    {\n        if (type.IsDefined(typeof(BoundaryAttribute))) {\n            Attribute attribute = type.GetCustomAttribute(typeof(BoundaryAttribute), true);\n            BoundaryAttribute boundaryattribute = (BoundaryAttribute)attribute;\n            Min = boundaryattribute.Min;\n            Max = boundaryattribute.Max;\n        }\n    }\n}\n```\n\n### 工廠模式\n定義一個創建物件的介面  \n分離物件的使用與建構+管理  \n<br />\n#### 簡單工廠(Simple Factory)\n利用分支運算(if else,switch case)決定實體  \n可以使用資源字典(利用key查找並提供對應的執行個體)或Attribute改善分支運算的問題(避免改錯分支運算的狀況)  \n簡單工廠 sample code\n``` cs\npublic static class StrategyFactory\n{\n    public static BMIStrategy GetStrategy(this Human human)\n    {\n        switch (human.Gender)\n        {\n            case GenderType.Man:\n                return new ManBMIStrategy(human);\n            case GenderType.Woman:\n                return new WomanBMIStrategy(human);\n            default:\n                return new ManBMIStrategy(human);\n        }\n    }\n}\n```\n#### 工廠方法(Factory Method)\n由不同的工廠,決定不同的實體  \n定義一個用於創建物件的介面,由此介面的子類別決定要實體化哪一個工廠  \n工廠方法 sample code\n``` cs\n// 定義抽象工廠(介面)\npublic interface IBMIFactory\n{\n    BMIStrategy GetStrategy(Human human);\n}\n\n// 繼承抽象工廠與實作產生實體的方法,依需要實做多個工廠類別\npublic class ManBMIFactory : IBMIFactory\n{\n    public BMIStrategy GetStrategy(Human human)\n    {\n        return new ManBMIStrategy(human);\n    }\n}\npublic class WomanBMIFactory : IBMIFactory\n{\n    public BMIStrategy GetStrategy(Human human)\n    {\n        return new WomanBMIStrategy(human);\n    }\n}\n```\n使用工廠方法 sample code\n``` cs\n// 由不同的工廠,決定不同的實體\nHuman human = new Human() { Age = 19, Gender = GenderType.Woman, Height = 1.72, Weight = 58 };\nIBMIFactory bmifactory = new WomanBMIFactory();\nBMIStrategy bmistrategy = bmifactory.GetStrategy(human);\n```\n#### 泛型工廠(Generic Factory)\n使用泛型與反射來產生不同的實體  \n泛型工廠 sample code\n``` cs\npublic class GenericFactory\n{\n    // 透過組件名稱,類別名稱(需含Namespace)產生指定類別的實體\n    public static T CreateInastance<T>(string assemblyname, string typename)\n    {\n        object instance = Activator.CreateInstance(assemblyname, typename).Unwrap();\n        return (T)instance;\n    }\n    // 透過Type產生指定類別的實體\n    public static T CreateInastance<T>(Type type)\n    {\n        return CreateInastance<T>(type, null);\n    }\n    // 透過Type產生指定需要提供參數之類別的實體\n    public static T CreateInastance<T>(Type type, object[] args) {\n        object instance = Activator.CreateInstance(type, args);\n        return (T)instance;\n    }\n}\n```\n\n### 範本方法模式(Template Method)\n減少多餘的程式碼  \n把通用實做放在基底類別  \n範本方法模式 sample code\n``` cs\n// 定義當做範本的基底類別\npublic abstract class Communication\n{\n    // 通用實作,發送Command並回傳結果\n    public byte[] SendCommand(byte [] command)\n    {\n        Send(command);            \n        return Receive();\n    }\n    \n    // 繼承此類別者必須實作Send與Receive抽象方法\n    protected abstract void Send(byte[] command);\n    protected abstract byte[] Receive();\n}\n```\n\n### 策略模式(Strategy)\n定義一組演算法,將每個演算法封裝,並且使它們可以互換  \n策略模式封裝工廠模式 sample code\n``` cs\npublic class BMIContext\n{\n    BMIStrategy _strategy;\n    public BMIContext(Human human)\n    {\n        //封裝 Factory 建立實體的過程\n        _strategy = StrategyFactory.GetStrategy(human); \n    }\n    \n    public Double BMI\n    {\n        get { return _strategy.BMI; }\n    }\n    \n    public String Result\n    {\n        get { return _strategy.Result; }\n    }\n}\n```\n\n### 橋接模式(Bridge)\n將抽象和實作解耦合,使其個別可以獨立變化  \n簡單說就是用組合/聚合替代繼承  \n橋接模式 sample code  \n``` cs\n// 計算BMI應提供的資料介面定義,身高、體重\npublic interface IMeasurementValue\n{\n    Double Weight\n    { get; set; }\n    Double Height\n    { get; set; }\n}\n\n// BMI值計算的介面\npublic interface IBMIValue\n{\n    Double GetBMIValue(Double weight, Double height);\n}\n\n// BMI結果回應字串介面,不同的最大最小值與回應字串\npublic interface IBMIComment\n{\n    Double Min\n    { get; }\n\n    Double Max\n    { get; }\n\n    String GetBMIComment(Double bmi);\n}\n\npublic class BMIBridge\n{\n    private Double _bmi;\n\n    public IMeasurementValue Measurement\n    { get; set; }\n\n    public IBMIValue BMIValue\n    { get; set; }\n\n    public IBMIComment Comment\n    { get; set; }\n\n    public Double GetBMI()\n    {\n        _bmi = BMIValue.GetBMIValue(Measurement.Weight, Measurement.Height);\n        return _bmi;\n    }\n\n    public string GetComment()\n    {\n        return Comment.GetBMIComment(_bmi);\n    }\n}\n```\n\n### 預設計與重構\n面對熟悉的需求與情境,可以依據先前的經驗快速的進行預設計,免去曾經進行過的重構過程(縮短開發時間)  \n如果是不熟悉的需求與情境,則可以先進行開發再透過重構改善程式碼的結構,以免發生過度設計的狀況  \n<br />\n### 心得\n三天的課程非常的充實  \n從基本概念到實際應用,也有很多程式碼的範例  \n非常推薦剛開始學習寫程式或是已經寫程式一段時間的朋友可以聽聽看,相信會很有幫助  \n<br />\n\\~ End \\~'},prevPost:{id:"csharp-oo-notes-day2",createDate:"2017-06-17",title:"物件導向實作課程筆記 Day 2"},nextPost:{id:"set-sass-dev-environment",createDate:"2018-09-08",title:"建立 Sass 開發與轉譯產出 CSS 環境配置"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/csharp-oo-notes-day3"}}("csharp-oo-notes-day3")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

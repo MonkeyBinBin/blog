@@ -1,0 +1,260 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-04/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages"><meta data-n-head="ssr" data-hid="description" property="description" content="了解如何調整畫面顯示相關的設定來滿足需求，除了基本的 Pages 與 Layout vue 組件的開發之外，也可以調整 HTML 模板還有 Head 可達到不同頁面使用不同的 meta 設定，優化 SEO。"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="了解如何調整畫面顯示相關的設定來滿足需求，除了基本的 Pages 與 Layout vue 組件的開發之外，也可以調整 HTML 模板還有 Head 可達到不同頁面使用不同的 meta 設定，優化 SEO。"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-04/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      May 1, 2020
+    </span> <a href="/tag/Nuxt.js" title="Nuxt.js" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      Nuxt.js
+    </a></div> <h1 data-v-3c54882c><a href="/article/a-series-of-nuxtjs-04" title="Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    了解如何調整畫面顯示相關的設定來滿足需求，除了基本的 Pages 與 Layout vue 組件的開發之外，也可以調整 HTML 模板還有 Head 可達到不同頁面使用不同的 meta 設定，優化 SEO。
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><h4 id="nuxt-視圖架構">Nuxt 視圖架構</h4>
+<p>了解 Nuxt 的構成為何，理解各層可使用的方法與設定，幫助在開發時能夠製作出更符合需求的設計，並且能夠適當分配排版佈局與組件切分。</p>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/5hDSofDCIxrzOhz3fwVp5u/c7e787138bf8ffafa2784094ec91db98/nuxt-views-schema.svg" alt="nuxt views schema"></p>
+<h4 id="app-template">App Template</h4>
+<p>Nuxt 預設的模板如下</p>
+<pre><code class="language-html"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> {{ <span class="hljs-attr">HTML_ATTRS</span> }}></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span> {{ <span class="hljs-attr">HEAD_ATTRS</span> }}></span>
+    {{ HEAD }}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span> {{ <span class="hljs-attr">BODY_ATTRS</span> }}></span>
+    {{ APP }}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>></span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>></span></code></pre></code></pre>
+<h5 id="如何自訂-html-模板？">如何自訂 HTML 模板？</h5>
+<p>於專案的根目錄資料夾新增一個 <strong>app.html</strong> 的檔案。並調整 html 文件的內容，記得與上述預設模版一樣，將 HTML_ATTRS、HEAD_ATTRS 與 BODY_ATTRS 分別置入 html、head 還有 body 的屬性。</p>
+<p>以下為官方提供的範例，添加 IE 的條件表達式</p>
+<pre><code class="language-html"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>></span>
+<span class="hljs-comment">&lt;!--[if IE 9]>&lt;html lang="en-US" class="lt-ie9 ie9" {{ HTML_ATTRS }}>&lt;![endif]--></span>
+<span class="hljs-comment">&lt;!--[if (gt IE 9)|!(IE)]>&lt;!--></span><span class="hljs-tag">&lt;<span class="hljs-name">html</span> {{ <span class="hljs-attr">HTML_ATTRS</span> }}></span><span class="hljs-comment">&lt;!--&lt;![endif]--></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span> {{ <span class="hljs-attr">HEAD_ATTRS</span> }}></span>
+    {{ HEAD }}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span> {{ <span class="hljs-attr">BODY_ATTRS</span> }}></span>
+    {{ APP }}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>></span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>></span></code></pre></code></pre>
+<h4 id="html-head">HTML Head</h4>
+<p>利用 <a target="_blank" href="https://vue-meta.nuxtjs.org/" title="null">vue-meta</a> 套件，更新 document head 與 meta， vue-meta 套件還有非常多強大的功能，可以花點時間研究。</p>
+<p>Nuxt.js 預設 vue-meta 的參數配置如下</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">{
+  <span class="hljs-attr">keyName</span>: <span class="hljs-string">'head'</span>, <span class="hljs-comment">// 設定 meta 資訊在 vue 組件內存在的物件名稱，vue-meta 會使用這個 key 取得設定值</span>
+  <span class="hljs-attr">attribute</span>: <span class="hljs-string">'n-head'</span>, <span class="hljs-comment">// vue-meta 在監聽標簽時所添加的屬性名稱</span>
+  <span class="hljs-attr">ssrAttribute</span>: <span class="hljs-string">'n-head-ssr'</span>, <span class="hljs-comment">// 讓 vue-meta 知道 meta 已完成伺服器端渲染的屬性名稱</span>
+  <span class="hljs-attr">tagIDKeyName</span>: <span class="hljs-string">'hid'</span> <span class="hljs-comment">// vue-meta 用來決定是否覆蓋或增加 tag 的屬性名稱</span>
+}</code></pre></code></pre>
+<p>可在 nuxt.config.js 定義所有 head 預設的標籤(title、meta、link、script)，這樣所有的頁面都會套用。<br>由於文章內容頁需要自行定義 keywords、description 等設定，所以有一部份的 meta 有設定 hid 屬性，讓子組件可以進行覆蓋。</p>
+<h4 id="layouts">Layouts</h4>
+<p>功能相當於一般 vue 專案中我們會建立的 App.vue 檔案，用來定義最底層的 html 排版。預設檔案為 layouts/default.vue。</p>
+<p>預設的程式碼如下</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">nuxt</span>/></span></span>
+&lt;/template></code></pre></code></pre>
+<p>Nuxt 另外提供了自定義 Layouts 的方式</p>
+<ol>
+<li>於 layouts 資料夾內建立 .vue 檔案。</li>
+<li>建立 pages 時，在 script 中增加 layout 屬性指定為上一步驟建立的 vue 檔案名稱。</li>
+</ol>
+<p>以下為官方範例<br>建立一個 layouts/blog.vue</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>></span>My Blog<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">nuxt</span>/></span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>></span></span>
+&lt;/template></code></pre></code></pre>
+<p>於頁面 pages/posts/index.vue 使用自定義的 layout</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+&lt;!-- Your template -->
+&lt;/template>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>></span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">layout</span>: <span class="hljs-string">'blog'</span>
+  <span class="hljs-comment">// page component definitions</span>
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>></span></span></code></pre></code></pre>
+<p>錯誤頁面也可自訂，在 layouts 資料夾內建立 error.vue 檔案來客製錯誤頁面。<br>error.vue 雖然此檔案放置於 layouts 資料夾，但 nuxt 把它視為 page，所以 template 中不需包含 &lt;nuxt/>，並且會在指定的 layout 中 &lt;nuxt/> 區塊呈現(未指定則為預設)。<br>當應用程式發生 404、500…等錯誤時，就會顯示此錯誤頁面，並且透過 props 將當次錯誤資訊傳遞至 error.vue 頁面內使用。</p>
+<p>Nuxt 預設錯誤頁面程式碼：<a target="_blank" href="https://github.com/nuxt/nuxt.js/blob/dev/packages/vue-app/template/components/nuxt-error.vue" title="null">nuxt-error.vue</a></p>
+<p>以下為官方範例<br>透過 props 的 error 傳遞當次錯誤資訊，提供頁面使用<br>error 為 Object，預設內含 message、path 與 statusCode，屬性也可透過 context.error 自訂 </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"error.statusCode === 404"</span>></span>Page not found<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">v-else</span>></span>An error occurred<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">nuxt-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/"</span>></span>Home page<span class="hljs-tag">&lt;/<span class="hljs-name">nuxt-link</span>></span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>></span></span>
+&lt;/template>
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>></span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">'error'</span>]
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>></span></span></code></pre></code></pre>
+<h4 id="pages">Pages</h4>
+<p>每個 page 組件實際上就是 vue 組件，只是增加了一些 Nuxt 特殊的配置項目，讓開發者能夠快速開發通用於 SSR 與 CSR 的應用程式。</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>></span>Hello {{ name }}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>></span></span>
+&lt;/template>
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>></span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  asyncData (context) {
+    <span class="hljs-comment">// called every time before loading the component</span>
+    <span class="hljs-comment">// as the name said, it can be async</span>
+    <span class="hljs-comment">// Also, the returned object will be merged with your data object</span>
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span> }
+  },
+  fetch () {
+    <span class="hljs-comment">// The `fetch` method is used to fill the store before rendering the page</span>
+  },
+  head () {
+    <span class="hljs-comment">// Set Meta Tags for this Page</span>
+  },
+  <span class="hljs-comment">// and more functionality to discover</span>
+  ...
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>></span></span></code></pre></code></pre>
+<p>Nuxt 為 page 提供的特殊配置項目</p>
+<ul>
+<li><a target="_blank" href="https://nuxtjs.org/guide/async-data" title="null">asyncData</a> - 當需要獲取資料並呈現，在初始化組件之前處理非同步資料操作，並且會與組件的 data 合併，此方法第一個參數為當前頁面組件的 context。</li>
+<li><a target="_blank" href="https://nuxtjs.org/api/pages-fetch" title="null">fetch</a> - 在頁面 render 之前將資料寫入 Vuex store，與 asyncData 方法類似，不一樣的是 fetch 不會設置組件的 data，此外 nuxt 2.12 以後的版本(包含2.12)的使用方法與先前有些不同，使用上要特別注意。</li>
+<li><a target="_blank" href="https://nuxtjs.org/api/pages-head" title="null">head</a> - 配置目前頁面的 head 標籤。</li>
+<li><a target="_blank" href="https://nuxtjs.org/api/pages-layout" title="null">layout</a> - 指定在 layouts 目錄中定義的 vue 檔案。</li>
+<li><a target="_blank" href="https://nuxtjs.org/api/configuration-loading" title="null">loading</a> - 定義目前頁面的 loading 效果，也可關閉之後透過 this.$nuxt.$loading.finish() 與 this.$nuxt.$loading.start() 手動控制此效果。</li>
+<li><a target="_blank" href="https://nuxtjs.org/api/pages-transition" title="null">transition</a> - 指定頁面切換時的轉場特效的名稱，需搭配樣式設定。</li>
+<li><a target="_blank" href="https://nuxtjs.org/api/pages-scrolltotop#the-scrolltotop-property" title="null">scrollToTop</a> - 設定目前頁面在渲染頁面前是否要將畫面滾動至頂部。</li>
+<li><a target="_blank" href="https://nuxtjs.org/api/pages-validate#the-validate-method" title="null">validate</a> - 驗証動態路由參數的方法，防止非預期的參數值傳入。</li>
+<li><a target="_blank" href="https://nuxtjs.org/guide/routing#middleware" title="null">middleware</a> - 在頁面渲染前調用的方法。</li>
+</ul>
+<h4 id="實作案例">實作案例</h4>
+<p>Blog 網站地圖  </p>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/ksCIK28r6iVmQvnGOOVO0/265362feceba66dda7b7c94039d23411/blog-sitemap.png" alt="blog sitemap"></p>
+<p>以下為針對 HTML Head 的配置說明<br>目前 blog 的預設配置在 nuxt.config.js，有可能被覆寫 meta 設定加上 hid 屬性  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-comment">// nuxt.config.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">head</span>: {
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'被程式設計的猴子'</span>,
+    <span class="hljs-attr">meta</span>: [
+      { <span class="hljs-string">'http-equiv'</span>: <span class="hljs-string">'Content-Type'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'text/html; charset=UTF-8'</span> },
+      { <span class="hljs-attr">name</span>: <span class="hljs-string">'viewport'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'</span> },
+      { <span class="hljs-attr">name</span>: <span class="hljs-string">'author'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'MonkeyBinBin'</span> },
+      { <span class="hljs-attr">property</span>: <span class="hljs-string">'fb:app_id'</span>, <span class="hljs-attr">content</span>: config.fbId },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'keywords'</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'keywords'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'被程式設計的猴子, Nuxt.js, Bootstrap 4, MonkeyBinBin, blog'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'description'</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'description'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'使用 Nuxt.js、 Bootstrap 4 建立的blog。分享與紀錄一些程式開發的東西。'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:title'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:title'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'被程式設計的猴子'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:type'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:type'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'article'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:url'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:url'</span>, <span class="hljs-attr">content</span>: path.join(config.domain, baseUrl) },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:image'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:image'</span>, <span class="hljs-attr">content</span>: path.join(config.domain, baseUrl, <span class="hljs-string">'/img/fb.jpg'</span>) },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:image:width'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:image:width'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'474'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:image:height'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:image:height'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'474'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:description'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:description'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'使用 Nuxt.js、 Bootstrap 4 建立的blog。分享與紀錄一些程式開發的東西。'</span> }
+    ],
+    <span class="hljs-attr">link</span>: [
+      { <span class="hljs-attr">rel</span>: <span class="hljs-string">'icon'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'image/x-icon'</span>, <span class="hljs-attr">href</span>: <span class="hljs-string">`<span class="hljs-subst">${baseUrl}</span>favicon.ico`</span> }
+    ]
+  }
+}</code></pre></code></pre>
+<p>若其他頁面有需要更改預設的 meta 標籤，就在子組件使用"hid"屬性來設定覆蓋。<br>this.post 為 data 內的資料，從 api 取得資料後會存放於此。<br>增加 script 設定是為了可以在文章內崁入 codepen。</p>
+<p>以下為文章詳細內容頁(pages/article/_id.vue) head 部份程式碼</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-comment">// /pages/article/_id.vue</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Article'</span>,
+  head () {
+    <span class="hljs-keyword">const</span> _head = {
+      <span class="hljs-attr">title</span>: <span class="hljs-built_in">this</span>.errorMsg || <span class="hljs-built_in">this</span>.post.title,
+      <span class="hljs-attr">meta</span>: [
+        { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:url'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:url'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">`<span class="hljs-subst">${constant.domain}</span><span class="hljs-subst">${constant.baseUrl}</span>article/<span class="hljs-subst">${<span class="hljs-built_in">this</span>.id}</span>/`</span> }
+      ],
+      <span class="hljs-attr">script</span>: [
+        { <span class="hljs-attr">src</span>: <span class="hljs-string">'//assets.codepen.io/assets/embed/ei.js'</span> }
+      ]
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.post && <span class="hljs-built_in">this</span>.post.tags) {
+      _head.meta.push({ <span class="hljs-attr">hid</span>: <span class="hljs-string">'keywords'</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'keywords'</span>, <span class="hljs-attr">content</span>: <span class="hljs-built_in">this</span>.post.tags.join() })
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.post && <span class="hljs-built_in">this</span>.post.slug) {
+      _head.meta.push({ <span class="hljs-attr">hid</span>: <span class="hljs-string">'description'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'description'</span>, <span class="hljs-attr">content</span>: <span class="hljs-built_in">this</span>.post.slug })
+      _head.meta.push({ <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:description'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:description'</span>, <span class="hljs-attr">content</span>: <span class="hljs-built_in">this</span>.post.slug })
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.post && <span class="hljs-built_in">this</span>.post.title) {
+      _head.meta.push({ <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:title'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:title'</span>, <span class="hljs-attr">content</span>: <span class="hljs-built_in">this</span>.post.title })
+    }
+    <span class="hljs-keyword">return</span> _head
+  }
+}</code></pre></code></pre>
+<p>以下為2篇不同頁面的結果<br>比較2張圖片右側開發者工具呈現的 meta 資訊就可以看出差異<br>主要是為了 seo 與 fb 分享可以針對文章的內容取得更精準的資訊</p>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/4juMkzLIVquNxgWSGHaeCi/068852f85c9d745fc2d7df8d51842883/meta-sample-01.png" alt="meta sample 01"></p>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/78texZmvVmGlCDFQVW66mH/80caef7ad831cd2595ed39b5be3438e3/meta-sample-02.png" alt="meta sample 02"></p>
+<p>使用首頁來解析一下 Layout 切分方式  </p>
+<ol>
+<li>所有頁面都存在 Header 與 Footer，所以將這2個組件都放置於 Layout。</li>
+<li>置入 &lt;nuxt/> 讓切換路由時在此區塊渲染對應 pages 畫面。  </li>
+</ol>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/3ekcA8cJYxW8Wb8fpB9A6r/c392acd8ca8b041d2d59f2361e11070f/layout.jpg" alt="blog layout"></p>
+<p>layouts/default.vue 部份程式碼，可看到 template 中 HTML 排列方式</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">page-header</span>/></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>></span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">nuxt</span>/></span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">page-footer</span>/></span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>></span></span>
+&lt;/template>
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>></span><span class="javascript">
+<span class="hljs-keyword">import</span> PageHeader <span class="hljs-keyword">from</span> <span class="hljs-string">'~/components/PageHeader'</span>
+<span class="hljs-keyword">import</span> PageFooter <span class="hljs-keyword">from</span> <span class="hljs-string">'~/components/PageFooter'</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Pages'</span>,
+  <span class="hljs-attr">components</span>: {
+    PageHeader,
+    PageFooter
+  },
+  <span class="hljs-comment">// ...略</span>
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>></span></span></code></pre></code></pre>
+<p>客製錯誤頁面 layouts/error.vue  </p>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/6wwlkExFGMVEBIoselLqHt/953cdaacedb45ceb8f17a9aeef460c96/error.jpg" alt="blog error"></p>
+<p>layouts/error.vue 部份程式碼<br>透過 props 傳遞 error 參數，取得相關的錯誤資訊提供畫面顯示使用  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-12 text-center"</span>></span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"not-found-title"</span>></span>{{error.statusCode}}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>></span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-black-50"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"error.statusCode === 404"</span>></span>Page not found<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>></span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-black-50"</span> <span class="hljs-attr">v-else</span>></span>Oops, the page you're looking for doesn't exist.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>></span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">nuxt-link</span>
+        <span class="hljs-attr">to</span>=<span class="hljs-string">"/"</span>
+        <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-dark"</span>
+      ></span>回首頁<span class="hljs-tag">&lt;/<span class="hljs-name">nuxt-link</span>></span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>></span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>></span></span>
+&lt;/template>
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>></span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Error'</span>,
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">'error'</span>],
+  <span class="hljs-comment">// ...略</span>
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>></span></span></code></pre></code></pre>
+<h4 id="參考資料">參考資料</h4>
+<p><a target="_blank" href="https://nuxtjs.org/guide/views" title="null">Nuxt.js - Views</a><br><a target="_blank" href="https://vue-meta.nuxtjs.org/" title="null">Vue Meta</a></p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-03" title="Nuxt 系列 - #3 搞懂路由怎麼搞" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>Nuxt 系列 - #3 搞懂路由怎麼搞</span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-05" title="Nuxt 系列 - #5 Pages 開發大小事" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              Nuxt 系列 - #5 Pages 開發大小事
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-04" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(t){return{layout:"default",data:[{id:t,post:{title:"Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages",id:t,slug:"了解如何調整畫面顯示相關的設定來滿足需求，除了基本的 Pages 與 Layout vue 組件的開發之外，也可以調整 HTML 模板還有 Head 可達到不同頁面使用不同的 meta 設定，優化 SEO。",categoryList:["Nuxt.js"],createDate:"2020-05-01",articleContent:"#### Nuxt 視圖架構\n了解 Nuxt 的構成為何，理解各層可使用的方法與設定，幫助在開發時能夠製作出更符合需求的設計，並且能夠適當分配排版佈局與組件切分。\n\n![nuxt views schema](//images.ctfassets.net/64scck6nxm6l/5hDSofDCIxrzOhz3fwVp5u/c7e787138bf8ffafa2784094ec91db98/nuxt-views-schema.svg)\n\n#### App Template\nNuxt 預設的模板如下\n\n``` html\n<!DOCTYPE html>\n<html {{ HTML_ATTRS }}>\n  <head {{ HEAD_ATTRS }}>\n    {{ HEAD }}\n  </head>\n  <body {{ BODY_ATTRS }}>\n    {{ APP }}\n  </body>\n</html>\n```\n\n##### 如何自訂 HTML 模板？\n於專案的根目錄資料夾新增一個 **app.html** 的檔案。並調整 html 文件的內容，記得與上述預設模版一樣，將 HTML\\_ATTRS、HEAD\\_ATTRS 與 BODY\\_ATTRS 分別置入 html、head 還有 body 的屬性。\n\n以下為官方提供的範例，添加 IE 的條件表達式\n\n``` html\n<!DOCTYPE html>\n\x3c!--[if IE 9]><html lang=\"en-US\" class=\"lt-ie9 ie9\" {{ HTML_ATTRS }}><![endif]--\x3e\n\x3c!--[if (gt IE 9)|!(IE)]>\x3c!--\x3e<html {{ HTML_ATTRS }}>\x3c!--<![endif]--\x3e\n  <head {{ HEAD_ATTRS }}>\n    {{ HEAD }}\n  </head>\n  <body {{ BODY_ATTRS }}>\n    {{ APP }}\n  </body>\n</html>\n```\n\n#### HTML Head\n利用 [vue-meta](https://vue-meta.nuxtjs.org/) 套件，更新 document head 與 meta， vue-meta 套件還有非常多強大的功能，可以花點時間研究。\n\nNuxt.js 預設 vue-meta 的參數配置如下\n\n``` javascript\n{\n  keyName: 'head', // 設定 meta 資訊在 vue 組件內存在的物件名稱，vue-meta 會使用這個 key 取得設定值\n  attribute: 'n-head', // vue-meta 在監聽標簽時所添加的屬性名稱\n  ssrAttribute: 'n-head-ssr', // 讓 vue-meta 知道 meta 已完成伺服器端渲染的屬性名稱\n  tagIDKeyName: 'hid' // vue-meta 用來決定是否覆蓋或增加 tag 的屬性名稱\n}\n```\n\n可在 nuxt.config.js 定義所有 head 預設的標籤(title、meta、link、script)，這樣所有的頁面都會套用。  \n由於文章內容頁需要自行定義 keywords、description 等設定，所以有一部份的 meta 有設定 hid 屬性，讓子組件可以進行覆蓋。\n\n#### Layouts\n功能相當於一般 vue 專案中我們會建立的 App.vue 檔案，用來定義最底層的 html 排版。預設檔案為 layouts/default.vue。\n\n預設的程式碼如下\n\n``` javascript\n<template>\n  <nuxt/>\n</template>\n```\n\nNuxt 另外提供了自定義 Layouts 的方式\n1. 於 layouts 資料夾內建立 .vue 檔案。\n2. 建立 pages 時，在 script 中增加 layout 屬性指定為上一步驟建立的 vue 檔案名稱。\n\n以下為官方範例  \n建立一個 layouts/blog.vue\n\n``` javascript\n<template>\n  <div>\n    <div>My Blog</div>\n    <nuxt/>\n  </div>\n</template>\n```\n\n於頁面 pages/posts/index.vue 使用自定義的 layout\n\n``` javascript\n<template>\n\x3c!-- Your template --\x3e\n</template>\n<script>\nexport default {\n  layout: 'blog'\n  // page component definitions\n}\n<\/script>\n```\n\n錯誤頁面也可自訂，在 layouts 資料夾內建立 error.vue 檔案來客製錯誤頁面。  \nerror.vue 雖然此檔案放置於 layouts 資料夾，但 nuxt 把它視為 page，所以 template 中不需包含 <nuxt/\\>，並且會在指定的 layout 中 <nuxt/\\> 區塊呈現(未指定則為預設)。  \n當應用程式發生 404、500…等錯誤時，就會顯示此錯誤頁面，並且透過 props 將當次錯誤資訊傳遞至 error.vue 頁面內使用。\n\nNuxt 預設錯誤頁面程式碼：[nuxt-error.vue](https://github.com/nuxt/nuxt.js/blob/dev/packages/vue-app/template/components/nuxt-error.vue)\n\n以下為官方範例  \n透過 props 的 error 傳遞當次錯誤資訊，提供頁面使用  \nerror 為 Object，預設內含 message、path 與 statusCode，屬性也可透過 context.error 自訂 \n\n``` javascript\n<template>\n  <div class=\"container\">\n    <h1 v-if=\"error.statusCode === 404\">Page not found</h1>\n    <h1 v-else>An error occurred</h1>\n    <nuxt-link to=\"/\">Home page</nuxt-link>\n  </div>\n</template>\n\n<script>\nexport default {\n  props: ['error']\n}\n<\/script>\n```\n\n#### Pages\n每個 page 組件實際上就是 vue 組件，只是增加了一些 Nuxt 特殊的配置項目，讓開發者能夠快速開發通用於 SSR 與 CSR 的應用程式。\n\n``` javascript\n<template>\n  <h1>Hello {{ name }}!</h1>\n</template>\n\n<script>\nexport default {\n  asyncData (context) {\n    // called every time before loading the component\n    // as the name said, it can be async\n    // Also, the returned object will be merged with your data object\n    return { name: 'World' }\n  },\n  fetch () {\n    // The `fetch` method is used to fill the store before rendering the page\n  },\n  head () {\n    // Set Meta Tags for this Page\n  },\n  // and more functionality to discover\n  ...\n}\n<\/script>\n```\n\nNuxt 為 page 提供的特殊配置項目\n\n* [asyncData](https://nuxtjs.org/guide/async-data) - 當需要獲取資料並呈現，在初始化組件之前處理非同步資料操作，並且會與組件的 data 合併，此方法第一個參數為當前頁面組件的 context。\n* [fetch](https://nuxtjs.org/api/pages-fetch) - 在頁面 render 之前將資料寫入 Vuex store，與 asyncData 方法類似，不一樣的是 fetch 不會設置組件的 data，此外 nuxt 2.12 以後的版本(包含2.12)的使用方法與先前有些不同，使用上要特別注意。\n* [head](https://nuxtjs.org/api/pages-head) - 配置目前頁面的 head 標籤。\n* [layout](https://nuxtjs.org/api/pages-layout) - 指定在 layouts 目錄中定義的 vue 檔案。\n* [loading](https://nuxtjs.org/api/configuration-loading) - 定義目前頁面的 loading 效果，也可關閉之後透過 this.$nuxt.$loading.finish() 與 this.$nuxt.$loading.start() 手動控制此效果。\n* [transition](https://nuxtjs.org/api/pages-transition) - 指定頁面切換時的轉場特效的名稱，需搭配樣式設定。\n* [scrollToTop](https://nuxtjs.org/api/pages-scrolltotop#the-scrolltotop-property) - 設定目前頁面在渲染頁面前是否要將畫面滾動至頂部。\n* [validate](https://nuxtjs.org/api/pages-validate#the-validate-method) - 驗証動態路由參數的方法，防止非預期的參數值傳入。\n* [middleware](https://nuxtjs.org/guide/routing#middleware) - 在頁面渲染前調用的方法。\n\n#### 實作案例\nBlog 網站地圖  \n\n![blog sitemap](//images.ctfassets.net/64scck6nxm6l/ksCIK28r6iVmQvnGOOVO0/265362feceba66dda7b7c94039d23411/blog-sitemap.png)\n\n以下為針對 HTML Head 的配置說明  \n目前 blog 的預設配置在 nuxt.config.js，有可能被覆寫 meta 設定加上 hid 屬性  \n\n``` javascript\n// nuxt.config.js\nexport default {\n  head: {\n    title: '被程式設計的猴子',\n    meta: [\n      { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },\n      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },\n      { name: 'author', content: 'MonkeyBinBin' },\n      { property: 'fb:app_id', content: config.fbId },\n      { hid: 'keywords', name: 'keywords', content: '被程式設計的猴子, Nuxt.js, Bootstrap 4, MonkeyBinBin, blog' },\n      { hid: 'description', name: 'description', content: '使用 Nuxt.js、 Bootstrap 4 建立的blog。分享與紀錄一些程式開發的東西。' },\n      { hid: 'og:title', property: 'og:title', content: '被程式設計的猴子' },\n      { hid: 'og:type', property: 'og:type', content: 'article' },\n      { hid: 'og:url', property: 'og:url', content: path.join(config.domain, baseUrl) },\n      { hid: 'og:image', property: 'og:image', content: path.join(config.domain, baseUrl, '/img/fb.jpg') },\n      { hid: 'og:image:width', property: 'og:image:width', content: '474' },\n      { hid: 'og:image:height', property: 'og:image:height', content: '474' },\n      { hid: 'og:description', property: 'og:description', content: '使用 Nuxt.js、 Bootstrap 4 建立的blog。分享與紀錄一些程式開發的東西。' }\n    ],\n    link: [\n      { rel: 'icon', type: 'image/x-icon', href: `${baseUrl}favicon.ico` }\n    ]\n  }\n}\n```\n\n若其他頁面有需要更改預設的 meta 標籤，就在子組件使用\"hid\"屬性來設定覆蓋。  \nthis.post 為 data 內的資料，從 api 取得資料後會存放於此。  \n增加 script 設定是為了可以在文章內崁入 codepen。\n\n以下為文章詳細內容頁(pages/article/_id.vue) head 部份程式碼\n\n``` javascript\n// /pages/article/_id.vue\nexport default {\n  name: 'Article',\n  head () {\n    const _head = {\n      title: this.errorMsg || this.post.title,\n      meta: [\n        { hid: 'og:url', property: 'og:url', content: `${constant.domain}${constant.baseUrl}article/${this.id}/` }\n      ],\n      script: [\n        { src: '//assets.codepen.io/assets/embed/ei.js' }\n      ]\n    }\n    if (this.post && this.post.tags) {\n      _head.meta.push({ hid: 'keywords', name: 'keywords', content: this.post.tags.join() })\n    }\n    if (this.post && this.post.slug) {\n      _head.meta.push({ hid: 'description', property: 'description', content: this.post.slug })\n      _head.meta.push({ hid: 'og:description', property: 'og:description', content: this.post.slug })\n    }\n    if (this.post && this.post.title) {\n      _head.meta.push({ hid: 'og:title', property: 'og:title', content: this.post.title })\n    }\n    return _head\n  }\n}\n```\n\n以下為2篇不同頁面的結果  \n比較2張圖片右側開發者工具呈現的 meta 資訊就可以看出差異  \n主要是為了 seo 與 fb 分享可以針對文章的內容取得更精準的資訊\n\n![meta sample 01](//images.ctfassets.net/64scck6nxm6l/4juMkzLIVquNxgWSGHaeCi/068852f85c9d745fc2d7df8d51842883/meta-sample-01.png)\n\n![meta sample 02](//images.ctfassets.net/64scck6nxm6l/78texZmvVmGlCDFQVW66mH/80caef7ad831cd2595ed39b5be3438e3/meta-sample-02.png)\n\n使用首頁來解析一下 Layout 切分方式  \n1. 所有頁面都存在 Header 與 Footer，所以將這2個組件都放置於 Layout。\n2. 置入 <nuxt/\\> 讓切換路由時在此區塊渲染對應 pages 畫面。  \n\n![blog layout](//images.ctfassets.net/64scck6nxm6l/3ekcA8cJYxW8Wb8fpB9A6r/c392acd8ca8b041d2d59f2361e11070f/layout.jpg)\n\nlayouts/default.vue 部份程式碼，可看到 template 中 HTML 排列方式\n\n``` javascript\n<template>\n  <div>\n    <page-header/>\n    <div class=\"container\">\n      <nuxt/>\n    </div>\n    <page-footer/>\n  </div>\n</template>\n\n<script>\nimport PageHeader from '~/components/PageHeader'\nimport PageFooter from '~/components/PageFooter'\nexport default {\n  name: 'Pages',\n  components: {\n    PageHeader,\n    PageFooter\n  },\n  // ...略\n}\n<\/script>\n```\n\n客製錯誤頁面 layouts/error.vue  \n\n![blog error](//images.ctfassets.net/64scck6nxm6l/6wwlkExFGMVEBIoselLqHt/953cdaacedb45ceb8f17a9aeef460c96/error.jpg)\n\nlayouts/error.vue 部份程式碼  \n透過 props 傳遞 error 參數，取得相關的錯誤資訊提供畫面顯示使用  \n\n``` javascript\n<template>\n  <div class=\"row\">\n    <div class=\"col-12 text-center\">\n      <h1 class=\"not-found-title\">{{error.statusCode}}</h1>\n      <p class=\"text-black-50\" v-if=\"error.statusCode === 404\">Page not found</p>\n      <p class=\"text-black-50\" v-else>Oops, the page you're looking for doesn't exist.</p>\n      <nuxt-link\n        to=\"/\"\n        class=\"btn btn-dark\"\n      >回首頁</nuxt-link>\n    </div>\n  </div>\n</template>\n\n<script>\nexport default {\n  name: 'Error',\n  props: ['error'],\n  // ...略\n}\n<\/script>\n```\n\n#### 參考資料\n[Nuxt.js - Views](https://nuxtjs.org/guide/views)  \n[Vue Meta](https://vue-meta.nuxtjs.org/)\n"},prevPost:{id:"a-series-of-nuxtjs-03",createDate:"2020-04-14",title:"Nuxt 系列 - #3 搞懂路由怎麼搞"},nextPost:{id:"a-series-of-nuxtjs-05",createDate:"2020-05-19",title:"Nuxt 系列 - #5 Pages 開發大小事"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/a-series-of-nuxtjs-04"}}("a-series-of-nuxtjs-04")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

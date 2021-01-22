@@ -1,0 +1,188 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>使用 BEM 與 SCSS 讓 css 不再眼花撩亂 - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/sass-with-bem/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,BEM,SCSS,使用 BEM 與 SCSS 讓 css 不再眼花撩亂"><meta data-n-head="ssr" data-hid="description" property="description" content="命名規則一直是寫程式的重點，當然網站樣式也是有一樣的問題。最近看到幾個方式覺得可以參考，就在某個專案中實作了這部份。的確在樣式的調整上變的快速而且容易許多。配合客戶東改西調不再是問題！？(笑)"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="命名規則一直是寫程式的重點，當然網站樣式也是有一樣的問題。最近看到幾個方式覺得可以參考，就在某個專案中實作了這部份。的確在樣式的調整上變的快速而且容易許多。配合客戶東改西調不再是問題！？(笑)"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="使用 BEM 與 SCSS 讓 css 不再眼花撩亂 - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/sass-with-bem/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      September 2, 2019
+    </span> <a href="/tag/BEM" title="BEM" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      BEM
+    </a><a href="/tag/SCSS" title="SCSS" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      SCSS
+    </a></div> <h1 data-v-3c54882c><a href="/article/sass-with-bem" title="使用 BEM 與 SCSS 讓 css 不再眼花撩亂" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      使用 BEM 與 SCSS 讓 css 不再眼花撩亂
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    命名規則一直是寫程式的重點，當然網站樣式也是有一樣的問題。最近看到幾個方式覺得可以參考，就在某個專案中實作了這部份。的確在樣式的調整上變的快速而且容易許多。配合客戶東改西調不再是問題！？(笑)
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><p>程式開發的「命名」一直是大家討論與關注的重點。透過命名我們可以獲得那些訊息？什麼樣的命名是好的？透過一致性的命名規則讓程式碼易讀、易懂並且可重用，讓開發和維護更有效率。我認為要使用什麼樣的命名規則應該要依照需要與團隊習慣來決定。沒有什麼命名方式一定是好的，只要符合需要就是好的。當我們在開發網站時，整個網站做下來會有非常多的樣式設定，如何達到樣式的共用與結構化，一眼就能看出樣式的用途與義意是非常重要的，這也是我為什麼會選擇 BEM 的原因之一。</p>
+<h4 id="常見樣式命名規則">常見樣式命名規則</h4>
+<ol>
+<li>OOCSS</li>
+<li>SMACSS</li>
+<li>BEM  </li>
+</ol>
+<p>上述三種方式為目前比較常見的樣式命名規則，以下會做簡單的介紹。</p>
+<h4 id="oocss-簡介">OOCSS 簡介</h4>
+<p>OOCSS(Object Oriented CSS)字面意思是物件導向的CSS，追求元件的重用，樣式名命比較抽象。</p>
+<p>主要原則：  </p>
+<ol>
+<li>Separate structure and skin(分離結構和主題)</li>
+<li>Separate container and content(分離容器和內容)</li>
+</ol>
+<h4 id="smacss-簡介">SMACSS 簡介</h4>
+<p>SMACSS(Scalable and Modular Architecture for CSS)，模組化可擴展架構，主要目標為更語義化的 html 與 css，並且降低對依賴特定的 html 結構。</p>
+<p>主要原則：</p>
+<ol>
+<li>Categorizing CSS Rules(為css分類)，Base(基礎)、Layout(佈局)、Module(模組)、State(狀態)、Theme(主題)</li>
+<li>Naming Rules(命名規則)，考慮用命名來表現樣式的分類，例如使用 l- 或 layout- 的字首來表現 Layout 這個類別的樣式</li>
+<li>Minimizing the Depth of Applicability(最小化適配深度)，盡可能使用短的、不限定 html 結構的選擇符</li>
+</ol>
+<h4 id="bem-簡介">BEM 簡介</h4>
+<p>BEM(Block, Element, Modifier)，透過 Block、Element、Modifier 來描述頁面，從樣式名稱就可以看到一些有用的資訊，使程式碼更易於維護。</p>
+<p>Block 是頁面中獨立存在的區塊，可以在不同場合下重用。每個頁面都可以看做是多個 Block 組成。(圖片來源：<a target="_blank" href="https://en.bem.info/methodology/key-concepts/" title="null">https://en.bem.info/methodology/key-concepts/</a>)  
+<img src="///images.ctfassets.net/64scck6nxm6l/16nTpd1tDUzpTQ5bG89pXA/4bee9c45fc84088a718fa94e87852298/bem_block.png" alt="bem block"></p>
+<p>Element 是構成 Block 的元素，只有在 Block 內才具有意義，是依賴於 Block 而存在。(圖片來源：<a target="_blank" href="https://en.bem.info/methodology/key-concepts/" title="null">https://en.bem.info/methodology/key-concepts/</a>)  
+<img src="///images.ctfassets.net/64scck6nxm6l/70KlcGq2GUb7hVNEkJ0c44/88d490eaf95a197f49994e3b6abadc43/bem_element.png" alt="bem element"></p>
+<p>Modifier 是用來描述 Block 或 Element 的屬性或狀態。同一個 Block 或 Element 可以有多個 Modifier。(圖片來源：<a target="_blank" href="https://en.bem.info/methodology/key-concepts/" title="null">https://en.bem.info/methodology/key-concepts/</a>)  
+<img src="///images.ctfassets.net/64scck6nxm6l/1QoPwAuWeQQMgmhSokchUG/196060ced7b705d1a9e5b49c732b0a28/bem_modifier.png" alt="bem modifier"></p>
+<p>命名方式區分為3種：  </p>
+<ol>
+<li>suit - <a target="_blank" href="http://suitcss.github.io/" title="null">http://suitcss.github.io/</a>  <pre><code class="language-css"><pre><code class="hljs css"><span class="hljs-selector-class">.BlockName</span> {}
+<span class="hljs-selector-class">.BlockName--modifierName</span> {}
+<span class="hljs-selector-class">.BlockName-elementName</span> {}
+<span class="hljs-selector-class">.BlockName-elementName--modifierName</span> {}</code></pre></code></pre>
+</li>
+<li>inuit - <a target="_blank" href="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" title="null">https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/</a>  <pre><code class="language-css"><pre><code class="hljs css"><span class="hljs-selector-class">.block-name</span> {}
+<span class="hljs-selector-class">.block-name--modifier-name</span> {}
+<span class="hljs-selector-class">.block-name__element-name</span> {}
+<span class="hljs-selector-class">.block-name__element-name--modifier-name</span> {}</code></pre></code></pre>
+</li>
+<li>yandex - <a target="_blank" href="http://bem.info/" title="null">http://bem.info/</a>  <pre><code class="language-css"><pre><code class="hljs css"><span class="hljs-selector-class">.block-name</span> {}
+<span class="hljs-selector-class">.block-name_modifier_name</span> {}
+<span class="hljs-selector-class">.block-name__element-name</span> {}
+<span class="hljs-selector-class">.block-name__element-name_modifier_name</span> {}</code></pre></code></pre>
+目前我選用的是 inuit 的命名方式，我的感覺這個規則比較單純。modifier 前面固定加上 --，element 前面固定加上 __。  </li>
+</ol>
+<p>主要原則：  </p>
+<ol>
+<li>"不可"使用 css 標籤選擇器和 id 選擇器(例：h3, .demo li, #demo)</li>
+<li>Block 不能影響所在環境，不應該設置任何會影響外部的 style(例：margin)  </li>
+<li>Block 和 Block 之間可以不分層次的嵌套</li>
+<li>Element 和 Element 之間可以不分層次的嵌套</li>
+<li>Element 一定是屬於 Block 的一部份，這表示 Element "無法"定義層次結構(錯誤範例：<del>block__element1__element2</del>)</li>
+<li>如果某段樣式可能會重覆使用，且不依賴於其他組件時，就應該建立一個 Block</li>
+<li>如果某段樣式在沒有 Block 的情況下無法使用，就應該建立一個 Element</li>
+<li>Modifier 用來描述 Block 或 Element 的外觀、狀態與行為。  </li>
+</ol>
+<h4 id="為何我要選擇-bem-？">為何我要選擇 BEM ？</h4>
+<ol>
+<li>從命名可看出樣式的用途，明顯能夠區分出樣式間的關聯</li>
+<li>命名規則明確，只針對區塊做樣式的設定，比較不會影響到區塊以外的樣式</li>
+<li>樣式名稱比較不容易有衝突(<del>因為名稱很長，有人可能覺得這是缺點</del>)，取名的時候不用想破頭</li>
+<li>避免出現太過複雜的選擇器(複雜的選擇器範例：.demo > li:not(.hello) > a ~ *.hi)，比較容易看的懂(這點其他2個命名規則應該也能達到)  </li>
+</ol>
+<h4 id="bem-搭配-sass">BEM 搭配 Sass</h4>
+<p>利用 Sass 的 Nesting 與 & 符號來簡化樣式的寫法<br>不需要一直重覆寫 Block 與 Element 名稱  </p>
+<p>使用 BEM 命名規則搭配 Scss 開發之樣式  </p>
+<pre><code class="language-Scss"><pre><code class="hljs Scss"><span class="hljs-comment">// 頁面整體的 Layout</span>
+<span class="hljs-selector-class">.wrapper</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-comment">// 左側選單</span>
+  &__menu {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+  }
+  <span class="hljs-comment">// 右側主要內容</span>
+  &__content {
+    <span class="hljs-attribute">background</span>: white;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
+  }
+}
+
+<span class="hljs-comment">// 側邊選單的樣式</span>
+<span class="hljs-selector-class">.side-menu</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: column;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#054b7c</span>;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fbd300</span>;
+  <span class="hljs-comment">// 選單內的 item 樣式</span>
+  &__item {
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">background</span>: <span class="hljs-number">#054b7c</span>;
+    <span class="hljs-attribute">cursor</span>: pointer;
+    <span class="hljs-attribute">transition</span>: background linear .<span class="hljs-number">3s</span>, border ease-in-out .<span class="hljs-number">2s</span>;
+    <span class="hljs-comment">// 選單內的 item 被選中的樣式</span>
+    &--active{
+      <span class="hljs-attribute">color</span>:<span class="hljs-number">#054b7f</span>;
+      <span class="hljs-attribute">background</span>: <span class="hljs-number">#fbd300</span>;
+      <span class="hljs-attribute">border-left</span>: <span class="hljs-number">8px</span> <span class="hljs-number">#fc5801</span> solid;
+    }
+    <span class="hljs-comment">// 選單內的 item 有滑鼠移至上方時的樣式</span>
+    &<span class="hljs-selector-pseudo">:hover</span> {
+      <span class="hljs-attribute">color</span>:<span class="hljs-number">#054b7f</span>;
+      <span class="hljs-attribute">background</span>: <span class="hljs-number">#fbd300</span>;
+      <span class="hljs-attribute">border-right</span>: <span class="hljs-number">8px</span> <span class="hljs-number">#06F0A9</span> solid;
+    }
+  }
+}</code></pre></code></pre>
+<p>轉譯為 css 後的結果(符合 BEM 規則)  </p>
+<pre><code class="language-css"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+}
+<span class="hljs-selector-class">.wrapper__menu</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+}
+<span class="hljs-selector-class">.wrapper__content</span> {
+  <span class="hljs-attribute">background</span>: white;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
+}
+
+<span class="hljs-selector-class">.side-menu</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: column;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#054b7c</span>;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fbd300</span>;
+}
+<span class="hljs-selector-class">.side-menu__item</span> {
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#054b7c</span>;
+  <span class="hljs-attribute">cursor</span>: pointer;
+  <span class="hljs-attribute">transition</span>: background linear .<span class="hljs-number">3s</span>, border ease-in-out .<span class="hljs-number">2s</span>;
+}
+<span class="hljs-selector-class">.side-menu__item--active</span>{
+  <span class="hljs-attribute">color</span>:<span class="hljs-number">#054b7f</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#fbd300</span>;
+  <span class="hljs-attribute">border-left</span>: <span class="hljs-number">8px</span> <span class="hljs-number">#fc5801</span> solid;
+}
+<span class="hljs-selector-class">.side-menu__item</span><span class="hljs-selector-pseudo">:hover</span> {
+  <span class="hljs-attribute">color</span>:<span class="hljs-number">#054b7f</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#fbd300</span>;
+  <span class="hljs-attribute">border-right</span>: <span class="hljs-number">8px</span> <span class="hljs-number">#06F0A9</span> solid;
+}</code></pre></code></pre>
+<p>完整的程式碼範例在這裡哦！！</p>
+<iframe height="500" style="width:100%" scrolling="no" title="Side menu sample with bem" src="//codepen.io/WenpinLiao/embed/OJLxybE/?height=300&theme-id=11023&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen>
+  See the Pen <a href="https://codepen.io/WenpinLiao/pen/OJLxybE/">Side menu sample with bem</a> by MonkeyBinBin
+  (<a href="https://codepen.io/WenpinLiao">@WenpinLiao</a>) on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+<h4 id="感想">感想</h4>
+<p>命名規則只是一個輔助的方式，盡可能符合。但如果有特殊情況可視狀況來做調整。工具是用來幫助自已不是用來困住自已的。</p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/sh-build-frontend-and-zip" title="利用 shell script 快速產出前端專案交付上版檔案 " class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>利用 shell script 快速產出前端專案交付上版檔案 </span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-01" title="Nuxt 系列 - #1 介紹、建專案與資料夾配置" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              Nuxt 系列 - #1 介紹、建專案與資料夾配置
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/sass-with-bem" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(n){return{layout:"default",data:[{id:n,post:{title:"使用 BEM 與 SCSS 讓 css 不再眼花撩亂",id:n,slug:"命名規則一直是寫程式的重點，當然網站樣式也是有一樣的問題。最近看到幾個方式覺得可以參考，就在某個專案中實作了這部份。的確在樣式的調整上變的快速而且容易許多。配合客戶東改西調不再是問題！？(笑)",categoryList:["BEM","SCSS"],createDate:"2019-09-02",articleContent:'程式開發的「命名」一直是大家討論與關注的重點。透過命名我們可以獲得那些訊息？什麼樣的命名是好的？透過一致性的命名規則讓程式碼易讀、易懂並且可重用，讓開發和維護更有效率。我認為要使用什麼樣的命名規則應該要依照需要與團隊習慣來決定。沒有什麼命名方式一定是好的，只要符合需要就是好的。當我們在開發網站時，整個網站做下來會有非常多的樣式設定，如何達到樣式的共用與結構化，一眼就能看出樣式的用途與義意是非常重要的，這也是我為什麼會選擇 BEM 的原因之一。\n\n#### 常見樣式命名規則 ####\n1. OOCSS\n2. SMACSS\n3. BEM  \n\n上述三種方式為目前比較常見的樣式命名規則，以下會做簡單的介紹。\n\n#### OOCSS 簡介 ####\nOOCSS(Object Oriented CSS)字面意思是物件導向的CSS，追求元件的重用，樣式名命比較抽象。\n\n主要原則：  \n1. Separate structure and skin(分離結構和主題)\n2. Separate container and content(分離容器和內容)\n\n#### SMACSS 簡介 ####\nSMACSS(Scalable and Modular Architecture for CSS)，模組化可擴展架構，主要目標為更語義化的 html 與 css，並且降低對依賴特定的 html 結構。\n\n主要原則：\n1. Categorizing CSS Rules(為css分類)，Base(基礎)、Layout(佈局)、Module(模組)、State(狀態)、Theme(主題)\n2. Naming Rules(命名規則)，考慮用命名來表現樣式的分類，例如使用 l- 或 layout- 的字首來表現 Layout 這個類別的樣式\n3. Minimizing the Depth of Applicability(最小化適配深度)，盡可能使用短的、不限定 html 結構的選擇符\n\n#### BEM 簡介 ####\nBEM(Block, Element, Modifier)，透過 Block、Element、Modifier 來描述頁面，從樣式名稱就可以看到一些有用的資訊，使程式碼更易於維護。\n\nBlock 是頁面中獨立存在的區塊，可以在不同場合下重用。每個頁面都可以看做是多個 Block 組成。(圖片來源：https://en.bem.info/methodology/key-concepts/)  \n![bem block](//images.ctfassets.net/64scck6nxm6l/16nTpd1tDUzpTQ5bG89pXA/4bee9c45fc84088a718fa94e87852298/bem_block.png)\n\nElement 是構成 Block 的元素，只有在 Block 內才具有意義，是依賴於 Block 而存在。(圖片來源：https://en.bem.info/methodology/key-concepts/)  \n![bem element](//images.ctfassets.net/64scck6nxm6l/70KlcGq2GUb7hVNEkJ0c44/88d490eaf95a197f49994e3b6abadc43/bem_element.png)\n\nModifier 是用來描述 Block 或 Element 的屬性或狀態。同一個 Block 或 Element 可以有多個 Modifier。(圖片來源：https://en.bem.info/methodology/key-concepts/)  \n![bem modifier](//images.ctfassets.net/64scck6nxm6l/1QoPwAuWeQQMgmhSokchUG/196060ced7b705d1a9e5b49c732b0a28/bem_modifier.png)\n\n命名方式區分為3種：  \n1. suit - http://suitcss.github.io/  \n```css\n.BlockName {}\n.BlockName--modifierName {}\n.BlockName-elementName {}\n.BlockName-elementName--modifierName {}\n```  \n2. inuit - https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/  \n```css\n.block-name {}\n.block-name--modifier-name {}\n.block-name__element-name {}\n.block-name__element-name--modifier-name {}\n```  \n3. yandex - http://bem.info/  \n```css\n.block-name {}\n.block-name_modifier_name {}\n.block-name__element-name {}\n.block-name__element-name_modifier_name {}\n```  \n目前我選用的是 inuit 的命名方式，我的感覺這個規則比較單純。modifier 前面固定加上 --，element 前面固定加上 __。  \n\n主要原則：  \n1. "不可"使用 css 標籤選擇器和 id 選擇器(例：h3, .demo li, #demo)\n2. Block 不能影響所在環境，不應該設置任何會影響外部的 style(例：margin)  \n3. Block 和 Block 之間可以不分層次的嵌套\n4. Element 和 Element 之間可以不分層次的嵌套\n5. Element 一定是屬於 Block 的一部份，這表示 Element "無法"定義層次結構(錯誤範例：~~block__element1__element2~~)\n6. 如果某段樣式可能會重覆使用，且不依賴於其他組件時，就應該建立一個 Block\n7. 如果某段樣式在沒有 Block 的情況下無法使用，就應該建立一個 Element\n8. Modifier 用來描述 Block 或 Element 的外觀、狀態與行為。  \n\n#### 為何我要選擇 BEM ？ ####\n1. 從命名可看出樣式的用途，明顯能夠區分出樣式間的關聯\n2. 命名規則明確，只針對區塊做樣式的設定，比較不會影響到區塊以外的樣式\n3. 樣式名稱比較不容易有衝突(~~因為名稱很長，有人可能覺得這是缺點~~)，取名的時候不用想破頭\n4. 避免出現太過複雜的選擇器(複雜的選擇器範例：.demo > li:not(.hello) > a ~ *.hi)，比較容易看的懂(這點其他2個命名規則應該也能達到)  \n\n#### BEM 搭配 Sass ####\n利用 Sass 的 Nesting 與 & 符號來簡化樣式的寫法  \n不需要一直重覆寫 Block 與 Element 名稱  \n\n使用 BEM 命名規則搭配 Scss 開發之樣式  \n```Scss\n// 頁面整體的 Layout\n.wrapper {\n  display: flex;\n  height: 100%;\n  // 左側選單\n  &__menu {\n    width: 200px;\n  }\n  // 右側主要內容\n  &__content {\n    background: white;\n    width: 100%;\n    padding: 10px;\n  }\n}\n\n// 側邊選單的樣式\n.side-menu {\n  display: flex;\n  flex-direction: column;\n  background: #054b7c;\n  color: #fbd300;\n  // 選單內的 item 樣式\n  &__item {\n    padding: 10px 20px;\n    background: #054b7c;\n    cursor: pointer;\n    transition: background linear .3s, border ease-in-out .2s;\n    // 選單內的 item 被選中的樣式\n    &--active{\n      color:#054b7f;\n      background: #fbd300;\n      border-left: 8px #fc5801 solid;\n    }\n    // 選單內的 item 有滑鼠移至上方時的樣式\n    &:hover {\n      color:#054b7f;\n      background: #fbd300;\n      border-right: 8px #06F0A9 solid;\n    }\n  }\n}\n```  \n\n轉譯為 css 後的結果(符合 BEM 規則)  \n```css\n.wrapper {\n  display: flex;\n  height: 100%;\n}\n.wrapper__menu {\n  width: 200px;\n}\n.wrapper__content {\n  background: white;\n  width: 100%;\n  padding: 10px;\n}\n\n.side-menu {\n  display: flex;\n  flex-direction: column;\n  background: #054b7c;\n  color: #fbd300;\n}\n.side-menu__item {\n  padding: 10px 20px;\n  background: #054b7c;\n  cursor: pointer;\n  transition: background linear .3s, border ease-in-out .2s;\n}\n.side-menu__item--active{\n  color:#054b7f;\n  background: #fbd300;\n  border-left: 8px #fc5801 solid;\n}\n.side-menu__item:hover {\n  color:#054b7f;\n  background: #fbd300;\n  border-right: 8px #06F0A9 solid;\n}\n```  \n\n完整的程式碼範例在這裡哦！！\n<iframe height="500" style="width: 100%;" scrolling="no" title="Side menu sample with bem" src="//codepen.io/WenpinLiao/embed/OJLxybE/?height=300&theme-id=11023&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">\n  See the Pen <a href=\'https://codepen.io/WenpinLiao/pen/OJLxybE/\'>Side menu sample with bem</a> by MonkeyBinBin\n  (<a href=\'https://codepen.io/WenpinLiao\'>@WenpinLiao</a>) on <a href=\'https://codepen.io\'>CodePen</a>.\n</iframe>\n\n\n#### 感想 ####\n命名規則只是一個輔助的方式，盡可能符合。但如果有特殊情況可視狀況來做調整。工具是用來幫助自已不是用來困住自已的。'},prevPost:{id:"sh-build-frontend-and-zip",createDate:"2019-08-15",title:"利用 shell script 快速產出前端專案交付上版檔案 "},nextPost:{id:"a-series-of-nuxtjs-01",createDate:"2020-04-05",title:"Nuxt 系列 - #1 介紹、建專案與資料夾配置"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/sass-with-bem"}}("sass-with-bem")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

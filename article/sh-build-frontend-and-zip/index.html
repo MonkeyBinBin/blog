@@ -1,0 +1,231 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>利用 shell script 快速產出前端專案交付上版檔案  - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/sh-build-frontend-and-zip/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,Shell script,利用 shell script 快速產出前端專案交付上版檔案 "><meta data-n-head="ssr" data-hid="description" property="description" content="近期專案進入測試階段，經常需要包版與加密壓縮交付給客戶，每次手動都要花費不少時間(又怕出錯)。為了可以準時下班，就想說來寫一個 shell script 來做這段重覆又花時間的事情。咻一下就可以把檔案準備好了，快又爽!"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="近期專案進入測試階段，經常需要包版與加密壓縮交付給客戶，每次手動都要花費不少時間(又怕出錯)。為了可以準時下班，就想說來寫一個 shell script 來做這段重覆又花時間的事情。咻一下就可以把檔案準備好了，快又爽!"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="利用 shell script 快速產出前端專案交付上版檔案  - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/sh-build-frontend-and-zip/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      August 15, 2019
+    </span> <a href="/tag/Shell script" title="Shell script" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      Shell script
+    </a></div> <h1 data-v-3c54882c><a href="/article/sh-build-frontend-and-zip" title="利用 shell script 快速產出前端專案交付上版檔案 " class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      利用 shell script 快速產出前端專案交付上版檔案 
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    近期專案進入測試階段，經常需要包版與加密壓縮交付給客戶，每次手動都要花費不少時間(又怕出錯)。為了可以準時下班，就想說來寫一個 shell script 來做這段重覆又花時間的事情。咻一下就可以把檔案準備好了，快又爽!
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><p>當專案開發進入測試階段之後，每天都會上演的戲碼就是包版做程式的更新。為了每天可以準時下班，就必需讓包版自動化。一方面可以省時，也可以減少犯錯的可能。接下來，我使用 React 專案來做範例，此專案已設定好不同環境(uat、prod)的 scripts 透過 npm、webpack 打包程式，說明在 Mac OS 如何使用 shell script 來進行打包、壓縮加密、更新版本，產出應交付的檔案。</p>
+<h4 id="需求說明">需求說明</h4>
+<ol>
+<li>上版環境區分為 uat 與 prod。</li>
+<li>上版檔案需加密壓縮，密碼為"test123"。</li>
+<li>檔案名稱分別為 "xxx v0.0.0 uat.zip" 、 "xxx v0.0.0 prod.zip"，其中0.0.0為版號。</li>
+<li>產出交付 zip 檔後，版控也需要更新至最新版號。</li>
+</ol>
+<h4 id="使用到的-shell-script-指令">使用到的 shell script 指令</h4>
+<ol>
+<li>read</li>
+<li>echo</li>
+<li>date</li>
+<li>cd</li>
+<li>sed</li>
+<li>for...in</li>
+<li>if</li>
+<li>rm</li>
+<li>mkdir</li>
+<li>cp</li>
+<li>expect、spawn、send</li>
+</ol>
+<h4 id="如何執行-sh-檔案？">如何執行 .sh 檔案？</h4>
+<ol>
+<li>開啟「終端機」，將資料夾移至 .sh 檔案所在的資料夾。</li>
+<li>直接輸入"sh filename.sh"。</li>
+</ol>
+<h4 id="1-建立-sh-檔案。">1. 建立 .sh 檔案。</h4>
+<p>使用文字編輯器，增加以下內容，定義所要使用的 shell。</p>
+<pre><code class="language-bash"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span></code></pre></code></pre>
+<h4 id="2-設定變數與要求使用者輸入資料。">2. 設定變數與要求使用者輸入資料。</h4>
+<ul>
+<li>所有變數都視為字串。</li>
+<li>定義變數時，等號二邊不可以有空白。</li>
+<li>date 為取得目前日期指令，後方 +"%Y%m%d%H%M" 用來格式化日期並輸出字串。</li>
+<li>使用 $(date +"%Y%m%d%H%M") 或 `date +"%Y%m%d%H%M"` 取得執行後的結果字串(執行結果輸出範例：201908151235)。</li>
+<li>使用變數時在前方加上 $ 符號(例：$TARGET_PATH)。</li>
+<li>使用 read 指令來讀取使用者輸入的資料。  </li>
+</ul>
+<pre><code class="language-bash"><pre><code class="hljs bash">PROJECT_PATH=<span class="hljs-string">'/Users/demo/Projects/react-app'</span>
+TARGET_PATH=<span class="hljs-string">'/Users/demo/react-app'</span>
+BUILD_OUTPUT_FOLDER=$(date +<span class="hljs-string">"%Y%m%d%H%M"</span>)
+BUILD_OUTPUT_PATH=<span class="hljs-variable">$TARGET_PATH</span>/<span class="hljs-variable">$BUILD_OUTPUT_FOLDER</span>
+ZIP_PASSWORD=<span class="hljs-string">'test123'</span>
+
+<span class="hljs-built_in">read</span> -p <span class="hljs-string">'請輸入版本號:'</span> version</code></pre></code></pre>
+<h4 id="3-修改-react-專案檔案，更新版本號碼。">3. 修改 react 專案檔案，更新版本號碼。</h4>
+<ul>
+<li>先將目錄移至 react 專案目錄，方便修改專案檔案與執行打包指令。</li>
+<li>使用 sed 指令修改專案 package.json 檔案內的 version 設定。</li>
+<li>sed 指令後方的 -i 為直接修改讀取的檔案內容，接續的 "" 用來設定備份檔案名稱的後綴(suffix)，如不需備份則設定空字串。</li>
+<li>sed 指令後方的 's/"version": "[0-9][0-9]<em>.[0-9][0-9]*.[0-9][0-9]</em>",/"version": "'"$version"'",/g' 是用來指定動作， s 表示取代，s/被取代的字串/取代的字串/g，被取代的字串可搭配正規表示法。</li>
+<li>sed 最後一個參數為要被修改的檔案。 </li>
+</ul>
+<pre><code class="language-bash"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> <span class="hljs-variable">$PROJECT_PATH</span>
+sed -i <span class="hljs-string">""</span> <span class="hljs-string">'s/"version": "[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*",/"version": "'</span><span class="hljs-string">"<span class="hljs-variable">$version</span>"</span><span class="hljs-string">'",/g'</span> package.json</code></pre></code></pre>
+<h4 id="4-建立輸出檔案使用的資料夾。">4. 建立輸出檔案使用的資料夾。</h4>
+<ul>
+<li>先判斷檔案輸出的資料夾是否存在，不存在才建立資料夾。</li>
+<li>指令中如果有需要空白字串，需在空字串前增加 \ 符號。</li>
+<li>mkdir 建立資料夾，參數 -p 表示當父層資料夾不存在時一併建立。  </li>
+</ul>
+<pre><code class="language-bash"><pre><code class="hljs bash"><span class="hljs-keyword">if</span> [ ! -d <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx\ v<span class="hljs-variable">$version</span>\ uat ]
+<span class="hljs-keyword">then</span>
+  mkdir -p <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx\ v<span class="hljs-variable">$version</span>\ uat
+<span class="hljs-keyword">fi</span></code></pre></code></pre>
+<h4 id="5-執行-npm-指令，產出打包檔案。">5. 執行 npm 指令，產出打包檔案。</h4>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm run build-uat</code></pre></code></pre>
+<h4 id="6-將打包產出的檔案複製到步驟4建立的資料夾，提供稍後加密壓縮使用。">6. 將打包產出的檔案複製到"步驟4"建立的資料夾，提供稍後加密壓縮使用。</h4>
+<ul>
+<li>使用 cp 指令複製檔案至指定資料夾。</li>
+<li>參數 -r 表示複製資料夾以及裡面全部內容。</li>
+<li>cp -r [from folder] [to folder]。  </li>
+</ul>
+<pre><code class="language-bash"><pre><code class="hljs bash">cp -r <span class="hljs-variable">$PROJECT_PATH</span>/build/* <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx\ v<span class="hljs-variable">$version</span>\ uat/</code></pre></code></pre>
+<h4 id="7-加密壓縮。">7. 加密壓縮。</h4>
+<ul>
+<li>先將目錄移至"步驟4"建立的資料夾。</li>
+<li>使用 zip 指令進行壓縮，參數 -e 為加密壓縮，參數 -r 為壓縮資料夾以及裡面全部內容。</li>
+<li>利用 expect 來處理 zip 過程中需要使用者輸入密碼的動作。</li>
+<li>spawn、send 為 expect 的指令，所以要在 bash 下執行需使用 expect -c "…" 這種特別的寫法，並且在雙引號內的雙引號前需加上 \。</li>
+<li>\r 表示按下 enter 送出的意思。</li>
+</ul>
+<pre><code class="language-bash"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>
+expect -c <span class="hljs-string">"
+  spawn zip -er ./xxx\ v<span class="hljs-variable">$version</span>\ uat.zip ./xxx\ v<span class="hljs-variable">$version</span>\ uat/
+  expect \"Enter password\"
+  send \"<span class="hljs-variable">$ZIP_PASSWORD</span>\r\"
+  expect \"Verify password\"
+  send \"<span class="hljs-variable">$ZIP_PASSWORD</span>\r\"
+  expect eof
+"</span>
+<span class="hljs-built_in">cd</span> <span class="hljs-variable">$PROJECT_PATH</span></code></pre></code></pre>
+<h4 id="8-增加-for-迴圈，重覆執行-47-的步驟，以符合打包多個環境之需求。">8. 增加 for 迴圈，重覆執行 4~7 的步驟，以符合打包多個環境之需求。</h4>
+<ul>
+<li>設定環境變數，多個使用空白區隔。  </li>
+</ul>
+<pre><code class="language-bash"><pre><code class="hljs bash">ENV=<span class="hljs-string">'uat prod'</span>
+<span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> <span class="hljs-variable">$ENV</span>; <span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">if</span> [ ! -d <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx\ v<span class="hljs-variable">$version</span>\ <span class="hljs-variable">$value</span> ]
+  <span class="hljs-keyword">then</span>
+    mkdir -p <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx\ v<span class="hljs-variable">$version</span>\ <span class="hljs-variable">$value</span>
+  <span class="hljs-keyword">fi</span>
+
+  npm run build-<span class="hljs-variable">$value</span>
+
+  cp -r <span class="hljs-variable">$PROJECT_PATH</span>/build/* <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx\ v<span class="hljs-variable">$version</span>\ <span class="hljs-variable">$value</span>/
+
+  <span class="hljs-built_in">cd</span> <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>
+  expect -c <span class="hljs-string">"
+    spawn zip -er ./xxx\ v<span class="hljs-variable">$version</span>\ <span class="hljs-variable">$value</span>.zip ./xxx\ v<span class="hljs-variable">$version</span>\ <span class="hljs-variable">$value</span>/
+    expect \"Enter password\"
+    send \"<span class="hljs-variable">$ZIP_PASSWORD</span>\r\"
+    expect \"Verify password\"
+    send \"<span class="hljs-variable">$ZIP_PASSWORD</span>\r\"
+    expect eof
+  "</span>
+  <span class="hljs-built_in">cd</span> <span class="hljs-variable">$PROJECT_PATH</span>
+<span class="hljs-keyword">done</span></code></pre></code></pre>
+<h4 id="9-詢問是否需要更新版控。">9. 詢問是否需要更新版控。</h4>
+<ul>
+<li>設定變數預設值的方式為， xxx=${xxx:-預設值}。  </li>
+</ul>
+<pre><code class="language-bash"><pre><code class="hljs bash"><span class="hljs-built_in">read</span> -p <span class="hljs-string">"確定要更新版控的版本號碼至 <span class="hljs-variable">$version</span> (y/N)？"</span> isUpdateGitVersion
+isUpdateGitVersion=<span class="hljs-variable">${isUpdateGitVersion:-N}</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$isUpdateGitVersion</span> = <span class="hljs-string">'Y'</span> ] || [ <span class="hljs-variable">$isUpdateGitVersion</span> = <span class="hljs-string">'y'</span> ]; <span class="hljs-keyword">then</span> 
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Updating git..."</span>
+  git commit -a -m <span class="hljs-string">"release v<span class="hljs-variable">$version</span>"</span>
+  git push
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"The version control is updated to <span class="hljs-variable">$version</span>."</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"The version control is not updated."</span>
+<span class="hljs-keyword">fi</span></code></pre></code></pre>
+<h4 id="完整-sh-內容">完整 .sh 內容</h4>
+<p>增加一些資訊輸出，幫助了解目前 shell script 執行的狀況  </p>
+<pre><code class="language-bash"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
+PROJECT_PATH=<span class="hljs-string">'/Users/demo/Projects/react-app'</span>
+TARGET_PATH=<span class="hljs-string">'/Users/demo/react-app'</span>
+BUILD_OUTPUT_FOLDER=$(date +<span class="hljs-string">"%Y%m%d%H%M"</span>)
+BUILD_OUTPUT_PATH=<span class="hljs-variable">$TARGET_PATH</span>/<span class="hljs-variable">$BUILD_OUTPUT_FOLDER</span>
+ZIP_PASSWORD=<span class="hljs-string">'test123'</span>
+
+<span class="hljs-built_in">read</span> -p <span class="hljs-string">'請輸入版本號:'</span> version
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"\n### 準備打包版號為：<span class="hljs-variable">$version</span> ###\n"</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"專案路徑：<span class="hljs-variable">$PROJECT_PATH</span>"</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"檔案輸出路徑：<span class="hljs-variable">$BUILD_OUTPUT_PATH</span>"</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"壓縮密碼：<span class="hljs-variable">$ZIP_PASSWORD</span>"</span>
+
+<span class="hljs-built_in">cd</span> <span class="hljs-variable">$PROJECT_PATH</span>
+sed -i <span class="hljs-string">""</span> <span class="hljs-string">'s/"version": "[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*",/"version": "'</span><span class="hljs-string">"<span class="hljs-variable">$version</span>"</span><span class="hljs-string">'",/g'</span> package.json
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Project version is updated to <span class="hljs-variable">$version</span>"</span>
+
+ENV=<span class="hljs-string">'uat prod'</span>
+<span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> <span class="hljs-variable">$ENV</span>; <span class="hljs-keyword">do</span>
+  <span class="hljs-keyword">if</span> [ ! -d <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx\ v<span class="hljs-variable">$version</span>\ <span class="hljs-variable">$value</span> ]
+  <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"\nCreating [<span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx v<span class="hljs-variable">$version</span> <span class="hljs-variable">$value</span>] folder"</span>
+    mkdir -p <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx\ v<span class="hljs-variable">$version</span>\ <span class="hljs-variable">$value</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"\033[0;37;43m[<span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx v<span class="hljs-variable">$version</span> <span class="hljs-variable">$value</span>] folder created success!\033[0m"</span>
+  <span class="hljs-keyword">fi</span>
+
+  npm run build-<span class="hljs-variable">$value</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"\033[0;37;43m<span class="hljs-variable">$value</span> build success!\033[0m\n"</span>
+
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Copying file..."</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"From => <span class="hljs-variable">$PROJECT_PATH</span>/build/*"</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"To => <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx v<span class="hljs-variable">$version</span> <span class="hljs-variable">$value</span>/"</span>
+  cp -r <span class="hljs-variable">$PROJECT_PATH</span>/build/* <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx\ v<span class="hljs-variable">$version</span>\ <span class="hljs-variable">$value</span>/
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"\033[0;37;43mCopy file to [<span class="hljs-variable">$BUILD_OUTPUT_PATH</span>/xxx v<span class="hljs-variable">$version</span> <span class="hljs-variable">$value</span>/] success!\033[0m\n"</span>
+
+  <span class="hljs-built_in">cd</span> <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>
+  expect -c <span class="hljs-string">"
+    spawn zip -er ./xxx\ v<span class="hljs-variable">$version</span>\ <span class="hljs-variable">$value</span>.zip ./xxx\ v<span class="hljs-variable">$version</span>\ <span class="hljs-variable">$value</span>/
+    expect \"Enter password\"
+    send \"<span class="hljs-variable">$ZIP_PASSWORD</span>\r\"
+    expect \"Verify password\"
+    send \"<span class="hljs-variable">$ZIP_PASSWORD</span>\r\"
+    expect eof
+  "</span>
+  <span class="hljs-built_in">cd</span> <span class="hljs-variable">$PROJECT_PATH</span>
+<span class="hljs-keyword">done</span>
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"\n\033[0;37;43mThe package is successful.\033[0m\n"</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Output => <span class="hljs-variable">$BUILD_OUTPUT_PATH</span>\n"</span>
+
+<span class="hljs-built_in">read</span> -p <span class="hljs-string">"確定要更新版控的版本號碼至 <span class="hljs-variable">$version</span> (y/N)？"</span> isUpdateGitVersion
+isUpdateGitVersion=<span class="hljs-variable">${isUpdateGitVersion:-N}</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$isUpdateGitVersion</span> = <span class="hljs-string">'Y'</span> ] || [ <span class="hljs-variable">$isUpdateGitVersion</span> = <span class="hljs-string">'y'</span> ]; <span class="hljs-keyword">then</span> 
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Updating git..."</span>
+  git commit -a -m <span class="hljs-string">"release v<span class="hljs-variable">$version</span>"</span>
+  git push
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"The version control is updated to <span class="hljs-variable">$version</span>."</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"The version control is not updated."</span>
+<span class="hljs-keyword">fi</span></code></pre></code></pre>
+<h4 id="其他參考資料">其他參考資料</h4>
+<ul>
+<li><a target="_blank" href="https://misc.flogisoft.com/bash/tip_colors_and_formatting" title="null">echo Colors and formatting</a></li>
+<li><a target="_blank" href="https://dywang.csie.cyut.edu.tw/dywang/linuxProgram/node42.html" title="null">sed 命令簡介</a>  </li>
+</ul>
+<p>~ END ~</p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/mac-reform-itermapp" title="Mac 端終機大改造， iTerm2 + Oh my zsh 好看也好用" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>Mac 端終機大改造， iTerm2 + Oh my zsh 好看也好用</span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/sass-with-bem" title="使用 BEM 與 SCSS 讓 css 不再眼花撩亂" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              使用 BEM 與 SCSS 讓 css 不再眼花撩亂
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/sh-build-frontend-and-zip" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(n){return{layout:"default",data:[{id:n,post:{title:"利用 shell script 快速產出前端專案交付上版檔案 ",id:n,slug:"近期專案進入測試階段，經常需要包版與加密壓縮交付給客戶，每次手動都要花費不少時間(又怕出錯)。為了可以準時下班，就想說來寫一個 shell script 來做這段重覆又花時間的事情。咻一下就可以把檔案準備好了，快又爽!",categoryList:["Shell script"],createDate:"2019-08-15",articleContent:'當專案開發進入測試階段之後，每天都會上演的戲碼就是包版做程式的更新。為了每天可以準時下班，就必需讓包版自動化。一方面可以省時，也可以減少犯錯的可能。接下來，我使用 React 專案來做範例，此專案已設定好不同環境(uat、prod)的 scripts 透過 npm、webpack 打包程式，說明在 Mac OS 如何使用 shell script 來進行打包、壓縮加密、更新版本，產出應交付的檔案。\n\n#### 需求說明 ####\n1. 上版環境區分為 uat 與 prod。\n2. 上版檔案需加密壓縮，密碼為"test123"。\n3. 檔案名稱分別為 "xxx v0.0.0 uat.zip" 、 "xxx v0.0.0 prod.zip"，其中0.0.0為版號。\n4. 產出交付 zip 檔後，版控也需要更新至最新版號。\n\n#### 使用到的 shell script 指令 ####\n1. read\n2. echo\n3. date\n4. cd\n5. sed\n6. for...in\n7. if\n8. rm\n9. mkdir\n10. cp\n11. expect、spawn、send\n\n#### 如何執行 .sh 檔案？ ####\n1. 開啟「終端機」，將資料夾移至 .sh 檔案所在的資料夾。\n2. 直接輸入"sh filename.sh"。\n\n#### 1. 建立 .sh 檔案。 ####\n使用文字編輯器，增加以下內容，定義所要使用的 shell。\n\n``` bash\n#!/bin/bash\n```\n\n#### 2. 設定變數與要求使用者輸入資料。 ####\n* 所有變數都視為字串。\n* 定義變數時，等號二邊不可以有空白。\n* date 為取得目前日期指令，後方 +"%Y%m%d%H%M" 用來格式化日期並輸出字串。\n* 使用 $(date +"%Y%m%d%H%M") 或 \\`date +"%Y%m%d%H%M"\\` 取得執行後的結果字串(執行結果輸出範例：201908151235)。\n* 使用變數時在前方加上 $ 符號(例：$TARGET_PATH)。\n* 使用 read 指令來讀取使用者輸入的資料。  \n\n``` bash\nPROJECT_PATH=\'/Users/demo/Projects/react-app\'\nTARGET_PATH=\'/Users/demo/react-app\'\nBUILD_OUTPUT_FOLDER=$(date +"%Y%m%d%H%M")\nBUILD_OUTPUT_PATH=$TARGET_PATH/$BUILD_OUTPUT_FOLDER\nZIP_PASSWORD=\'test123\'\n\nread -p \'請輸入版本號:\' version\n```  \n\n#### 3. 修改 react 專案檔案，更新版本號碼。 ####\n* 先將目錄移至 react 專案目錄，方便修改專案檔案與執行打包指令。\n* 使用 sed 指令修改專案 package.json 檔案內的 version 設定。\n* sed 指令後方的 -i 為直接修改讀取的檔案內容，接續的 "" 用來設定備份檔案名稱的後綴(suffix)，如不需備份則設定空字串。\n* sed 指令後方的 \'s/"version": "[0-9][0-9]*\\.[0-9][0-9]*\\.[0-9][0-9]*",/"version": "\'"$version"\'",/g\' 是用來指定動作， s 表示取代，s/被取代的字串/取代的字串/g，被取代的字串可搭配正規表示法。\n* sed 最後一個參數為要被修改的檔案。 \n \n``` bash\ncd $PROJECT_PATH\nsed -i "" \'s/"version": "[0-9][0-9]*\\.[0-9][0-9]*\\.[0-9][0-9]*",/"version": "\'"$version"\'",/g\' package.json\n```  \n\n#### 4. 建立輸出檔案使用的資料夾。 ####\n* 先判斷檔案輸出的資料夾是否存在，不存在才建立資料夾。\n* 指令中如果有需要空白字串，需在空字串前增加 \\ 符號。\n* mkdir 建立資料夾，參數 -p 表示當父層資料夾不存在時一併建立。  \n\n``` bash\nif [ ! -d $BUILD_OUTPUT_PATH/xxx\\ v$version\\ uat ]\nthen\n  mkdir -p $BUILD_OUTPUT_PATH/xxx\\ v$version\\ uat\nfi\n```  \n\n#### 5. 執行 npm 指令，產出打包檔案。 ####\n``` bash\nnpm run build-uat\n```  \n\n#### 6. 將打包產出的檔案複製到"步驟4"建立的資料夾，提供稍後加密壓縮使用。 ####\n* 使用 cp 指令複製檔案至指定資料夾。\n* 參數 -r 表示複製資料夾以及裡面全部內容。\n* cp -r [from folder] [to folder]。  \n\n``` bash\ncp -r $PROJECT_PATH/build/* $BUILD_OUTPUT_PATH/xxx\\ v$version\\ uat/\n```  \n\n#### 7. 加密壓縮。 ####\n* 先將目錄移至"步驟4"建立的資料夾。\n* 使用 zip 指令進行壓縮，參數 -e 為加密壓縮，參數 -r 為壓縮資料夾以及裡面全部內容。\n* 利用 expect 來處理 zip 過程中需要使用者輸入密碼的動作。\n* spawn、send 為 expect 的指令，所以要在 bash 下執行需使用 expect -c "…" 這種特別的寫法，並且在雙引號內的雙引號前需加上 \\。\n* \\r 表示按下 enter 送出的意思。\n  \n``` bash\ncd $BUILD_OUTPUT_PATH\nexpect -c "\n  spawn zip -er ./xxx\\ v$version\\ uat.zip ./xxx\\ v$version\\ uat/\n  expect \\"Enter password\\"\n  send \\"$ZIP_PASSWORD\\r\\"\n  expect \\"Verify password\\"\n  send \\"$ZIP_PASSWORD\\r\\"\n  expect eof\n"\ncd $PROJECT_PATH\n```  \n\n#### 8. 增加 for 迴圈，重覆執行 4~7 的步驟，以符合打包多個環境之需求。 ####\n* 設定環境變數，多個使用空白區隔。  \n\n``` bash\nENV=\'uat prod\'\nfor value in $ENV; do\n  if [ ! -d $BUILD_OUTPUT_PATH/xxx\\ v$version\\ $value ]\n  then\n    mkdir -p $BUILD_OUTPUT_PATH/xxx\\ v$version\\ $value\n  fi\n\n  npm run build-$value\n\n  cp -r $PROJECT_PATH/build/* $BUILD_OUTPUT_PATH/xxx\\ v$version\\ $value/\n\n  cd $BUILD_OUTPUT_PATH\n  expect -c "\n    spawn zip -er ./xxx\\ v$version\\ $value.zip ./xxx\\ v$version\\ $value/\n    expect \\"Enter password\\"\n    send \\"$ZIP_PASSWORD\\r\\"\n    expect \\"Verify password\\"\n    send \\"$ZIP_PASSWORD\\r\\"\n    expect eof\n  "\n  cd $PROJECT_PATH\ndone\n```  \n\n#### 9. 詢問是否需要更新版控。 ####\n* 設定變數預設值的方式為， xxx=${xxx:-預設值}。  \n\n``` bash\nread -p "確定要更新版控的版本號碼至 $version (y/N)？" isUpdateGitVersion\nisUpdateGitVersion=${isUpdateGitVersion:-N}\nif [ $isUpdateGitVersion = \'Y\' ] || [ $isUpdateGitVersion = \'y\' ]; then \n  echo "Updating git..."\n  git commit -a -m "release v$version"\n  git push\n  echo "The version control is updated to $version."\nelse\n  echo "The version control is not updated."\nfi\n```  \n\n#### 完整 .sh 內容 ####\n增加一些資訊輸出，幫助了解目前 shell script 執行的狀況  \n\n``` bash\n#!/bin/bash\nPROJECT_PATH=\'/Users/demo/Projects/react-app\'\nTARGET_PATH=\'/Users/demo/react-app\'\nBUILD_OUTPUT_FOLDER=$(date +"%Y%m%d%H%M")\nBUILD_OUTPUT_PATH=$TARGET_PATH/$BUILD_OUTPUT_FOLDER\nZIP_PASSWORD=\'test123\'\n\nread -p \'請輸入版本號:\' version\n\necho "\\n### 準備打包版號為：$version ###\\n"\necho "專案路徑：$PROJECT_PATH"\necho "檔案輸出路徑：$BUILD_OUTPUT_PATH"\necho "壓縮密碼：$ZIP_PASSWORD"\n\ncd $PROJECT_PATH\nsed -i "" \'s/"version": "[0-9][0-9]*\\.[0-9][0-9]*\\.[0-9][0-9]*",/"version": "\'"$version"\'",/g\' package.json\necho "Project version is updated to $version"\n\nENV=\'uat prod\'\nfor value in $ENV; do\n  if [ ! -d $BUILD_OUTPUT_PATH/xxx\\ v$version\\ $value ]\n  then\n    echo "\\nCreating [$BUILD_OUTPUT_PATH/xxx v$version $value] folder"\n    mkdir -p $BUILD_OUTPUT_PATH/xxx\\ v$version\\ $value\n    echo "\\033[0;37;43m[$BUILD_OUTPUT_PATH/xxx v$version $value] folder created success!\\033[0m"\n  fi\n\n  npm run build-$value\n  echo "\\033[0;37;43m$value build success!\\033[0m\\n"\n\n  echo "Copying file..."\n  echo "From => $PROJECT_PATH/build/*"\n  echo "To => $BUILD_OUTPUT_PATH/xxx v$version $value/"\n  cp -r $PROJECT_PATH/build/* $BUILD_OUTPUT_PATH/xxx\\ v$version\\ $value/\n  echo "\\033[0;37;43mCopy file to [$BUILD_OUTPUT_PATH/xxx v$version $value/] success!\\033[0m\\n"\n\n  cd $BUILD_OUTPUT_PATH\n  expect -c "\n    spawn zip -er ./xxx\\ v$version\\ $value.zip ./xxx\\ v$version\\ $value/\n    expect \\"Enter password\\"\n    send \\"$ZIP_PASSWORD\\r\\"\n    expect \\"Verify password\\"\n    send \\"$ZIP_PASSWORD\\r\\"\n    expect eof\n  "\n  cd $PROJECT_PATH\ndone\n\necho "\\n\\033[0;37;43mThe package is successful.\\033[0m\\n"\necho "Output => $BUILD_OUTPUT_PATH\\n"\n\nread -p "確定要更新版控的版本號碼至 $version (y/N)？" isUpdateGitVersion\nisUpdateGitVersion=${isUpdateGitVersion:-N}\nif [ $isUpdateGitVersion = \'Y\' ] || [ $isUpdateGitVersion = \'y\' ]; then \n  echo "Updating git..."\n  git commit -a -m "release v$version"\n  git push\n  echo "The version control is updated to $version."\nelse\n  echo "The version control is not updated."\nfi\n```  \n\n#### 其他參考資料 ####\n* [echo Colors and formatting](https://misc.flogisoft.com/bash/tip_colors_and_formatting)\n* [sed 命令簡介](https://dywang.csie.cyut.edu.tw/dywang/linuxProgram/node42.html)  \n\n~ END ~'},prevPost:{id:"mac-reform-itermapp",createDate:"2018-11-26",title:"Mac 端終機大改造， iTerm2 + Oh my zsh 好看也好用"},nextPost:{id:"sass-with-bem",createDate:"2019-09-02",title:"使用 BEM 與 SCSS 讓 css 不再眼花撩亂"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/sh-build-frontend-and-zip"}}("sh-build-frontend-and-zip")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

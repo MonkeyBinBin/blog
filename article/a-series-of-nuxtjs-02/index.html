@@ -1,0 +1,489 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>Nuxt 系列 - #2 關於 nuxt.config.js 的設定 - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-02/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,Nuxt 系列 - #2 關於 nuxt.config.js 的設定"><meta data-n-head="ssr" data-hid="description" property="description" content="官方提供了很多可設定的項目，不會講到全部的項目，主要是說明我在開發 blog 時用到的一些設定，提供給大家參考。透過一些實例來理解為何要設定與如何設定。"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="官方提供了很多可設定的項目，不會講到全部的項目，主要是說明我在開發 blog 時用到的一些設定，提供給大家參考。透過一些實例來理解為何要設定與如何設定。"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="Nuxt 系列 - #2 關於 nuxt.config.js 的設定 - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-02/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      April 10, 2020
+    </span> <a href="/tag/Nuxt.js" title="Nuxt.js" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      Nuxt.js
+    </a></div> <h1 data-v-3c54882c><a href="/article/a-series-of-nuxtjs-02" title="Nuxt 系列 - #2 關於 nuxt.config.js 的設定" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      Nuxt 系列 - #2 關於 nuxt.config.js 的設定
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    官方提供了很多可設定的項目，不會講到全部的項目，主要是說明我在開發 blog 時用到的一些設定，提供給大家參考。透過一些實例來理解為何要設定與如何設定。
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><h4 id="build">build</h4>
+<p>在建立網頁應用程式時，依據需要自定義 Webpack 配置。以下為目前有使用到的設定屬性。  </p>
+<p><strong>analyze</strong> - 用來啟用 <a target="_blank" href="https://github.com/webpack-contrib/webpack-bundle-analyzer" title="null">webpack-bundle-analyzer</a> 套件設定，分析打包後的 js 檔案內各個 module 佔的大小。當需要調校效能或觀察載入套件的檔案大小時很好用。  </p>
+<ul>
+<li>Type: Boolean or Object</li>
+<li>Default: false</li>
+</ul>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">build</span>: {
+    <span class="hljs-attr">analyze</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-comment">// or</span>
+    <span class="hljs-attr">analyze</span>: {
+      <span class="hljs-attr">analyzerMode</span>: <span class="hljs-string">'static'</span>
+    }
+  }
+}</code></pre></code></pre>
+<p><strong>extend</strong> - 擴充 webpack 設定，可能是增加 loader 或是增加其他 webpack plugins 的設定。  </p>
+<ul>
+<li>Type: Function  </li>
+</ul>
+<p>依據官方的說法，此方法會被呼叫2次，一次是 server bundle，另一次是 client bundle<br>此方法會傳入2個參數，第一個為 Webpack config object，第二個為包含 isDev、isClient、isServer、loaders 屬性的 object<br>透過 isDev、isClient、isServer 來判斷在什麼狀況下要做什麼 webpack 設定的調整  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">build</span>: {
+    extend (config, { isClient, isServer, isDev, <span class="hljs-attr">loaders</span>: { vue } }) {
+      <span class="hljs-comment">// Extend only webpack config for development and client-bundle</span>
+      <span class="hljs-keyword">if</span> (isDev && isClient) {
+        config.module.rules.push({
+          <span class="hljs-attr">enforce</span>: <span class="hljs-string">'pre'</span>,
+          <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.(js|vue)$/</span>,
+          loader: <span class="hljs-string">'eslint-loader'</span>,
+          <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/(node_modules)/</span>
+        })
+      }
+
+      <span class="hljs-comment">// Extend only webpack config for client-bundle</span>
+      <span class="hljs-keyword">if</span> (isClient) {
+        vue.transformAssetUrls.video = [<span class="hljs-string">'src'</span>, <span class="hljs-string">'poster'</span>]
+      }
+
+      config.plugins.push(
+        <span class="hljs-keyword">new</span> webpack.ProvidePlugin({
+          <span class="hljs-string">'$'</span>: <span class="hljs-string">'jquery'</span>,
+          <span class="hljs-string">'_'</span>: <span class="hljs-string">'lodash'</span>,
+          <span class="hljs-string">'moment'</span>: <span class="hljs-string">'moment'</span>
+        })
+      )
+    }
+  }
+}</code></pre></code></pre>
+<p><strong>extractCSS</strong> - 設定是否使用 <a target="_blank" href="https://github.com/faceyspacey/extract-css-chunks-webpack-plugin" title="null">extract-css-chunks-webpack-plugin</a>，用來將 css 提取至單獨文件，通常一個組件一個檔案，與 js 檔分開載入增加效能。  </p>
+<ul>
+<li>Type: Boolean  </li>
+<li>Default: false</li>
+</ul>
+<p>建議在開發期間設定為 false，才會有熱更新的效果<br>利用 process.env.DEPLOY_ENV 透過 package.json 中的 scripts 設定傳入值，以達到不同環境使用不同設定的需求  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">build</span>: {
+    <span class="hljs-attr">extractCSS</span>: process.env.DEPLOY_ENV === <span class="hljs-string">'production'</span>
+  }
+}</code></pre></code></pre>
+<p><strong>optimization</strong> - webpack 優化相關設定。  </p>
+<ul>
+<li>Type: Object  </li>
+<li>Default: <pre><code class="language-javascript"><pre><code class="hljs javascript">{
+<span class="hljs-attr">minimize</span>: <span class="hljs-literal">false</span>,
+<span class="hljs-attr">minimizer</span>: <span class="hljs-literal">undefined</span>,
+<span class="hljs-attr">splitChunks</span>: {
+  <span class="hljs-attr">chunks</span>: <span class="hljs-string">'all'</span>,
+  <span class="hljs-attr">automaticNameDelimiter</span>: <span class="hljs-string">'.'</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-literal">undefined</span>,
+  <span class="hljs-attr">cacheGroups</span>: {
+    <span class="hljs-attr">commons</span>: {}
+  }
+}
+}</code></pre></code></pre>
+</li>
+</ul>
+<p>調整為開發時不做最小化壓縮，但打包正式環境版本時則要做最小化壓縮<br>利用 process.env.DEPLOY_ENV 透過 package.json 中的 scripts 設定傳入值，以達到不同環境使用不同設定的需求  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">optimization</span>: {
+    <span class="hljs-attr">minimize</span>: process.env.DEPLOY_ENV === <span class="hljs-string">'production'</span>
+  }
+}</code></pre></code></pre>
+<h4 id="css">css</h4>
+<p>設定全域 css 檔案來源，如果要使用 sass，專案需安裝 node-sass 與 sass-loader 套件。  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">css</span>: [
+    <span class="hljs-comment">// 載入fontawesome樣式</span>
+    <span class="hljs-string">'@fortawesome/fontawesome-svg-core/styles.css'</span>,
+    <span class="hljs-comment">// 載入bootstrap</span>
+    <span class="hljs-string">'bootstrap/scss/bootstrap.scss'</span>,
+    <span class="hljs-string">'bootstrap-vue/dist/bootstrap-vue.css'</span>,
+    <span class="hljs-comment">// 載入highlight.js樣式</span>
+    <span class="hljs-string">'highlight.js/styles/zenburn.css'</span>,
+    <span class="hljs-comment">// 載入aos樣式</span>
+    <span class="hljs-string">'aos/src/sass/aos.scss'</span>,
+    <span class="hljs-comment">// 主要css樣式(自訂的樣式)</span>
+    <span class="hljs-string">'~/assets/sass/main.scss'</span>
+  ]
+}</code></pre></code></pre>
+<h4 id="env">env</h4>
+<p>配置在客戶端和伺服器端共享的環境變數。通過 process.env.baseUrl 或 context.env.baseUrl 來使用 baseUrl 環境變數。</p>
+<ul>
+<li>Type: Object  </li>
+</ul>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">env</span>: {
+    <span class="hljs-attr">baseUrl</span>: <span class="hljs-string">'/'</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'被程式設計的猴子'</span>
+  }
+}</code></pre></code></pre>
+<blockquote>
+<p>注意事項：<br>Nuxt 使用 webpack definePlugin 定義環境變數。  </p>
+</blockquote>
+<h4 id="generate">generate</h4>
+<p>與靜態化打包時(npm run generate)相關的設定，動態路由產生靜態 html 之設定、發現未知路由時的錯誤頁面之設定…等等。</p>
+<p><strong>fallback</strong> - 設置錯誤頁面，當 nuxt 呈現未知路由時，會轉至此文件。  </p>
+<ul>
+<li>Type: String or Boolean  </li>
+<li>Default: 200.html  </li>
+</ul>
+<p>當未設定或設定為 false，錯誤頁面的檔名為 200.html<br>設置為 true，錯誤頁面的檔名為 404.html<br>設置為字串，錯誤頁面的檔名就會是此設置的字串  </p>
+<blockquote>
+<p>注意事項：<br>官方建議使用 npm run generate 方式使用 nuxt 時，應設置為 true，使用 404.html 為檔案名稱。</p>
+</blockquote>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">generate</span>: {
+    <span class="hljs-attr">fallback</span>: <span class="hljs-literal">true</span>
+  }
+}</code></pre></code></pre>
+<p><strong>routes</strong> - nuxt 執行 generate 指令時，動態路由會被忽略，所以這邊要去指定所有想要輸出靜態化 html 的路由。</p>
+<ul>
+<li>Type: Array  </li>
+</ul>
+<p>使用一個返回 Promise 對象的 function  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">generate</span>: {
+    routes () {
+      <span class="hljs-keyword">return</span> axios.get(<span class="hljs-string">'https://my-api/users'</span>)
+        .then(<span class="hljs-function">(<span class="hljs-params">res</span>) =></span> {
+          <span class="hljs-keyword">return</span> res.data.map(<span class="hljs-function">(<span class="hljs-params">user</span>) =></span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">'/users/'</span> + user.id
+          })
+        })
+    }
+  }
+}</code></pre></code></pre>
+<p>使用一個 callback(err, params) 的 function</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">generate</span>: {
+    routes (callback) {
+      axios.get(<span class="hljs-string">'https://my-api/users'</span>)
+        .then(<span class="hljs-function">(<span class="hljs-params">res</span>) =></span> {
+          <span class="hljs-keyword">const</span> routes = res.data.map(<span class="hljs-function">(<span class="hljs-params">user</span>) =></span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">'/users/'</span> + user.id
+          })
+          callback(<span class="hljs-literal">null</span>, routes)
+        })
+        .catch(callback)
+    }
+  }
+}</code></pre></code></pre>
+<p>使用 payload 加速動態路由生成<br>nuxt.config.js 設置回傳路由與 payload   </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">generate</span>: {
+    routes () {
+      <span class="hljs-keyword">return</span> axios.get(<span class="hljs-string">'https://my-api/users'</span>)
+        .then(<span class="hljs-function">(<span class="hljs-params">res</span>) =></span> {
+          <span class="hljs-keyword">return</span> res.data.map(<span class="hljs-function">(<span class="hljs-params">user</span>) =></span> {
+            <span class="hljs-keyword">return</span> {
+              <span class="hljs-attr">route</span>: <span class="hljs-string">'/users/'</span> + user.id,
+              <span class="hljs-attr">payload</span>: user
+            }
+          })
+        })
+    }
+  }
+}</code></pre></code></pre>
+<p>/users/_id.vue 取得 payload 供程式在生成靜態 html 使用，所以要判斷 payload 是否有值  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">async</span> asyncData ({ params, error, payload }) {
+  <span class="hljs-keyword">if</span> (payload) <span class="hljs-keyword">return</span> { <span class="hljs-attr">user</span>: payload }
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> { <span class="hljs-attr">user</span>: <span class="hljs-keyword">await</span> backend.fetchUser(params.id) }
+}</code></pre></code></pre>
+<h4 id="head">head</h4>
+<p>定義網頁 head tags，相關資訊可參考 <a target="_blank" href="https://vue-meta.nuxtjs.org/api/#metainfo-properties" title="null">vue-meta documentation</a>。例如：script、link、meta、title，這邊為通用的設定也就是所有頁面都會生效，另外也可在 pages 組件中定義各別的 head 設定。  </p>
+<ul>
+<li>Type: Object or Function  </li>
+</ul>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">head</span>: {
+    <span class="hljs-attr">title</span>: config.title,
+    <span class="hljs-attr">meta</span>: [
+      { <span class="hljs-string">'http-equiv'</span>: <span class="hljs-string">'Content-Type'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'text/html; charset=UTF-8'</span> },
+      { <span class="hljs-attr">name</span>: <span class="hljs-string">'viewport'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'</span> },
+      { <span class="hljs-attr">name</span>: <span class="hljs-string">'author'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'MonkeyBinBin'</span> },
+      { <span class="hljs-attr">property</span>: <span class="hljs-string">'fb:app_id'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">''</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'keywords'</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'keywords'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'demo,demo1,demo2'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'description'</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">'description'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'description'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:title'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:title'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'document title'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:type'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:type'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'article'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:url'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:url'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'https://monkeybinbin.github.io/'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:image'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:image'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'https://monkeybinbin.github.io/img/fb.jpg'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:image:width'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:image:width'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'474'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:image:height'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:image:height'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'474'</span> },
+      { <span class="hljs-attr">hid</span>: <span class="hljs-string">'og:description'</span>, <span class="hljs-attr">property</span>: <span class="hljs-string">'og:description'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'description'</span> }
+    ],
+    <span class="hljs-attr">link</span>: [
+      { <span class="hljs-attr">rel</span>: <span class="hljs-string">'icon'</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'image/x-icon'</span>, <span class="hljs-attr">href</span>: <span class="hljs-string">`/favicon.ico`</span> }
+    ]
+  }
+}</code></pre></code></pre>
+<h4 id="loading">loading</h4>
+<p>可設定載入進度效果，有三種選擇分別為關閉、啟用預設效果並調整效果或自訂載入效果組件。</p>
+<ul>
+<li>Type: Boolean or Object or String  </li>
+</ul>
+<p>如果有開啟，在路由變換時會觸發此效果。<br>可利用 this.$nuxt.$loading.start() 與 this.$nuxt.$loading.finish() 來觸發出現此效果。  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  mounted () {
+    <span class="hljs-built_in">this</span>.$nextTick(<span class="hljs-function">() =></span> {
+      <span class="hljs-built_in">this</span>.$nuxt.$loading.start()
+
+      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =></span> <span class="hljs-built_in">this</span>.$nuxt.$loading.finish(), <span class="hljs-number">500</span>)
+    })
+  }
+}</code></pre></code></pre>
+<p>關閉載入進度效果  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">loading</span>: <span class="hljs-literal">false</span>
+}</code></pre></code></pre>
+<p>使用內建載入進度效果，並且可自訂部份設定<br>可配置項目與說明  </p>
+<table class="table table-striped"><tr>
+<th>屬性名稱</th>
+<th>類型</th>
+<th>預設值</th>
+<th>說明</th>
+</tr>
+<tr>
+<td>color</td>
+<td>String</td>
+<td>'black'</td>
+<td>進度條顏色</td>
+</tr>
+<tr>
+<td>failedColor</td>
+<td>String</td>
+<td>'red'</td>
+<td>頁面加載失敗時的顏色(data 或 fetch 方法返回錯誤時)</td>
+</tr>
+<tr>
+<td>height</td>
+<td>String</td>
+<td>'2px'</td>
+<td>進度條高度</td>
+</tr>
+<tr>
+<td>throttle</td>
+<td>Number</td>
+<td>200</td>
+<td>以毫秒為單位，顯示進度條之前等待的時間，防止閃爍</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>Number</td>
+<td>5000</td>
+<td>以毫秒為單位，進度條最大的顯示時間</td>
+</tr>
+<tr>
+<td>continuous</td>
+<td>Boolean</td>
+<td>false</td>
+<td>當加載時間超過 duration，繼續顯示進度條的動態效果</td>
+</tr>
+<tr>
+<td>css</td>
+<td>Boolean</td>
+<td>true</td>
+<td>是否套用進度條預設樣式</td>
+</tr>
+<tr>
+<td>rtl</td>
+<td>Boolean</td>
+<td>false</td>
+<td>進度條動態效果為由右到左</td>
+</tr>
+</table><pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">loading</span>: {
+    <span class="hljs-attr">color</span>: <span class="hljs-string">'blue'</span>,
+    <span class="hljs-attr">height</span>: <span class="hljs-string">'5px'</span>
+  }
+}</code></pre></code></pre>
+<p>自定義載入進度效果組件<br>可新建一個組件替代預設載入進度效果組件，只需設定組件路徑<br>自定義組件需實現以下方法  </p>
+<table class="table table-striped"><tr>
+<th>方法</th>
+<th>是否必須</th>
+<th>說明</th>
+</tr>
+<tr>
+<td>start()</td>
+<td>是</td>
+<td>觸發啟動進度條時呼叫，在此方法內顯示組件</td>
+</tr>
+<tr>
+<td>finish()</td>
+<td>是</td>
+<td>觸發關閉進度條時呼叫，在此方法內隱藏組件</td>
+</tr>
+<tr>
+<td>fail(error)</td>
+<td>否</td>
+<td>發生錯誤時呼叫</td>
+</tr>
+<tr>
+<td>increase(num)</td>
+<td>否</td>
+<td>在載入過程中呼叫，num 為小於100的整數</td>
+</tr>
+</table><p>在 components 目錄下建立自定義載入效果組件，例如 components/loading/index.vue</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template lang=<span class="hljs-string">"html"</span>>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"loading-page"</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">"loading"</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>></span>Loading...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>></span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>></span></span>
+&lt;/template>
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>></span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">data</span>: <span class="hljs-function">() =></span> ({
+    <span class="hljs-attr">loading</span>: <span class="hljs-literal">false</span>
+  }),
+  <span class="hljs-attr">methods</span>: {
+    start () {
+      <span class="hljs-built_in">this</span>.loading = <span class="hljs-literal">true</span>
+    },
+    finish () {
+      <span class="hljs-built_in">this</span>.loading = <span class="hljs-literal">false</span>
+    }
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>></span></span>
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>></span><span class="css">
+<span class="hljs-selector-class">.loading-page</span> {
+  <span class="hljs-attribute">position</span>: fixed;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.8</span>);
+  <span class="hljs-attribute">text-align</span>: center;
+  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">200px</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;
+  <span class="hljs-attribute">font-family</span>: sans-serif;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>></span></span></code></pre></code></pre>
+<p>更新 nuxt.config.js 設定  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">loading</span>: <span class="hljs-string">'~/components/loading/index.vue'</span>
+}</code></pre></code></pre>
+<h4 id="mode">mode</h4>
+<p>設定應用程式模式是否要使用 server side rendering。</p>
+<ul>
+<li>Type: String  </li>
+<li>Default: universal</li>
+</ul>
+<p>可設定值：  </p>
+<ul>
+<li>spa：一般的單頁應用程式，不使用 server side rendering</li>
+<li>universal：server side rendering 搭配 client side navigation 一起使用  </li>
+</ul>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">'universal'</span>
+}</code></pre></code></pre>
+<h4 id="modules">modules</h4>
+<p>設定要使用的 nuxt modules，不同的 module 會有不同的設定參數，因此詳細使用方式就參照各個 module 的使用說明。</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">modules</span>: [
+    <span class="hljs-string">'@nuxtjs/sitemap'</span>,
+    [<span class="hljs-string">'@nuxtjs/google-tag-manager'</span>, { <span class="hljs-attr">id</span>: <span class="hljs-string">'GTM-N24F89P'</span> }],
+    <span class="hljs-comment">// global 載入sass的資源(variables、functions、mixins…)使用的套件相關設定在 styleResources</span>
+    <span class="hljs-string">'@nuxtjs/style-resources'</span>,
+    [<span class="hljs-string">'nuxt-fontawesome'</span>, {
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'fa'</span>,
+      <span class="hljs-attr">imports</span>: [
+        {
+          <span class="hljs-attr">set</span>: <span class="hljs-string">'@fortawesome/free-solid-svg-icons'</span>,
+          <span class="hljs-attr">icons</span>: [<span class="hljs-string">'fas'</span>]
+        }
+      ]
+    }]
+  ]
+}</code></pre></code></pre>
+<h4 id="plugins">plugins</h4>
+<p>設定實例化 vue 需要載入的 Javascript 插件，每當你需要使用 Vue.use()時，就應該在 plugins 增加程式碼與設定。</p>
+<ul>
+<li>Type: Array</li>
+<li>陣列元素 Type: String or Object</li>
+</ul>
+<p>陣列元素 Type 為 String，直接設置 plugins 的程式路徑<br>陣列元素 Type 為 Object 具備以下屬性  </p>
+<ul>
+<li>src: String(程式路徑)</li>
+<li>mode: String(值可以為 client 或 server)，用來定義此 plugins 在 client 或 server 使用。  </li>
+</ul>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-string">'~/plugins/bootstrap-vue.js'</span>,
+    <span class="hljs-string">'~/plugins/filters.js'</span>,
+    <span class="hljs-string">'~/plugins/disqus.js'</span>,
+    { <span class="hljs-attr">src</span>: <span class="hljs-string">'~/plugins/scrollspy.js'</span>, <span class="hljs-attr">mode</span>: <span class="hljs-string">'client'</span> },
+    <span class="hljs-string">'~/plugins/font-awesome.js'</span>
+  ]
+}</code></pre></code></pre>
+<h4 id="router">router</h4>
+<p>自定義路由(vue-router)相關設定。</p>
+<p><strong>base</strong> - 配置應用程式根目錄。  </p>
+<ul>
+<li>Type: String  </li>
+<li>Default: '/'</li>
+</ul>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">router</span>: {
+    <span class="hljs-attr">base</span>: <span class="hljs-string">'/app/'</span>
+  }
+}</code></pre></code></pre>
+<p><strong>scrollBehavior</strong> - 配置當頁面跳轉至目標頁面渲染後都會呼叫此方法。所以可以用來設定換頁後頁面 scroll 的位置。</p>
+<ul>
+<li>Type: Function  </li>
+</ul>
+<p>指定換頁後 scroll 位置捲動至最上方  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">router</span>: {
+    <span class="hljs-comment">// 換頁將網頁捲至最上方</span>
+    <span class="hljs-attr">scrollBehavior</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">to, <span class="hljs-keyword">from</span>, savedPosition</span>) </span>{
+      <span class="hljs-keyword">return</span> { <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">0</span> }
+    }
+  }
+}</code></pre></code></pre>
+<h4 id="非同步配置">非同步配置</h4>
+<p>由於設定檔內有一些項目設定需要由 api 取得相關資料，所以必需另外在 nuxt.config.js 內 import 套件呼叫 api 來取得資料。  </p>
+<pre><code class="language-Javascript"><pre><code class="hljs Javascript"><span class="hljs-comment">/* 
+axios-module cannot be used in nuxt.config.js
+You need to import axios and configure it again
+*/</span>
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> () => {
+  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'endpoint'</span>)
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">head</span>: {
+      <span class="hljs-attr">title</span>: data.head.title
+    }
+  }
+}</code></pre></code></pre>
+<h4 id="參考資料">參考資料</h4>
+<p><a target="_blank" href="https://nuxtjs.org/guide/configuration" title="null">Nuxt.js - Configuration</a><br><a target="_blank" href="https://webpack.js.org/" title="null">webpack</a></p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-01" title="Nuxt 系列 - #1 介紹、建專案與資料夾配置" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>Nuxt 系列 - #1 介紹、建專案與資料夾配置</span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-03" title="Nuxt 系列 - #3 搞懂路由怎麼搞" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              Nuxt 系列 - #3 搞懂路由怎麼搞
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-02" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(n){return{layout:"default",data:[{id:n,post:{title:"Nuxt 系列 - #2 關於 nuxt.config.js 的設定",id:n,slug:"官方提供了很多可設定的項目，不會講到全部的項目，主要是說明我在開發 blog 時用到的一些設定，提供給大家參考。透過一些實例來理解為何要設定與如何設定。",categoryList:["Nuxt.js"],createDate:"2020-04-10",articleContent:"#### build\n在建立網頁應用程式時，依據需要自定義 Webpack 配置。以下為目前有使用到的設定屬性。  \n\n**analyze** - 用來啟用 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 套件設定，分析打包後的 js 檔案內各個 module 佔的大小。當需要調校效能或觀察載入套件的檔案大小時很好用。  \n* Type: Boolean or Object\n* Default: false\n\n``` javascript\nexport default {\n  build: {\n    analyze: true,\n    // or\n    analyze: {\n      analyzerMode: 'static'\n    }\n  }\n}\n```\n\n**extend** - 擴充 webpack 設定，可能是增加 loader 或是增加其他 webpack plugins 的設定。  \n* Type: Function  \n\n依據官方的說法，此方法會被呼叫2次，一次是 server bundle，另一次是 client bundle  \n此方法會傳入2個參數，第一個為 Webpack config object，第二個為包含 isDev、isClient、isServer、loaders 屬性的 object  \n透過 isDev、isClient、isServer 來判斷在什麼狀況下要做什麼 webpack 設定的調整  \n``` javascript\nexport default {\n  build: {\n    extend (config, { isClient, isServer, isDev, loaders: { vue } }) {\n      // Extend only webpack config for development and client-bundle\n      if (isDev && isClient) {\n        config.module.rules.push({\n          enforce: 'pre',\n          test: /\\.(js|vue)$/,\n          loader: 'eslint-loader',\n          exclude: /(node_modules)/\n        })\n      }\n\n      // Extend only webpack config for client-bundle\n      if (isClient) {\n        vue.transformAssetUrls.video = ['src', 'poster']\n      }\n\n      config.plugins.push(\n        new webpack.ProvidePlugin({\n          '$': 'jquery',\n          '_': 'lodash',\n          'moment': 'moment'\n        })\n      )\n    }\n  }\n}\n```\n\n**extractCSS** - 設定是否使用 [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin)，用來將 css 提取至單獨文件，通常一個組件一個檔案，與 js 檔分開載入增加效能。  \n* Type: Boolean  \n* Default: false\n\n建議在開發期間設定為 false，才會有熱更新的效果  \n利用 process.env.DEPLOY_ENV 透過 package.json 中的 scripts 設定傳入值，以達到不同環境使用不同設定的需求  \n``` javascript\nexport default {\n  build: {\n    extractCSS: process.env.DEPLOY_ENV === 'production'\n  }\n}\n```\n\n**optimization** - webpack 優化相關設定。  \n* Type: Object  \n* Default: \n``` javascript\n{\n  minimize: false,\n  minimizer: undefined,\n  splitChunks: {\n    chunks: 'all',\n    automaticNameDelimiter: '.',\n    name: undefined,\n    cacheGroups: {\n      commons: {}\n    }\n  }\n}\n```\n\n調整為開發時不做最小化壓縮，但打包正式環境版本時則要做最小化壓縮  \n利用 process.env.DEPLOY_ENV 透過 package.json 中的 scripts 設定傳入值，以達到不同環境使用不同設定的需求  \n``` javascript\nexport default {\n  optimization: {\n    minimize: process.env.DEPLOY_ENV === 'production'\n  }\n}\n```  \n\n#### css\n設定全域 css 檔案來源，如果要使用 sass，專案需安裝 node-sass 與 sass-loader 套件。  \n``` javascript\nexport default {\n  css: [\n    // 載入fontawesome樣式\n    '@fortawesome/fontawesome-svg-core/styles.css',\n    // 載入bootstrap\n    'bootstrap/scss/bootstrap.scss',\n    'bootstrap-vue/dist/bootstrap-vue.css',\n    // 載入highlight.js樣式\n    'highlight.js/styles/zenburn.css',\n    // 載入aos樣式\n    'aos/src/sass/aos.scss',\n    // 主要css樣式(自訂的樣式)\n    '~/assets/sass/main.scss'\n  ]\n}\n```\n\n#### env\n配置在客戶端和伺服器端共享的環境變數。通過 process.env.baseUrl 或 context.env.baseUrl 來使用 baseUrl 環境變數。\n* Type: Object  \n\n``` javascript\nexport default {\n  env: {\n    baseUrl: '/',\n    title: '被程式設計的猴子'\n  }\n}\n```  \n\n> 注意事項：  \n> Nuxt 使用 webpack definePlugin 定義環境變數。  \n\n#### generate\n與靜態化打包時(npm run generate)相關的設定，動態路由產生靜態 html 之設定、發現未知路由時的錯誤頁面之設定…等等。\n\n**fallback** - 設置錯誤頁面，當 nuxt 呈現未知路由時，會轉至此文件。  \n* Type: String or Boolean  \n* Default: 200.html  \n\n當未設定或設定為 false，錯誤頁面的檔名為 200.html  \n設置為 true，錯誤頁面的檔名為 404.html  \n設置為字串，錯誤頁面的檔名就會是此設置的字串  \n> 注意事項：  \n> 官方建議使用 npm run generate 方式使用 nuxt 時，應設置為 true，使用 404.html 為檔案名稱。\n``` javascript\nexport default {\n  generate: {\n    fallback: true\n  }\n}\n```  \n\n**routes** - nuxt 執行 generate 指令時，動態路由會被忽略，所以這邊要去指定所有想要輸出靜態化 html 的路由。\n* Type: Array  \n\n使用一個返回 Promise 對象的 function  \n``` javascript\nimport axios from 'axios'\n\nexport default {\n  generate: {\n    routes () {\n      return axios.get('https://my-api/users')\n        .then((res) => {\n          return res.data.map((user) => {\n            return '/users/' + user.id\n          })\n        })\n    }\n  }\n}\n```\n\n使用一個 callback(err, params) 的 function\n``` javascript\nimport axios from 'axios'\n\nexport default {\n  generate: {\n    routes (callback) {\n      axios.get('https://my-api/users')\n        .then((res) => {\n          const routes = res.data.map((user) => {\n            return '/users/' + user.id\n          })\n          callback(null, routes)\n        })\n        .catch(callback)\n    }\n  }\n}\n```\n\n使用 payload 加速動態路由生成  \nnuxt.config.js 設置回傳路由與 payload   \n``` javascript\nimport axios from 'axios'\n\nexport default {\n  generate: {\n    routes () {\n      return axios.get('https://my-api/users')\n        .then((res) => {\n          return res.data.map((user) => {\n            return {\n              route: '/users/' + user.id,\n              payload: user\n            }\n          })\n        })\n    }\n  }\n}\n```  \n/users/_id.vue 取得 payload 供程式在生成靜態 html 使用，所以要判斷 payload 是否有值  \n``` javascript\nasync asyncData ({ params, error, payload }) {\n  if (payload) return { user: payload }\n  else return { user: await backend.fetchUser(params.id) }\n}\n```\n\n#### head\n定義網頁 head tags，相關資訊可參考 [vue-meta documentation](https://vue-meta.nuxtjs.org/api/#metainfo-properties)。例如：script、link、meta、title，這邊為通用的設定也就是所有頁面都會生效，另外也可在 pages 組件中定義各別的 head 設定。  \n* Type: Object or Function  \n\n``` javascript\nexport default {\n  head: {\n    title: config.title,\n    meta: [\n      { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },\n      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },\n      { name: 'author', content: 'MonkeyBinBin' },\n      { property: 'fb:app_id', content: '' },\n      { hid: 'keywords', name: 'keywords', content: 'demo,demo1,demo2' },\n      { hid: 'description', name: 'description', content: 'description' },\n      { hid: 'og:title', property: 'og:title', content: 'document title' },\n      { hid: 'og:type', property: 'og:type', content: 'article' },\n      { hid: 'og:url', property: 'og:url', content: 'https://monkeybinbin.github.io/' },\n      { hid: 'og:image', property: 'og:image', content: 'https://monkeybinbin.github.io/img/fb.jpg' },\n      { hid: 'og:image:width', property: 'og:image:width', content: '474' },\n      { hid: 'og:image:height', property: 'og:image:height', content: '474' },\n      { hid: 'og:description', property: 'og:description', content: 'description' }\n    ],\n    link: [\n      { rel: 'icon', type: 'image/x-icon', href: `/favicon.ico` }\n    ]\n  }\n}\n```\n\n#### loading\n可設定載入進度效果，有三種選擇分別為關閉、啟用預設效果並調整效果或自訂載入效果組件。\n* Type: Boolean or Object or String  \n\n如果有開啟，在路由變換時會觸發此效果。  \n可利用 this.$nuxt.$loading.start() 與 this.$nuxt.$loading.finish() 來觸發出現此效果。  \n``` javascript\nexport default {\n  mounted () {\n    this.$nextTick(() => {\n      this.$nuxt.$loading.start()\n\n      setTimeout(() => this.$nuxt.$loading.finish(), 500)\n    })\n  }\n}\n```\n\n關閉載入進度效果  \n``` javascript\nexport default {\n  loading: false\n}\n```\n\n使用內建載入進度效果，並且可自訂部份設定  \n可配置項目與說明  \n\n屬性名稱|類型|預設值|說明\n-----------|----|---|----------------------\ncolor|String|\\'black\\'|進度條顏色\nfailedColor|String|\\'red\\'|頁面加載失敗時的顏色(data 或 fetch 方法返回錯誤時)\nheight|String|\\'2px\\'|進度條高度\nthrottle|Number|200|以毫秒為單位，顯示進度條之前等待的時間，防止閃爍\nduration|Number|5000|以毫秒為單位，進度條最大的顯示時間\ncontinuous|Boolean|false|當加載時間超過 duration，繼續顯示進度條的動態效果\ncss|Boolean|true|是否套用進度條預設樣式\nrtl|Boolean|false|進度條動態效果為由右到左\n\n``` javascript\nexport default {\n  loading: {\n    color: 'blue',\n    height: '5px'\n  }\n}\n```\n\n自定義載入進度效果組件  \n可新建一個組件替代預設載入進度效果組件，只需設定組件路徑  \n自定義組件需實現以下方法  \n\n方法|是否必須|說明\n-------|-------|--------------\nstart()|是|觸發啟動進度條時呼叫，在此方法內顯示組件\nfinish()|是|觸發關閉進度條時呼叫，在此方法內隱藏組件\nfail(error)|否|發生錯誤時呼叫\nincrease(num)|否|在載入過程中呼叫，num 為小於100的整數\n\n在 components 目錄下建立自定義載入效果組件，例如 components/loading/index.vue\n``` javascript\n<template lang=\"html\">\n  <div class=\"loading-page\" v-if=\"loading\">\n    <p>Loading...</p>\n  </div>\n</template>\n\n<script>\nexport default {\n  data: () => ({\n    loading: false\n  }),\n  methods: {\n    start () {\n      this.loading = true\n    },\n    finish () {\n      this.loading = false\n    }\n  }\n}\n<\/script>\n\n<style scoped>\n.loading-page {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(255, 255, 255, 0.8);\n  text-align: center;\n  padding-top: 200px;\n  font-size: 30px;\n  font-family: sans-serif;\n}\n</style>\n```\n更新 nuxt.config.js 設定  \n``` javascript\nexport default {\n  loading: '~/components/loading/index.vue'\n}\n```\n\n#### mode\n設定應用程式模式是否要使用 server side rendering。\n* Type: String  \n* Default: universal\n\n可設定值：  \n* spa：一般的單頁應用程式，不使用 server side rendering\n* universal：server side rendering 搭配 client side navigation 一起使用  \n\n``` javascript\nexport default {\n  mode: 'universal'\n}\n```\n\n#### modules\n設定要使用的 nuxt modules，不同的 module 會有不同的設定參數，因此詳細使用方式就參照各個 module 的使用說明。\n``` javascript\nexport default {\n  modules: [\n    '@nuxtjs/sitemap',\n    ['@nuxtjs/google-tag-manager', { id: 'GTM-N24F89P' }],\n    // global 載入sass的資源(variables、functions、mixins…)使用的套件相關設定在 styleResources\n    '@nuxtjs/style-resources',\n    ['nuxt-fontawesome', {\n      component: 'fa',\n      imports: [\n        {\n          set: '@fortawesome/free-solid-svg-icons',\n          icons: ['fas']\n        }\n      ]\n    }]\n  ]\n}\n```\n\n#### plugins\n設定實例化 vue 需要載入的 Javascript 插件，每當你需要使用 Vue.use()時，就應該在 plugins 增加程式碼與設定。\n* Type: Array\n* 陣列元素 Type: String or Object\n\n陣列元素 Type 為 String，直接設置 plugins 的程式路徑  \n陣列元素 Type 為 Object 具備以下屬性  \n* src: String(程式路徑)\n* mode: String(值可以為 client 或 server)，用來定義此 plugins 在 client 或 server 使用。  \n\n``` javascript\nexport default {\n  plugins: [\n    '~/plugins/bootstrap-vue.js',\n    '~/plugins/filters.js',\n    '~/plugins/disqus.js',\n    { src: '~/plugins/scrollspy.js', mode: 'client' },\n    '~/plugins/font-awesome.js'\n  ]\n}\n```\n\n#### router\n自定義路由(vue-router)相關設定。\n\n**base** - 配置應用程式根目錄。  \n* Type: String  \n* Default: \\'/\\'\n\n``` javascript\nexport default {\n  router: {\n    base: '/app/'\n  }\n}\n```\n\n**scrollBehavior** - 配置當頁面跳轉至目標頁面渲染後都會呼叫此方法。所以可以用來設定換頁後頁面 scroll 的位置。\n* Type: Function  \n\n指定換頁後 scroll 位置捲動至最上方  \n``` javascript\nexport default {\n  router: {\n    // 換頁將網頁捲至最上方\n    scrollBehavior: function (to, from, savedPosition) {\n      return { x: 0, y: 0 }\n    }\n  }\n}\n```\n\n#### 非同步配置\n由於設定檔內有一些項目設定需要由 api 取得相關資料，所以必需另外在 nuxt.config.js 內 import 套件呼叫 api 來取得資料。  \n``` Javascript\n/* \naxios-module cannot be used in nuxt.config.js\nYou need to import axios and configure it again\n*/\nimport axios from 'axios'\n\nexport default async () => {\n  const data = await axios.get('endpoint')\n  return {\n    head: {\n      title: data.head.title\n    }\n  }\n}\n```\n\n#### 參考資料\n[Nuxt.js - Configuration](https://nuxtjs.org/guide/configuration)  \n[webpack](https://webpack.js.org/)\n"},prevPost:{id:"a-series-of-nuxtjs-01",createDate:"2020-04-05",title:"Nuxt 系列 - #1 介紹、建專案與資料夾配置"},nextPost:{id:"a-series-of-nuxtjs-03",createDate:"2020-04-14",title:"Nuxt 系列 - #3 搞懂路由怎麼搞"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/a-series-of-nuxtjs-02"}}("a-series-of-nuxtjs-02")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

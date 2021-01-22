@@ -1,0 +1,286 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>建立 Sass 開發與轉譯產出 CSS 環境配置 - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/set-sass-dev-environment/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,Sass,compass,建立 Sass 開發與轉譯產出 CSS 環境配置"><meta data-n-head="ssr" data-hid="description" property="description" content="Sass 是一種 CSS 的開發工具，提供便利的寫法，讓 CSS 的開發變得簡單可維護，建立個人的 CSS 函式庫。本篇文章主要介紹如何利用 npm 建立一個 Sass 開發( live reload )與產出 CSS 檔案。並且說明如何將 compass 載入使用，但是由於 compass 目前已沒有在維護，如果可以建議不要再使用，此處介紹的目的是因為可能過去有使用 compass 的習慣或需要，也是可以將 compass 整合進專案內"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="Sass 是一種 CSS 的開發工具，提供便利的寫法，讓 CSS 的開發變得簡單可維護，建立個人的 CSS 函式庫。本篇文章主要介紹如何利用 npm 建立一個 Sass 開發( live reload )與產出 CSS 檔案。並且說明如何將 compass 載入使用，但是由於 compass 目前已沒有在維護，如果可以建議不要再使用，此處介紹的目的是因為可能過去有使用 compass 的習慣或需要，也是可以將 compass 整合進專案內"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="建立 Sass 開發與轉譯產出 CSS 環境配置 - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/set-sass-dev-environment/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      September 8, 2018
+    </span> <a href="/tag/Sass" title="Sass" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      Sass
+    </a><a href="/tag/compass" title="compass" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      compass
+    </a></div> <h1 data-v-3c54882c><a href="/article/set-sass-dev-environment" title="建立 Sass 開發與轉譯產出 CSS 環境配置" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      建立 Sass 開發與轉譯產出 CSS 環境配置
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    Sass 是一種 CSS 的開發工具，提供便利的寫法，讓 CSS 的開發變得簡單可維護，建立個人的 CSS 函式庫。本篇文章主要介紹如何利用 npm 建立一個 Sass 開發( live reload )與產出 CSS 檔案。並且說明如何將 compass 載入使用，但是由於 compass 目前已沒有在維護，如果可以建議不要再使用，此處介紹的目的是因為可能過去有使用 compass 的習慣或需要，也是可以將 compass 整合進專案內
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><p><img src="///images.ctfassets.net/64scck6nxm6l/5XprZe5a3HCsw7TjJFyQvd/91dee0cfc7660050db640237b0d57417/_01.png" alt="sass logo"></p>
+<h4 id="sass是一種css擴展的語言。允許使用變數、嵌套nesting、混合mixin、導入import等功能。並且可以完全兼容css語法。">Sass是一種CSS擴展的語言。允許使用變數、嵌套(nesting)、混合(mixin)、導入(import)...等功能。並且可以完全兼容CSS語法。</h4>
+<h4 id="sass有兩種不同的語法，一個是sass另一個是scss">Sass有兩種不同的語法，一個是Sass另一個是SCSS</h4>
+<p>Sass沒有大括號、分號 ，是一種indented syntax(縮進語法)，像這樣：</p>
+<pre><code class="language-css"><pre><code class="hljs css"><span class="hljs-selector-class">.block</span>
+    <span class="hljs-selector-tag">width</span>: 960<span class="hljs-selector-tag">px</span>
+    <span class="hljs-selector-tag">height</span>: 40<span class="hljs-selector-tag">px</span>
+    <span class="hljs-selector-tag">margin</span>: 0 <span class="hljs-selector-tag">auto</span>
+    +<span class="hljs-selector-tag">mixin</span>
+    <span class="hljs-selector-tag">a</span>
+        <span class="hljs-selector-tag">color</span>: <span class="hljs-selector-tag">blue</span></code></pre></code></pre>
+<p>SCSS是一種接近CSS的語法，像這樣：</p>
+<pre><code class="language-css"><pre><code class="hljs css">.block{
+    width: 960px;
+    height: 40px;
+    margin: 0 auto;
+    @include mixin
+    a{
+        color: blue;
+    }
+}</code></pre></code></pre>
+<p>推薦使用SCSS語法，因為他更接近CSS語法容易閱讀與入門。
+<strong>附註：Sass的檔名如果在最前面加上"_"就不會被轉譯工具輸出成CSS檔案(例如：_base.scss)</strong></p>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/24irDSoQ495a24xs7ABp2B/c8e7920b2191cc427e28e41e97dc467f/_02.png" alt="compass logo"></p>
+<h4 id="一個open-source，且使用sass開發的css框架，提供了很多便利的功能，例如撰寫css3時只要套用compass的mixin就會自動產出多個瀏覽器的前綴詞。">一個open-source，且使用Sass開發的CSS框架，提供了很多便利的功能，例如撰寫css3時只要套用compass的mixin就會自動產出多個瀏覽器的前綴詞。</h4>
+<p><strong>請注意，目前compass已沒有在維護。</strong></p>
+<p>SCSS sample code</p>
+<pre><code class="language-css"><pre><code class="hljs css"><span class="hljs-keyword">@import</span> <span class="hljs-string">"compass/css3/border-radius"</span>
+
+.demo{
+    <span class="hljs-keyword">@include</span> border-radius(<span class="hljs-number">5px</span>);
+}</code></pre></code></pre>
+<p>產出的CSS code</p>
+<pre><code class="language-css"><pre><code class="hljs css"><span class="hljs-selector-class">.demo</span>{
+    <span class="hljs-attribute">-webkit-border-radius</span>: <span class="hljs-number">5px</span>;
+    <span class="hljs-attribute">-moz-border-radius</span>: <span class="hljs-number">5px</span>;
+    <span class="hljs-attribute">-ms-border-radius</span>: <span class="hljs-number">5px</span>;
+    <span class="hljs-attribute">-o-border-radius</span>: <span class="hljs-number">5px</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;
+}</code></pre></code></pre>
+<hr>
+<h4 id="環境需求">環境需求</h4>
+<p>1.安裝<strong>nodejs</strong>與<strong>npm</strong><br>2.透過npm在global安裝<strong>live-server</strong>套件</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">npm install -g live-server</code></pre></code></pre>
+<p>live-server是用在開發時啟動一個網站，即時查看樣式修改的結果，可依個人喜好選擇其他套件。  </p>
+<h4 id="開發工具">開發工具</h4>
+<p>Visual Studio Code  </p>
+<hr>
+<h4 id="專案建立">專案建立</h4>
+<p>1.新增專案資料夾，並且初始化專案npm設定。</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">mkdir &lt;資料夾名稱></code></pre></code></pre>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">cd &lt;資料夾名稱></code></pre></code></pre>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">npm init</code></pre></code></pre>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/6SZLw4D61POT9OQsUqNuOX/25ee81ab91132a82a598d32c01db2a64/_03.png" alt="create project"></p>
+<p>2.安裝node-sass套件。</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">npm i node-sass -D</code></pre></code></pre>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/2jMHyNPaFeGHi0cCRbC3Q6/d51e86cd118b60d8e592222572a99855/_04.png" alt="install node-sass"></p>
+<p>3.如果需要使用compass，安裝compass-importer。(如不需要可略過此步驟)</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">npm i compass-importer -D</code></pre></code></pre>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/4JJ1vKdFeg5MhtsyByVfHh/805cb60b7d2be514299cf54e11902146/_05.png" alt="install compass-importer"></p>
+<p>4.建立資料夾，以利後續專案的開發與維護。可依個人的需要做調整，只要注意在設定npm的scripts時也要做調整(指定Sass程式碼的資料夾與輸出CSS的資料夾)。<br>參考資訊：<a target="_blank" href="https://www.sitepoint.com/architecture-sass-project/" title="null">Architecture for a Sass Project</a><br>在專案根目錄下，新增index.html編寫html並且指定載入轉譯後的main.css檔案</p>
+<pre><code class="language-html"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>></span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>></span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"css/main.css"</span>></span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>></span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>></span>Sass Demo Page<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>></span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"demo"</span>></span>
+    .demo block
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>></span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>></span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>></span></code></pre></code></pre>
+<p>在sass目錄下，新增main.scss增加樣式設定(有使用compass)</p>
+<pre><code class="language-css"><pre><code class="hljs css">@import "compass/css3/border-radius";
+
+body {
+  font-size: 14px;
+  color: gray;
+}
+
+.demo{
+  @include border-radius(10px);
+  width: 200px;
+  height: 100px;
+  background-color: #9cf;
+  color: black;
+  padding: 10px;
+}</code></pre></code></pre>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/3BMolHPP2yg42RvJmq7IP1/42e431b35b7f8a5172524ca5a63c4ad5/_06.png" alt="project folder"></p>
+<p>5.開啟package.json，增加scripts設定啟動live-server轉譯Sass，套件尚有其他進階設定請參考<a target="_blank" href="https://github.com/tapio/live-server" title="null">live-server</a>與<a target="_blank" href="https://github.com/sass/node-sass" title="null">node-sass</a>套件github網站，會有更詳細的介紹。  </p>
+<p>**設定live-server的根目錄為./, 網站port為9999, 忽略build、sass資料夾內的檔案與json檔案的變更(檔案變更不重新reload)  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-string">"start"</span>: <span class="hljs-string">"live-server ./ --port=9999 --ignore=build,sass,*.json"</span></code></pre></code></pre>
+<p>**未使用compass的設定 => 設定監看sass資料夾內的檔案轉譯為CSS輸出至css資料夾，開啟source map</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-string">"sass:dev"</span>: <span class="hljs-string">"node-sass -w sass/ -o css/ --source-map=true"</span></code></pre></code></pre>
+<p>**使用compass的設定 => 設定監看sass資料夾內的檔案轉譯為CSS輸出至css資料夾，開啟source map並且載入compass</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-string">"sass:dev"</span>: <span class="hljs-string">"node-sass -w sass/ -o css/ --source-map=true --importer=node_modules/compass-importer"</span></code></pre></code></pre>
+<p>完成後基本的Sass開發環境也就完成，可以開始利用Sass來開發樣式了。  </p>
+<p>6.如何啟動站台與轉譯Sass<br><strong>各自開啟一個終端機視窗執行下列指令，啟動後2個終端機視窗都不要關閉</strong><br>啟動站台(執行後會自動開啟網站<a target="_blank" href="http://127.0.0.1:9999" title="null">http://127.0.0.1:9999</a>)</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">npm run start</code></pre></code></pre>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/2rp5u8L1TIi2bA80wNqCLS/7365883b5a3769850834654dac064ef6/_07.png" alt="server start"></p>
+<p>啟動轉譯Sass</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">npm run sass:dev</code></pre></code></pre>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/11yvtNDE1GYdG6yQwySSp0/bd16bc3d3b49c6662f9b3868ceb5713e/_08.png" alt="compile sass to css"></p>
+<hr>
+<h4 id="如何輸出最小化的css檔案">如何輸出最小化的CSS檔案</h4>
+<p>建立script,在nodejs環境下進行Sass轉譯CSS並且修改輸出的檔案名稱
+<strong>撰寫script需使用的套件</strong></p>
+<ul>
+<li><strong>argv-parser</strong>：解析指令傳入的參數。</li>
+<li><strong>glob</strong>：自訂規則抓取檔案(名稱)</li>
+<li><strong>colors</strong>：自訂輸出console時的文字、背景顏色</li>
+</ul>
+<p>安裝指令</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">npm i argv-parser glob colors -D</code></pre></code></pre>
+<p><strong>新增build資料夾，並且在build資料夾內新增index.js</strong><br>加入程式碼</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> sass = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-sass'</span>)
+<span class="hljs-keyword">const</span> glob = <span class="hljs-built_in">require</span>(<span class="hljs-string">'glob'</span>)
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+<span class="hljs-keyword">const</span> colors = <span class="hljs-built_in">require</span>(<span class="hljs-string">'colors/safe'</span>)
+<span class="hljs-keyword">const</span> parser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'argv-parser'</span>)
+
+<span class="hljs-comment">// 設定colors套件的顏色對應</span>
+colors.setTheme({
+  <span class="hljs-attr">silly</span>: <span class="hljs-string">'rainbow'</span>,
+  <span class="hljs-attr">input</span>: <span class="hljs-string">'grey'</span>,
+  <span class="hljs-attr">verbose</span>: <span class="hljs-string">'cyan'</span>,
+  <span class="hljs-attr">prompt</span>: <span class="hljs-string">'grey'</span>,
+  <span class="hljs-attr">info</span>: <span class="hljs-string">'green'</span>,
+  <span class="hljs-attr">data</span>: <span class="hljs-string">'grey'</span>,
+  <span class="hljs-attr">help</span>: <span class="hljs-string">'cyan'</span>,
+  <span class="hljs-attr">warn</span>: <span class="hljs-string">'yellow'</span>,
+  <span class="hljs-attr">debug</span>: <span class="hljs-string">'blue'</span>,
+  <span class="hljs-attr">error</span>: <span class="hljs-string">'red'</span>
+})
+
+<span class="hljs-comment">// 利用argv-parser套件解析傳入參數值</span>
+<span class="hljs-keyword">const</span> data = parser.parse(process.argv, {
+  <span class="hljs-attr">rules</span>: {
+    <span class="hljs-attr">settings</span>: {
+      <span class="hljs-attr">minify</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">'source-map'</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">'input-folder'</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-string">'output-folder'</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-attr">compass</span>: <span class="hljs-literal">false</span>
+    }
+  }
+})
+<span class="hljs-built_in">console</span>.log(colors.verbose(<span class="hljs-string">`minify(是否最小化[預設為true]) => <span class="hljs-subst">${data.parsed.minify}</span>`</span>))
+<span class="hljs-built_in">console</span>.log(colors.verbose(<span class="hljs-string">`source-map(是否開啟source map[預設為true]) => <span class="hljs-subst">${data.parsed[<span class="hljs-string">'source-map'</span>]}</span>`</span>))
+<span class="hljs-built_in">console</span>.log(colors.verbose(<span class="hljs-string">`*input-folder(Sass原始程式的資料夾[必填]) => <span class="hljs-subst">${data.parsed[<span class="hljs-string">'input-folder'</span>]}</span>`</span>))
+<span class="hljs-built_in">console</span>.log(colors.verbose(<span class="hljs-string">`*output-folder(輸出css的資料夾[必填]) => <span class="hljs-subst">${data.parsed[<span class="hljs-string">'output-folder'</span>]}</span>`</span>))
+<span class="hljs-built_in">console</span>.log(colors.verbose(<span class="hljs-string">`importer compass(是否載入compass[預設為false]) => <span class="hljs-subst">${data.parsed.compass}</span>\n`</span>))
+<span class="hljs-built_in">console</span>.log(colors.silly(sass.info) + <span class="hljs-string">`\n`</span>)
+
+<span class="hljs-comment">// 取得npm scripts傳入的參數</span>
+<span class="hljs-keyword">const</span> inputFolder = data.parsed[<span class="hljs-string">'input-folder'</span>]
+<span class="hljs-keyword">const</span> outputFolder = data.parsed[<span class="hljs-string">'output-folder'</span>]
+<span class="hljs-keyword">const</span> minify = data.parsed.minify
+<span class="hljs-keyword">const</span> sourceMap = data.parsed[<span class="hljs-string">'source-map'</span>]
+<span class="hljs-keyword">const</span> compass = data.parsed.compass
+<span class="hljs-keyword">const</span> importer = compass ? <span class="hljs-built_in">require</span>(<span class="hljs-string">'compass-importer'</span>) : <span class="hljs-literal">undefined</span>
+
+<span class="hljs-comment">// 錯誤處理，必需指定Sass程式碼所在的資料夾與輸出css的資料夾</span>
+<span class="hljs-keyword">if</span> (!(inputFolder && outputFolder)) {
+  <span class="hljs-keyword">throw</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Please setting input/output folder.(--input-folder, --output-folder)'</span>)
+}
+
+<span class="hljs-comment">// 修改輸出檔案的路徑與檔名</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addMinExtension</span> (<span class="hljs-params">fileName</span>) </span>{
+  fileName = fileName.substr(<span class="hljs-number">0</span>, fileName.lastIndexOf(<span class="hljs-string">'.'</span>)) + (minify ? <span class="hljs-string">'.min.css'</span> : <span class="hljs-string">'.css'</span>)
+  <span class="hljs-comment">// 修改路徑至輸出資料夾</span>
+  <span class="hljs-keyword">return</span> fileName.replace(inputFolder, outputFolder)
+}
+
+<span class="hljs-comment">// 確保寫入檔案時資料夾已存在，避免發生錯誤</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ensureDirectoryExistence</span> (<span class="hljs-params">filePath</span>) </span>{
+  <span class="hljs-keyword">var</span> dirname = path.dirname(filePath)
+  <span class="hljs-keyword">if</span> (fs.existsSync(dirname)) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  }
+  ensureDirectoryExistence(dirname)
+  fs.mkdirSync(dirname)
+}
+
+<span class="hljs-comment">// 儲存檔案</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">saveFile</span> (<span class="hljs-params">dataToSave, filePath, message, callback</span>) </span>{
+  fs.unlink(filePath, <span class="hljs-function">(<span class="hljs-params">err</span>) =></span> {
+    <span class="hljs-keyword">if</span> (err && err.code !== <span class="hljs-string">'ENOENT'</span>) { <span class="hljs-keyword">throw</span> err }
+
+    ensureDirectoryExistence(filePath)
+
+    <span class="hljs-keyword">let</span> options = { <span class="hljs-attr">flag</span>: <span class="hljs-string">'w'</span> }
+    fs.writeFile(filePath, dataToSave, options, <span class="hljs-function">(<span class="hljs-params">err</span>) =></span> {
+      <span class="hljs-keyword">if</span> (err) { <span class="hljs-built_in">console</span>.log(colors.error(err)) } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log(colors.info(message))
+        callback && callback()
+      }
+    })
+  })
+}
+
+<span class="hljs-comment">// 使用glob套件取得所有要輸出的.scss檔案(sass資料夾內非_開頭的scss檔案))</span>
+<span class="hljs-keyword">const</span> files = glob.sync(<span class="hljs-string">`<span class="hljs-subst">${inputFolder}</span>**/!(_*).scss`</span>)
+<span class="hljs-comment">// 執行.scss檔案轉譯為.css</span>
+files.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">file</span>) </span>{
+  <span class="hljs-keyword">const</span> outputFileName = addMinExtension(file)
+  <span class="hljs-comment">// node-sass產出css的方法(參考node-sass的options說明)</span>
+  sass.render({
+    <span class="hljs-attr">file</span>: file,
+    <span class="hljs-attr">outFile</span>: outputFileName,
+    <span class="hljs-attr">sourceMap</span>: sourceMap,
+    <span class="hljs-attr">outputStyle</span>: minify ? <span class="hljs-string">'compressed'</span> : <span class="hljs-string">'nested'</span>,
+    <span class="hljs-attr">importer</span>: importer
+  }, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">error, result</span>) </span>{
+    <span class="hljs-keyword">if</span> (error) {
+      <span class="hljs-comment">// 發生錯誤時的處理</span>
+      <span class="hljs-keyword">let</span> errorToLog = error.formatted || error
+      <span class="hljs-built_in">console</span>.log(colors.error(errorToLog))
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-comment">// 轉譯成功，產生.css檔案</span>
+      <span class="hljs-keyword">let</span> compiledMessage = <span class="hljs-string">'Saved compiled file '</span> + outputFileName
+      saveFile(result.css.toString(), outputFileName, compiledMessage)
+
+      <span class="hljs-keyword">if</span> (result.map) {
+        <span class="hljs-comment">// 產生.map檔案</span>
+        <span class="hljs-keyword">let</span> mapFileName = outputFileName + <span class="hljs-string">'.map'</span>
+        <span class="hljs-keyword">let</span> savedMessage = <span class="hljs-string">'Saved map file '</span> + mapFileName
+        saveFile(result.map.toString(), mapFileName, savedMessage)
+      }
+    }
+  })
+})</code></pre></code></pre>
+<p><strong>開啟package.json，增加npm scripts的設定，用來打包css</strong><br>可用參數設定：</p>
+<ul>
+<li>--minify：是否最小化</li>
+<li>--source-map：是否產出source map檔案</li>
+<li>--input-folder：Sass程式碼資料夾</li>
+<li>--output-folder：打包後輸出css的資料夾</li>
+<li>--compass：是否載入compass</li>
+</ul>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-string">"sass:build"</span>: <span class="hljs-string">"node ./build --minify=true --source-map=true --input-folder=./sass/ --output-folder=./css/ --compass=true"</span></code></pre></code></pre>
+<p>於終端機執行下列指令進行打包, 結果會輸出在畫面上</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">npm run sass:build</code></pre></code></pre>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/5RQ318crosW02fqcKuvIWm/bdc5ab7b40c77ecc8389b35d13e1df52/_09.png" alt="build sass"></p>
+<hr>
+<p>完整的專案程式碼(bitbucket)：<a target="_blank" href="https://bitbucket.org/TP-WenpinLiao/sassdemo/src/master/" title="null">Link</a></p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/csharp-oo-notes-day3" title="物件導向實作課程筆記 Day 3" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>物件導向實作課程筆記 Day 3</span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/mac-gs-compress-pdf" title="Mac OS 利用 Automator 搭配 Ghostscript 壓縮 PDF" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              Mac OS 利用 Automator 搭配 Ghostscript 壓縮 PDF
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/set-sass-dev-environment" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(s){return{layout:"default",data:[{id:s,post:{title:"建立 Sass 開發與轉譯產出 CSS 環境配置",id:s,slug:"Sass 是一種 CSS 的開發工具，提供便利的寫法，讓 CSS 的開發變得簡單可維護，建立個人的 CSS 函式庫。本篇文章主要介紹如何利用 npm 建立一個 Sass 開發( live reload )與產出 CSS 檔案。並且說明如何將 compass 載入使用，但是由於 compass 目前已沒有在維護，如果可以建議不要再使用，此處介紹的目的是因為可能過去有使用 compass 的習慣或需要，也是可以將 compass 整合進專案內",categoryList:["Sass","compass"],createDate:"2018-09-08",articleContent:"![sass logo](//images.ctfassets.net/64scck6nxm6l/5XprZe5a3HCsw7TjJFyQvd/91dee0cfc7660050db640237b0d57417/_01.png)\n\n#### Sass是一種CSS擴展的語言。允許使用變數、嵌套(nesting)、混合(mixin)、導入(import)...等功能。並且可以完全兼容CSS語法。\n#### Sass有兩種不同的語法，一個是Sass另一個是SCSS\n\nSass沒有大括號、分號 ，是一種indented syntax(縮進語法)，像這樣：\n``` css\n.block\n    width: 960px\n    height: 40px\n    margin: 0 auto\n    +mixin\n    a\n        color: blue\n```\n\nSCSS是一種接近CSS的語法，像這樣：\n``` css\n.block{\n    width: 960px;\n    height: 40px;\n    margin: 0 auto;\n    @include mixin\n    a{\n        color: blue;\n    }\n}\n```\n推薦使用SCSS語法，因為他更接近CSS語法容易閱讀與入門。\n**附註：Sass的檔名如果在最前面加上\"\\_\"就不會被轉譯工具輸出成CSS檔案(例如：\\_base.scss)**\n\n![compass logo](//images.ctfassets.net/64scck6nxm6l/24irDSoQ495a24xs7ABp2B/c8e7920b2191cc427e28e41e97dc467f/_02.png)\n\n#### 一個open-source，且使用Sass開發的CSS框架，提供了很多便利的功能，例如撰寫css3時只要套用compass的mixin就會自動產出多個瀏覽器的前綴詞。\n**請注意，目前compass已沒有在維護。**\n\nSCSS sample code\n``` css\n@import \"compass/css3/border-radius\"\n\n.demo{\n    @include border-radius(5px);\n}\n```\n產出的CSS code\n``` css\n.demo{\n    -webkit-border-radius: 5px;\n    -moz-border-radius: 5px;\n    -ms-border-radius: 5px;\n    -o-border-radius: 5px;\n    border-radius: 5px;\n}\n```  \n\n-------------\n\n#### 環境需求\n1.安裝**nodejs**與**npm**  \n2.透過npm在global安裝**live-server**套件\n``` javascript\nnpm install -g live-server\n```\nlive-server是用在開發時啟動一個網站，即時查看樣式修改的結果，可依個人喜好選擇其他套件。  \n\n#### 開發工具\nVisual Studio Code  \n\n-------------\n\n#### 專案建立\n1.新增專案資料夾，並且初始化專案npm設定。\n``` javascript\nmkdir <資料夾名稱>\n```\n``` javascript\ncd <資料夾名稱>\n```\n``` javascript\nnpm init\n```\n![create project](//images.ctfassets.net/64scck6nxm6l/6SZLw4D61POT9OQsUqNuOX/25ee81ab91132a82a598d32c01db2a64/_03.png)\n\n2.安裝node-sass套件。\n``` javascript\nnpm i node-sass -D\n```\n![install node-sass](//images.ctfassets.net/64scck6nxm6l/2jMHyNPaFeGHi0cCRbC3Q6/d51e86cd118b60d8e592222572a99855/_04.png)\n\n3.如果需要使用compass，安裝compass-importer。(如不需要可略過此步驟)\n``` javascript\nnpm i compass-importer -D\n```\n![install compass-importer](//images.ctfassets.net/64scck6nxm6l/4JJ1vKdFeg5MhtsyByVfHh/805cb60b7d2be514299cf54e11902146/_05.png)\n\n4.建立資料夾，以利後續專案的開發與維護。可依個人的需要做調整，只要注意在設定npm的scripts時也要做調整(指定Sass程式碼的資料夾與輸出CSS的資料夾)。  \n參考資訊：[Architecture for a Sass Project](https://www.sitepoint.com/architecture-sass-project/)  \n在專案根目錄下，新增index.html編寫html並且指定載入轉譯後的main.css檔案\n``` html\n<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n  <title>Document</title>\n  <link rel=\"stylesheet\" href=\"css/main.css\">\n</head>\n\n<body>\n  <h1>Sass Demo Page</h1>\n  <div class=\"demo\">\n    .demo block\n  </div>\n</body>\n\n</html>\n```\n在sass目錄下，新增main.scss增加樣式設定(有使用compass)\n``` css\n@import \"compass/css3/border-radius\";\n\nbody {\n  font-size: 14px;\n  color: gray;\n}\n\n.demo{\n  @include border-radius(10px);\n  width: 200px;\n  height: 100px;\n  background-color: #9cf;\n  color: black;\n  padding: 10px;\n}\n```\n![project folder](//images.ctfassets.net/64scck6nxm6l/3BMolHPP2yg42RvJmq7IP1/42e431b35b7f8a5172524ca5a63c4ad5/_06.png)\n\n5.開啟package.json，增加scripts設定啟動live-server轉譯Sass，套件尚有其他進階設定請參考[live-server](https://github.com/tapio/live-server)與[node-sass](https://github.com/sass/node-sass)套件github網站，會有更詳細的介紹。  \n\n**設定live-server的根目錄為./, 網站port為9999, 忽略build、sass資料夾內的檔案與json檔案的變更(檔案變更不重新reload)  \n``` javascript\n\"start\": \"live-server ./ --port=9999 --ignore=build,sass,*.json\"\n```\n\n**未使用compass的設定 => 設定監看sass資料夾內的檔案轉譯為CSS輸出至css資料夾，開啟source map\n``` javascript\n\"sass:dev\": \"node-sass -w sass/ -o css/ --source-map=true\"\n```\n\n**使用compass的設定 => 設定監看sass資料夾內的檔案轉譯為CSS輸出至css資料夾，開啟source map並且載入compass\n``` javascript\n\"sass:dev\": \"node-sass -w sass/ -o css/ --source-map=true --importer=node_modules/compass-importer\"\n```\n完成後基本的Sass開發環境也就完成，可以開始利用Sass來開發樣式了。  \n\n6.如何啟動站台與轉譯Sass  \n**各自開啟一個終端機視窗執行下列指令，啟動後2個終端機視窗都不要關閉**  \n啟動站台(執行後會自動開啟網站http://127.0.0.1:9999)\n``` javascript\nnpm run start\n```\n![server start](//images.ctfassets.net/64scck6nxm6l/2rp5u8L1TIi2bA80wNqCLS/7365883b5a3769850834654dac064ef6/_07.png)\n\n啟動轉譯Sass\n``` javascript\nnpm run sass:dev\n```\n![compile sass to css](//images.ctfassets.net/64scck6nxm6l/11yvtNDE1GYdG6yQwySSp0/bd16bc3d3b49c6662f9b3868ceb5713e/_08.png)\n\n-------------\n\n#### 如何輸出最小化的CSS檔案\n建立script,在nodejs環境下進行Sass轉譯CSS並且修改輸出的檔案名稱\n**撰寫script需使用的套件**\n- **argv-parser**：解析指令傳入的參數。\n- **glob**：自訂規則抓取檔案(名稱)\n- **colors**：自訂輸出console時的文字、背景顏色\n\n安裝指令\n``` javascript\nnpm i argv-parser glob colors -D\n```\n**新增build資料夾，並且在build資料夾內新增index.js**  \n加入程式碼\n``` javascript\nconst sass = require('node-sass')\nconst glob = require('glob')\nconst fs = require('fs')\nconst path = require('path')\nconst colors = require('colors/safe')\nconst parser = require('argv-parser')\n\n// 設定colors套件的顏色對應\ncolors.setTheme({\n  silly: 'rainbow',\n  input: 'grey',\n  verbose: 'cyan',\n  prompt: 'grey',\n  info: 'green',\n  data: 'grey',\n  help: 'cyan',\n  warn: 'yellow',\n  debug: 'blue',\n  error: 'red'\n})\n\n// 利用argv-parser套件解析傳入參數值\nconst data = parser.parse(process.argv, {\n  rules: {\n    settings: {\n      minify: true,\n      'source-map': true,\n      'input-folder': '',\n      'output-folder': '',\n      compass: false\n    }\n  }\n})\nconsole.log(colors.verbose(`minify(是否最小化[預設為true]) => ${data.parsed.minify}`))\nconsole.log(colors.verbose(`source-map(是否開啟source map[預設為true]) => ${data.parsed['source-map']}`))\nconsole.log(colors.verbose(`*input-folder(Sass原始程式的資料夾[必填]) => ${data.parsed['input-folder']}`))\nconsole.log(colors.verbose(`*output-folder(輸出css的資料夾[必填]) => ${data.parsed['output-folder']}`))\nconsole.log(colors.verbose(`importer compass(是否載入compass[預設為false]) => ${data.parsed.compass}\\n`))\nconsole.log(colors.silly(sass.info) + `\\n`)\n\n// 取得npm scripts傳入的參數\nconst inputFolder = data.parsed['input-folder']\nconst outputFolder = data.parsed['output-folder']\nconst minify = data.parsed.minify\nconst sourceMap = data.parsed['source-map']\nconst compass = data.parsed.compass\nconst importer = compass ? require('compass-importer') : undefined\n\n// 錯誤處理，必需指定Sass程式碼所在的資料夾與輸出css的資料夾\nif (!(inputFolder && outputFolder)) {\n  throw Error('Please setting input/output folder.(--input-folder, --output-folder)')\n}\n\n// 修改輸出檔案的路徑與檔名\nfunction addMinExtension (fileName) {\n  fileName = fileName.substr(0, fileName.lastIndexOf('.')) + (minify ? '.min.css' : '.css')\n  // 修改路徑至輸出資料夾\n  return fileName.replace(inputFolder, outputFolder)\n}\n\n// 確保寫入檔案時資料夾已存在，避免發生錯誤\nfunction ensureDirectoryExistence (filePath) {\n  var dirname = path.dirname(filePath)\n  if (fs.existsSync(dirname)) {\n    return true\n  }\n  ensureDirectoryExistence(dirname)\n  fs.mkdirSync(dirname)\n}\n\n// 儲存檔案\nfunction saveFile (dataToSave, filePath, message, callback) {\n  fs.unlink(filePath, (err) => {\n    if (err && err.code !== 'ENOENT') { throw err }\n\n    ensureDirectoryExistence(filePath)\n\n    let options = { flag: 'w' }\n    fs.writeFile(filePath, dataToSave, options, (err) => {\n      if (err) { console.log(colors.error(err)) } else {\n        console.log(colors.info(message))\n        callback && callback()\n      }\n    })\n  })\n}\n\n// 使用glob套件取得所有要輸出的.scss檔案(sass資料夾內非_開頭的scss檔案))\nconst files = glob.sync(`${inputFolder}**/!(_*).scss`)\n// 執行.scss檔案轉譯為.css\nfiles.forEach(function (file) {\n  const outputFileName = addMinExtension(file)\n  // node-sass產出css的方法(參考node-sass的options說明)\n  sass.render({\n    file: file,\n    outFile: outputFileName,\n    sourceMap: sourceMap,\n    outputStyle: minify ? 'compressed' : 'nested',\n    importer: importer\n  }, function (error, result) {\n    if (error) {\n      // 發生錯誤時的處理\n      let errorToLog = error.formatted || error\n      console.log(colors.error(errorToLog))\n    } else {\n      // 轉譯成功，產生.css檔案\n      let compiledMessage = 'Saved compiled file ' + outputFileName\n      saveFile(result.css.toString(), outputFileName, compiledMessage)\n\n      if (result.map) {\n        // 產生.map檔案\n        let mapFileName = outputFileName + '.map'\n        let savedMessage = 'Saved map file ' + mapFileName\n        saveFile(result.map.toString(), mapFileName, savedMessage)\n      }\n    }\n  })\n})\n```\n\n**開啟package.json，增加npm scripts的設定，用來打包css**  \n可用參數設定：\n- --minify：是否最小化\n- --source-map：是否產出source map檔案\n- --input-folder：Sass程式碼資料夾\n- --output-folder：打包後輸出css的資料夾\n- --compass：是否載入compass\n\n``` javascript\n\"sass:build\": \"node ./build --minify=true --source-map=true --input-folder=./sass/ --output-folder=./css/ --compass=true\"\n```\n\n於終端機執行下列指令進行打包, 結果會輸出在畫面上\n``` javascript\nnpm run sass:build\n```\n![build sass](//images.ctfassets.net/64scck6nxm6l/5RQ318crosW02fqcKuvIWm/bdc5ab7b40c77ecc8389b35d13e1df52/_09.png)\n\n-------------\n\n完整的專案程式碼(bitbucket)：[Link](https://bitbucket.org/TP-WenpinLiao/sassdemo/src/master/)\n"},prevPost:{id:"csharp-oo-notes-day3",createDate:"2017-06-24",title:"物件導向實作課程筆記 Day 3"},nextPost:{id:"mac-gs-compress-pdf",createDate:"2018-09-25",title:"Mac OS 利用 Automator 搭配 Ghostscript 壓縮 PDF"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/set-sass-dev-environment"}}("set-sass-dev-environment")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

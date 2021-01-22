@@ -1,0 +1,215 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>Nuxt 系列 - #3 搞懂路由怎麼搞 - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-03/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,Nuxt 系列 - #3 搞懂路由怎麼搞"><meta data-n-head="ssr" data-hid="description" property="description" content="此篇文章要來說明路由生成的種類與規則，了解如何在路由中傳遞參數還有一些和路由相關的功能。"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="此篇文章要來說明路由生成的種類與規則，了解如何在路由中傳遞參數還有一些和路由相關的功能。"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="Nuxt 系列 - #3 搞懂路由怎麼搞 - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-03/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      April 14, 2020
+    </span> <a href="/tag/Nuxt.js" title="Nuxt.js" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      Nuxt.js
+    </a></div> <h1 data-v-3c54882c><a href="/article/a-series-of-nuxtjs-03" title="Nuxt 系列 - #3 搞懂路由怎麼搞" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      Nuxt 系列 - #3 搞懂路由怎麼搞
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    此篇文章要來說明路由生成的種類與規則，了解如何在路由中傳遞參數還有一些和路由相關的功能。
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><h4 id="關於路由">關於路由</h4>
+<p>Nuxt.js 會依據在 <strong>pages</strong> 目錄內的 vue 檔案自動生成路由配置。目前有提供4種路由，分別為基礎路由、動態路由、嵌套路由與動態嵌套路由，接下來會分別說明4種路由的配置方式與規則。還有關於自訂換頁的特效與 middleware 的用途說明。<br>另外在頁面之間要切換路由時，建議使用 &lt;nuxt-link>。目前 &lt;nuxt-link> 與 &lt;router-link> 用法一致，可至 <a target="_blank" href="https://router.vuejs.org/api/#router-link" title="null">Vue Router documentation</a> 查閱所有資訊。</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">nuxt-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">"/"</span>></span>Home page<span class="hljs-tag">&lt;/<span class="hljs-name">nuxt-link</span>></span></span>
+&lt;/template></code></pre></code></pre>
+<h4 id="基礎路由">基礎路由</h4>
+<p>以下檔案結構</p>
+<p>pages/<br> ∟ user/<br>   ∟ index.vue<br>   ∟ one.vue<br> ∟ index.vue  </p>
+<p>會自動產生以下路由設定<br>.vue 檔案的數量會與路由產生的數量相同  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">router: {
+  <span class="hljs-attr">routes</span>: [
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'index'</span>,
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/index.vue'</span>
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'user'</span>,
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/user'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/user/index.vue'</span>
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'user-one'</span>,
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/user/one'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/user/one.vue'</span>
+    }
+  ]
+}</code></pre></code></pre>
+<p>這邊要特別說明的是 name 為 user-one 這個路由，可以發現這個 name 使用 <strong>-</strong> 符號來做分隔 user 與 one，這個是 nuxt 預設的設定。如果想要調整這個部份可至 nuxt.config.js 檔案中設定 <a target="_blank" href="https://nuxtjs.org/api/configuration-router#routenamesplitter" title="null">router.routeNameSplitter</a>。 </p>
+<h4 id="動態路由">動態路由</h4>
+<p>使用"<strong>下底線</strong>"定義 .vue 檔案名稱或資料夾名稱，就會被視為使用參數的動態路由。</p>
+<p>以下檔案結構</p>
+<p>pages/<br> ∟ _slug/<br>   ∟ comments.vue<br>   ∟ index.vue<br> ∟ users/<br>   ∟ _id.vue<br> ∟ index.vue  </p>
+<p>會自動產生以下路由設定</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">router: {
+  <span class="hljs-attr">routes</span>: [
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'index'</span>,
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/index.vue'</span>
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'users-id'</span>,
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/users/:id?'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/users/_id.vue'</span>
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'slug'</span>,
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/:slug'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/_slug/index.vue'</span>
+    },
+    {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'slug-comments'</span>,
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/:slug/comments'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/_slug/comments.vue'</span>
+    }
+  ]
+}</code></pre></code></pre>
+<p>請注意 name 為 users-id 的路由 path 帶有 :id? 參數，代表 id 這個參數為非必要的，所以當你的 path 為 /users 時，也會符合 users-id 這個路由設定，此時 id 的值將會是 undefined。<br>如果想讓 id 參數為必要的，可於 pages/users/_id.vue 增加 validate 方法來檢核參數值。當方法 return 不為 true、Promise 中 resolve 不為 true 或發生錯誤，都會自動顯示 404 或 500 錯誤頁面。</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  validate ({ params }) {
+    <span class="hljs-comment">// Must be a number</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^\d+$/</span>.test(params.id)
+  }
+}</code></pre></code></pre>
+<p>更多關於路由參數檢核的資訊，請參考 <a target="_blank" href="https://nuxtjs.org/api/pages-validate" title="null">API Pages validate</a></p>
+<h4 id="嵌套路由">嵌套路由</h4>
+<p>建立嵌套路由需要建立一個 .vue 檔案，同時建立一個與 .vue 檔案名稱相同的目錄，裡面存放被嵌套的子組件。並且在一開始建立的 .vue 檔案中增加 &lt;nuxt-child/> 來顯示子組件的內容。</p>
+<p>以下檔案結構</p>
+<p>pages/<br> ∟ users/<br>   ∟ _id.vue<br>   ∟ index.vue<br> ∟ users.vue  </p>
+<p>會自動產生以下路由設定</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">router: {
+  <span class="hljs-attr">routes</span>: [
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/users'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/users.vue'</span>,
+      <span class="hljs-attr">children</span>: [
+        {
+          <span class="hljs-attr">path</span>: <span class="hljs-string">''</span>,
+          <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/users/index.vue'</span>,
+          <span class="hljs-attr">name</span>: <span class="hljs-string">'users'</span>
+        },
+        {
+          <span class="hljs-attr">path</span>: <span class="hljs-string">':id'</span>,
+          <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/users/_id.vue'</span>,
+          <span class="hljs-attr">name</span>: <span class="hljs-string">'users-id'</span>
+        }
+      ]
+    }
+  ]
+}</code></pre></code></pre>
+<p>於 pages/users.vue 中增加 &lt;nuxt-child/></p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>></span>pages/users.vue file<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>></span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">nuxt-child</span>/></span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>></span></span>
+&lt;/template></code></pre></code></pre>
+<h4 id="動態嵌套路由">動態嵌套路由</h4>
+<p>比較少見的應用場景，設定上相對複雜，但規則基本上就是依照前面所說的動態路由搭配嵌套路由去設定。以下為官方範例，供大家參考。</p>
+<p>以下檔案結構</p>
+<p>pages/<br> ∟ _category/<br>   ∟ _subCategory/<br>     ∟ _id.vue<br>     ∟ index.vue<br>   ∟ _subCategory.vue<br>   ∟ index.vue<br> ∟ _category.vue<br> ∟ index.vue  </p>
+<p>會自動產生以下路由設定</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">router: {
+  <span class="hljs-attr">routes</span>: [
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/index.vue'</span>,
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'index'</span>
+    },
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/:category'</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/_category.vue'</span>,
+      <span class="hljs-attr">children</span>: [
+        {
+          <span class="hljs-attr">path</span>: <span class="hljs-string">''</span>,
+          <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/_category/index.vue'</span>,
+          <span class="hljs-attr">name</span>: <span class="hljs-string">'category'</span>
+        },
+        {
+          <span class="hljs-attr">path</span>: <span class="hljs-string">':subCategory'</span>,
+          <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/_category/_subCategory.vue'</span>,
+          <span class="hljs-attr">children</span>: [
+            {
+              <span class="hljs-attr">path</span>: <span class="hljs-string">''</span>,
+              <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/_category/_subCategory/index.vue'</span>,
+              <span class="hljs-attr">name</span>: <span class="hljs-string">'category-subCategory'</span>
+            },
+            {
+              <span class="hljs-attr">path</span>: <span class="hljs-string">':id'</span>,
+              <span class="hljs-attr">component</span>: <span class="hljs-string">'pages/_category/_subCategory/_id.vue'</span>,
+              <span class="hljs-attr">name</span>: <span class="hljs-string">'category-subCategory-id'</span>
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</code></pre></code></pre>
+<h4 id="轉場特效">轉場特效</h4>
+<p>使用 Vue.js 的 <a target="_blank" href="http://vuejs.org/v2/guide/transitions.html#Transitioning-Single-Elements-Components" title="null">&lt;transition></a> 組件實現路由切換時的轉場特效。</p>
+<p>Nuxt.js 預設的 transition 名稱為 page<br>所以要讓每次切換路由時都有特定的轉場特效，就要在<strong>全域的樣式檔案</strong>中增加下列樣式，這邊使用淡入、淡出效果為範例。</p>
+<pre><code class="language-css"><pre><code class="hljs css"><span class="hljs-selector-class">.page-enter-active</span>, <span class="hljs-selector-class">.page-leave-active</span> {
+  <span class="hljs-attribute">transition</span>: opacity .<span class="hljs-number">5s</span>;
+}
+<span class="hljs-selector-class">.page-enter</span>, <span class="hljs-selector-class">.page-leave-active</span> {
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+}</code></pre></code></pre>
+<p>如果想要指定特定頁面的轉場效果的話，就在頁面組件中設定 transition 屬性值為 page 以外的名稱，並在全域樣式檔案中加上對應的樣式即可。</p>
+<p>頁面組件設定</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">transition</span>: <span class="hljs-string">'special'</span>
+}</code></pre></code></pre>
+<p>增加全域樣式設定</p>
+<pre><code class="language-css"><pre><code class="hljs css"><span class="hljs-selector-class">.special-enter-active</span>, <span class="hljs-selector-class">.special-leave-active</span> {
+  <span class="hljs-attribute">transition</span>: opacity .<span class="hljs-number">3s</span>;
+}
+<span class="hljs-selector-class">.special-enter</span>, <span class="hljs-selector-class">.special-leave-active</span> {
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.3</span>;
+}</code></pre></code></pre>
+<h4 id="middleware">Middleware</h4>
+<p>在一個頁面或是一組頁面渲染之前執行一個自訂的函式(function)，Nuxt.js規定此類的程式應放置於 middleware/ 的目錄內。<br>Middleware 函式傳入 <a target="_blank" href="https://nuxtjs.org/api/context" title="null">the context</a> 為參數，並且可以是非同步的方法。</p>
+<p>建立 middleware/stats.js</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">{ route }</span>) </span>{
+  <span class="hljs-keyword">return</span> axios.post(<span class="hljs-string">'http://my-stats-api.com'</span>, {
+    <span class="hljs-attr">url</span>: route.fullPath
+  })
+}</code></pre></code></pre>
+<p>可將 middleware 設定於 nuxt.config.js，使用 router.middleware</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">router</span>: {
+    <span class="hljs-attr">middleware</span>: [<span class="hljs-string">'stats'</span>]
+    <span class="hljs-comment">// or</span>
+    <span class="hljs-attr">middleware</span>: <span class="hljs-string">'stats'</span>
+  }
+}</code></pre></code></pre>
+<p>或者設定於 page/index.vue 與 layouts/default.vue</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">middleware</span>: [<span class="hljs-string">'stats'</span>]
+  <span class="hljs-comment">// or</span>
+  <span class="hljs-attr">middleware</span>: <span class="hljs-string">'state'</span>
+}</code></pre></code></pre>
+<h4 id="參考資料">參考資料</h4>
+<p><a target="_blank" href="https://nuxtjs.org/guide/routing" title="null">Nuxt.js - Routing</a><br><a target="_blank" href="https://router.vuejs.org/api/#router-link" title="null">Vue Router documentation</a></p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-02" title="Nuxt 系列 - #2 關於 nuxt.config.js 的設定" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>Nuxt 系列 - #2 關於 nuxt.config.js 的設定</span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-04" title="Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-03" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(n){return{layout:"default",data:[{id:n,post:{title:"Nuxt 系列 - #3 搞懂路由怎麼搞",id:n,slug:"此篇文章要來說明路由生成的種類與規則，了解如何在路由中傳遞參數還有一些和路由相關的功能。",categoryList:["Nuxt.js"],createDate:"2020-04-14",articleContent:"#### 關於路由\nNuxt.js 會依據在 **pages** 目錄內的 vue 檔案自動生成路由配置。目前有提供4種路由，分別為基礎路由、動態路由、嵌套路由與動態嵌套路由，接下來會分別說明4種路由的配置方式與規則。還有關於自訂換頁的特效與 middleware 的用途說明。  \n另外在頁面之間要切換路由時，建議使用 \\<nuxt-link>。目前 \\<nuxt-link> 與 \\<router-link> 用法一致，可至 [Vue Router documentation](https://router.vuejs.org/api/#router-link) 查閱所有資訊。\n\n``` javascript\n<template>\n  <nuxt-link to=\"/\">Home page</nuxt-link>\n</template>\n```\n\n#### 基礎路由\n以下檔案結構\n\npages/  \n&emsp;∟ user/  \n&emsp;&emsp;&emsp;∟ index.vue  \n&emsp;&emsp;&emsp;∟ one.vue  \n&emsp;∟ index.vue  \n\n會自動產生以下路由設定  \n.vue 檔案的數量會與路由產生的數量相同  \n\n``` javascript\nrouter: {\n  routes: [\n    {\n      name: 'index',\n      path: '/',\n      component: 'pages/index.vue'\n    },\n    {\n      name: 'user',\n      path: '/user',\n      component: 'pages/user/index.vue'\n    },\n    {\n      name: 'user-one',\n      path: '/user/one',\n      component: 'pages/user/one.vue'\n    }\n  ]\n}\n```\n這邊要特別說明的是 name 為 user-one 這個路由，可以發現這個 name 使用 **-** 符號來做分隔 user 與 one，這個是 nuxt 預設的設定。如果想要調整這個部份可至 nuxt.config.js 檔案中設定 [router.routeNameSplitter](https://nuxtjs.org/api/configuration-router#routenamesplitter)。 \n\n#### 動態路由\n使用\"**下底線**\"定義 .vue 檔案名稱或資料夾名稱，就會被視為使用參數的動態路由。\n\n以下檔案結構\n\npages/  \n&emsp;∟ _slug/  \n&emsp;&emsp;&emsp;∟ comments.vue  \n&emsp;&emsp;&emsp;∟ index.vue  \n&emsp;∟ users/  \n&emsp;&emsp;&emsp;∟ _id.vue  \n&emsp;∟ index.vue  \n\n會自動產生以下路由設定\n\n``` javascript\nrouter: {\n  routes: [\n    {\n      name: 'index',\n      path: '/',\n      component: 'pages/index.vue'\n    },\n    {\n      name: 'users-id',\n      path: '/users/:id?',\n      component: 'pages/users/_id.vue'\n    },\n    {\n      name: 'slug',\n      path: '/:slug',\n      component: 'pages/_slug/index.vue'\n    },\n    {\n      name: 'slug-comments',\n      path: '/:slug/comments',\n      component: 'pages/_slug/comments.vue'\n    }\n  ]\n}\n```\n\n請注意 name 為 users-id 的路由 path 帶有 :id? 參數，代表 id 這個參數為非必要的，所以當你的 path 為 /users 時，也會符合 users-id 這個路由設定，此時 id 的值將會是 undefined。  \n如果想讓 id 參數為必要的，可於 pages/users/_id.vue 增加 validate 方法來檢核參數值。當方法 return 不為 true、Promise 中 resolve 不為 true 或發生錯誤，都會自動顯示 404 或 500 錯誤頁面。\n\n``` javascript\nexport default {\n  validate ({ params }) {\n    // Must be a number\n    return /^\\d+$/.test(params.id)\n  }\n}\n```\n\n更多關於路由參數檢核的資訊，請參考 [API Pages validate](https://nuxtjs.org/api/pages-validate)\n\n#### 嵌套路由\n建立嵌套路由需要建立一個 .vue 檔案，同時建立一個與 .vue 檔案名稱相同的目錄，裡面存放被嵌套的子組件。並且在一開始建立的 .vue 檔案中增加 \\<nuxt-child/> 來顯示子組件的內容。\n\n以下檔案結構\n\npages/  \n&emsp;∟ users/  \n&emsp;&emsp;&emsp;∟ _id.vue  \n&emsp;&emsp;&emsp;∟ index.vue  \n&emsp;∟ users.vue  \n\n會自動產生以下路由設定\n\n``` javascript\nrouter: {\n  routes: [\n    {\n      path: '/users',\n      component: 'pages/users.vue',\n      children: [\n        {\n          path: '',\n          component: 'pages/users/index.vue',\n          name: 'users'\n        },\n        {\n          path: ':id',\n          component: 'pages/users/_id.vue',\n          name: 'users-id'\n        }\n      ]\n    }\n  ]\n}\n```\n\n於 pages/users.vue 中增加 \\<nuxt-child/>\n\n``` javascript\n<template>\n  <div class=\"container\">\n    <h1>pages/users.vue file</h1>\n    <nuxt-child/>\n  </div>\n</template>\n```\n\n#### 動態嵌套路由\n比較少見的應用場景，設定上相對複雜，但規則基本上就是依照前面所說的動態路由搭配嵌套路由去設定。以下為官方範例，供大家參考。\n\n以下檔案結構\n\npages/  \n&emsp;∟ _category/  \n&emsp;&emsp;&emsp;∟ _subCategory/  \n&emsp;&emsp;&emsp;&emsp;&emsp;∟ _id.vue  \n&emsp;&emsp;&emsp;&emsp;&emsp;∟ index.vue  \n&emsp;&emsp;&emsp;∟ _subCategory.vue  \n&emsp;&emsp;&emsp;∟ index.vue  \n&emsp;∟ _category.vue  \n&emsp;∟ index.vue  \n\n會自動產生以下路由設定\n\n``` javascript\nrouter: {\n  routes: [\n    {\n      path: '/',\n      component: 'pages/index.vue',\n      name: 'index'\n    },\n    {\n      path: '/:category',\n      component: 'pages/_category.vue',\n      children: [\n        {\n          path: '',\n          component: 'pages/_category/index.vue',\n          name: 'category'\n        },\n        {\n          path: ':subCategory',\n          component: 'pages/_category/_subCategory.vue',\n          children: [\n            {\n              path: '',\n              component: 'pages/_category/_subCategory/index.vue',\n              name: 'category-subCategory'\n            },\n            {\n              path: ':id',\n              component: 'pages/_category/_subCategory/_id.vue',\n              name: 'category-subCategory-id'\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}\n```\n\n#### 轉場特效\n使用 Vue.js 的 [\\<transition>](http://vuejs.org/v2/guide/transitions.html#Transitioning-Single-Elements-Components) 組件實現路由切換時的轉場特效。\n\nNuxt.js 預設的 transition 名稱為 page  \n所以要讓每次切換路由時都有特定的轉場特效，就要在**全域的樣式檔案**中增加下列樣式，這邊使用淡入、淡出效果為範例。\n\n``` css\n.page-enter-active, .page-leave-active {\n  transition: opacity .5s;\n}\n.page-enter, .page-leave-active {\n  opacity: 0;\n}\n```\n\n如果想要指定特定頁面的轉場效果的話，就在頁面組件中設定 transition 屬性值為 page 以外的名稱，並在全域樣式檔案中加上對應的樣式即可。\n\n頁面組件設定\n\n``` javascript\nexport default {\n  transition: 'special'\n}\n```\n\n增加全域樣式設定\n\n``` css\n.special-enter-active, .special-leave-active {\n  transition: opacity .3s;\n}\n.special-enter, .special-leave-active {\n  opacity: 0.3;\n}\n```\n\n#### Middleware\n在一個頁面或是一組頁面渲染之前執行一個自訂的函式(function)，Nuxt.js規定此類的程式應放置於 middleware/ 的目錄內。  \nMiddleware 函式傳入 [the context](https://nuxtjs.org/api/context) 為參數，並且可以是非同步的方法。\n\n建立 middleware/stats.js\n\n``` javascript\nimport axios from 'axios'\n\nexport default function ({ route }) {\n  return axios.post('http://my-stats-api.com', {\n    url: route.fullPath\n  })\n}\n```\n\n可將 middleware 設定於 nuxt.config.js，使用 router.middleware\n\n``` javascript\nexport default {\n  router: {\n    middleware: ['stats']\n    // or\n    middleware: 'stats'\n  }\n}\n```\n\n或者設定於 page/index.vue 與 layouts/default.vue\n\n``` javascript\nexport default {\n  middleware: ['stats']\n  // or\n  middleware: 'state'\n}\n```\n\n#### 參考資料\n[Nuxt.js - Routing](https://nuxtjs.org/guide/routing)  \n[Vue Router documentation](https://router.vuejs.org/api/#router-link)\n"},prevPost:{id:"a-series-of-nuxtjs-02",createDate:"2020-04-10",title:"Nuxt 系列 - #2 關於 nuxt.config.js 的設定"},nextPost:{id:"a-series-of-nuxtjs-04",createDate:"2020-05-01",title:"Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/a-series-of-nuxtjs-03"}}("a-series-of-nuxtjs-03")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

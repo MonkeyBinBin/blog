@@ -1,0 +1,105 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>Nuxt 系列 - #1 介紹、建專案與資料夾配置 - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-01/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,Nuxt 系列 - #1 介紹、建專案與資料夾配置"><meta data-n-head="ssr" data-hid="description" property="description" content="前端框架(vue、react、angular)是一種 Client Side Rendering(CSR)的技術，由於網頁是到用戶端才會進行 render，這樣的方式不利於搜尋引擎爬蟲抓取網頁。為了解決這樣的問題，就必需做到 Server Side Rendering(SSR)。而 Nuxt.js 就是一個基於 vue 的 SSR 應用框架。這一系列的文章用來記錄使用 Nuxt.js 開發個人 blog 的重點與過程，先從介紹什麼是 Nuxt.js開始。"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="前端框架(vue、react、angular)是一種 Client Side Rendering(CSR)的技術，由於網頁是到用戶端才會進行 render，這樣的方式不利於搜尋引擎爬蟲抓取網頁。為了解決這樣的問題，就必需做到 Server Side Rendering(SSR)。而 Nuxt.js 就是一個基於 vue 的 SSR 應用框架。這一系列的文章用來記錄使用 Nuxt.js 開發個人 blog 的重點與過程，先從介紹什麼是 Nuxt.js開始。"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="Nuxt 系列 - #1 介紹、建專案與資料夾配置 - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-01/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      April 5, 2020
+    </span> <a href="/tag/Nuxt.js" title="Nuxt.js" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      Nuxt.js
+    </a></div> <h1 data-v-3c54882c><a href="/article/a-series-of-nuxtjs-01" title="Nuxt 系列 - #1 介紹、建專案與資料夾配置" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      Nuxt 系列 - #1 介紹、建專案與資料夾配置
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    前端框架(vue、react、angular)是一種 Client Side Rendering(CSR)的技術，由於網頁是到用戶端才會進行 render，這樣的方式不利於搜尋引擎爬蟲抓取網頁。為了解決這樣的問題，就必需做到 Server Side Rendering(SSR)。而 Nuxt.js 就是一個基於 vue 的 SSR 應用框架。這一系列的文章用來記錄使用 Nuxt.js 開發個人 blog 的重點與過程，先從介紹什麼是 Nuxt.js開始。
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><h4 id="什麼是-nuxtjs">什麼是 Nuxt.js?</h4>
+<p>一個基於 vue 的應用框架，支援不同的渲染方式(SSR、CSR 或靜態)，可輕鬆串接 REST API 或 GraphQL，並且也容易整合常用的 CMS 與 CSS 框架。此外，也定義了基本的專案目錄結、支援各種套件、可調改 webpack 的設定，保持一定的規範並且也有擴充的可能。<br>目前我的 blog 網站透過 Nuxt.js 靜態化打包後(npm run generate)，部署於 GitHub Pages。文章內容則放置於 Contentful 進行內容管理並提供 API 服務。最後再利用 Travis CI 設定自動化佈署，當應用程式有修改上傳或者有新的內容發佈，就會自動更新網站內容。 </p>
+<h4 id="特性">特性</h4>
+<ol>
+<li>基於 vue</li>
+<li>自動代碼分割(Code Splitting)</li>
+<li>Server Side Rendering</li>
+<li>強大的路由系統，支援非同步資料</li>
+<li>靜態檔案服務</li>
+<li>支援 ES2015+ 語法</li>
+<li>打包壓縮 JS 與 CSS</li>
+<li>管理 head 元素(title、meta…等)</li>
+<li>本地開發支援熱更新</li>
+<li>集成 ESLint</li>
+<li>支援各種樣式預處理器(SASS、LESS、Stylus)</li>
+<li>支援 HTTP/2 推送</li>
+<li>擴展模塊化架構</li>
+</ol>
+<h4 id="流程">流程</h4>
+<p>從 Request 到 Render 的流程<br><img src="///images.ctfassets.net/64scck6nxm6l/2rnFr5ZaWdCQ8SA9Ijq9lG/6515f534388cee0d35c467c55c68072e/nuxt-schema.png" alt="nuxt schema"></p>
+<h4 id="伺服器渲染universal-ssr">伺服器渲染(Universal SSR)</h4>
+<p>需執行於 nodejs 伺服器的環境</p>
+<p>優點：</p>
+<ol>
+<li>更好的 SEO</li>
+<li>更快呈現頁面  </li>
+</ol>
+<p>需注意的部份：</p>
+<ol>
+<li>部份第三方套件可能需要經過特殊處理才能使用</li>
+<li>佔用更多伺服器 CPU 資源</li>
+</ol>
+<h4 id="單頁應用程式spa">單頁應用程式(SPA)</h4>
+<p>也可選擇使用 SPA 模式，提供強大的 SPA 部署機制，預設已處理好基本的打包、Code Splitting、壓縮，如有特別需求可再自行調整。</p>
+<h4 id="靜態化預渲染">靜態化(預渲染)</h4>
+<p>依據路由配置將指定的路由靜態化為對應的 HTML 檔案。這樣一來就可以將網站部署於任何一個靜態網站服務上，例如 Github Pages 或是 Netlify。目前 blog 所使用的也是這個方式，將網站部署於 Github Pages。</p>
+<p>優點：</p>
+<ol>
+<li>提高性能</li>
+<li>提高 SEO</li>
+<li>減少網站托管成本</li>
+</ol>
+<h4 id="開始使用">開始使用</h4>
+<p>使用 <a target="_blank" href="https://github.com/nuxt/create-nuxt-app" title="null">create-nuxt-app</a> 快速建立專案，目前 create-nuxt-app 版本為 2.15.0<br><strong>建議 nodejs 版本為 10.x</strong><br><strong>先確認已安裝 npx(npx 在 npm 版本 5.2.0 之後預設會一起安裝)</strong></p>
+<pre><code class="language-bash"><pre><code class="hljs bash">npx create-nuxt-app &lt;project-name></code></pre></code></pre>
+<p>過程中會詢問你幾個問題，可依照需要進行設定(可能會因為 create-nuxt-app 版本不同問題順序會略有不同)</p>
+<ol>
+<li>Project name</li>
+<li>Project description</li>
+<li>Author name</li>
+<li>Choose programming language => JavaScript、TypeScript</li>
+<li>Choose the package manager => Yarn、Npm</li>
+<li>Choose UI framework => None、Ant Design Vue、Bootstrap Vue、Buefy、Bulma、Element、Framevuerk、iView、Tachyons、Tailwind CSS、Vuesax、Vuetify.js</li>
+<li>Choose custom server framework => AdonisJs、Express、Fastify、Feathers、hapi、Koa、Micro</li>
+<li>Choose Nuxt.js modules(多選) => Axios、Progressive Web App (PWA) Support、DotEnv</li>
+<li>Choose linting tools(多選) => ESLint、Prettier、Lint staged files、StyleLint</li>
+<li>Choose test framework => None、Jest、AVA</li>
+<li>Choose rendering mode => Universal (SSR)、Single Page App</li>
+<li>Choose development tools(多選) => jsconfig.json(Recommended for VS Code)、Semantic Pull Requests</li>
+</ol>
+<p>完成以上設定就會開始安裝相關的 packages<br>我在測試建立專案時出現了一個錯誤訊息<br><img src="///images.ctfassets.net/64scck6nxm6l/6bttOHnEXYwzxHSHUxOScY/e2717129384a99e5ea1472b1353612bd/create-nuxt-app-error.png" alt="create nuxt app error"><br>依據 <a target="_blank" href="https://github.com/nuxt/nuxt.js/issues/6963" title="null">Failed to load plugin 'unicorn' #6963</a> 解決方法為將 nodejs 版本改為 10.x 即可解決此問題<br>除了上述的方式之外也可自行從頭開始新建專案，但設定上就相對的要花費更多時間，建議還是使用上述方式建立之後再去做調整會比較快  </p>
+<p>建立完成後，執行以下指令即可啟動網站供開發使用</p>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm run dev</code></pre></code></pre>
+<p>啟動完成後開啟瀏覽器輸入網址 <a target="_blank" href="http://localhost:3000" title="null">http://localhost:3000</a> ，即可看到以下畫面表示啟動成功</p>
+<p><img src="///images.ctfassets.net/64scck6nxm6l/2pI6kwYfPkFij8nVf2HniZ/575914724c17027772eb15a5d93c1306/nuxt-default-page.png" alt="nuxt-default-page"></p>
+<h4 id="專案目錄結構">專案目錄結構</h4>
+<p><strong>assets</strong> - 未編譯的靜態資源檔案，例如樣式、圖片或字型檔案。<br><strong>components</strong> - 用於頁面的 Vue.js 組件，這些組件不會像 pages 組件那樣有 asyncData 方法。<br><strong>layouts</strong> - 用於設定應用程式的佈局。<br><strong>middleware</strong> - 自訂在進入 layouts 或是 pages 開始渲染的方法，例如頁面需要驗證登入狀態的方法。<br><strong>pages</strong> - 用於組織應用程式的路由與頁面。Nuxt.js 會依據此資料夾內的所有檔案自動生成對應的路由配置。<br><strong>plugins</strong> - 注入 vue instance 的插件，例如 UI framework、filter。<br><strong>static</strong> - 不需經過 webpack 編譯的靜態檔案，例如 robots.txt。<br><strong>store</strong> - 用於 Vuex 相關功能的配置。<br><strong>nuxt.config.js</strong> - Nuxt.js 設定檔，可依據需要自行調整。</p>
+<h4 id="別名">別名</h4>
+<p>~ 或 @ 表示為 srcDir 目錄<br>~~ 或 @@ 表示為 rootDir 目錄<br>(預設 srcDir 與 rootDir 相同)  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> Logo <span class="hljs-keyword">from</span> <span class="hljs-string">'~/components/Logo'</span>
+<span class="hljs-keyword">import</span> Logo <span class="hljs-keyword">from</span> <span class="hljs-string">'@/compoments/Logo'</span></code></pre></code></pre>
+<blockquote>
+<p>在 vue template 中，如果需要引入 assets 或 static 目錄內的檔案，使用 "~/assets/image.png" 和 "~/static/image.png"。</p>
+</blockquote>
+<h4 id="參考資料">參考資料</h4>
+<p><a target="_blank" href="https://nuxtjs.org/" title="null">Nuxt.js</a>  </p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/sass-with-bem" title="使用 BEM 與 SCSS 讓 css 不再眼花撩亂" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>使用 BEM 與 SCSS 讓 css 不再眼花撩亂</span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-02" title="Nuxt 系列 - #2 關於 nuxt.config.js 的設定" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              Nuxt 系列 - #2 關於 nuxt.config.js 的設定
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-01" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(n){return{layout:"default",data:[{id:n,post:{title:"Nuxt 系列 - #1 介紹、建專案與資料夾配置",id:n,slug:"前端框架(vue、react、angular)是一種 Client Side Rendering(CSR)的技術，由於網頁是到用戶端才會進行 render，這樣的方式不利於搜尋引擎爬蟲抓取網頁。為了解決這樣的問題，就必需做到 Server Side Rendering(SSR)。而 Nuxt.js 就是一個基於 vue 的 SSR 應用框架。這一系列的文章用來記錄使用 Nuxt.js 開發個人 blog 的重點與過程，先從介紹什麼是 Nuxt.js開始。",categoryList:["Nuxt.js"],createDate:"2020-04-05",articleContent:"#### 什麼是 Nuxt.js?\n一個基於 vue 的應用框架，支援不同的渲染方式(SSR、CSR 或靜態)，可輕鬆串接 REST API 或 GraphQL，並且也容易整合常用的 CMS 與 CSS 框架。此外，也定義了基本的專案目錄結、支援各種套件、可調改 webpack 的設定，保持一定的規範並且也有擴充的可能。  \n目前我的 blog 網站透過 Nuxt.js 靜態化打包後(npm run generate)，部署於 GitHub Pages。文章內容則放置於 Contentful 進行內容管理並提供 API 服務。最後再利用 Travis CI 設定自動化佈署，當應用程式有修改上傳或者有新的內容發佈，就會自動更新網站內容。 \n\n#### 特性\n1. 基於 vue\n2. 自動代碼分割(Code Splitting)\n3. Server Side Rendering\n4. 強大的路由系統，支援非同步資料\n5. 靜態檔案服務\n6. 支援 ES2015+ 語法\n7. 打包壓縮 JS 與 CSS\n8. 管理 head 元素(title、meta…等)\n9. 本地開發支援熱更新\n10. 集成 ESLint\n11. 支援各種樣式預處理器(SASS、LESS、Stylus)\n12. 支援 HTTP/2 推送\n13. 擴展模塊化架構\n\n#### 流程\n從 Request 到 Render 的流程  \n![nuxt schema](//images.ctfassets.net/64scck6nxm6l/2rnFr5ZaWdCQ8SA9Ijq9lG/6515f534388cee0d35c467c55c68072e/nuxt-schema.png)\n\n#### 伺服器渲染(Universal SSR)\n需執行於 nodejs 伺服器的環境\n\n優點：\n1. 更好的 SEO\n2. 更快呈現頁面  \n\n需注意的部份：\n1. 部份第三方套件可能需要經過特殊處理才能使用\n2. 佔用更多伺服器 CPU 資源\n\n#### 單頁應用程式(SPA)\n也可選擇使用 SPA 模式，提供強大的 SPA 部署機制，預設已處理好基本的打包、Code Splitting、壓縮，如有特別需求可再自行調整。\n\n#### 靜態化(預渲染)\n依據路由配置將指定的路由靜態化為對應的 HTML 檔案。這樣一來就可以將網站部署於任何一個靜態網站服務上，例如 Github Pages 或是 Netlify。目前 blog 所使用的也是這個方式，將網站部署於 Github Pages。\n\n優點：\n1. 提高性能\n2. 提高 SEO\n3. 減少網站托管成本\n\n#### 開始使用\n使用 [create-nuxt-app](https://github.com/nuxt/create-nuxt-app) 快速建立專案，目前 create-nuxt-app 版本為 2.15.0  \n**建議 nodejs 版本為 10.x**  \n**先確認已安裝 npx(npx 在 npm 版本 5.2.0 之後預設會一起安裝)**\n```bash\nnpx create-nuxt-app <project-name>\n```\n過程中會詢問你幾個問題，可依照需要進行設定(可能會因為 create-nuxt-app 版本不同問題順序會略有不同)\n1. Project name\n2. Project description\n3. Author name\n4. Choose programming language => JavaScript、TypeScript\n5. Choose the package manager => Yarn、Npm\n6. Choose UI framework => None、Ant Design Vue、Bootstrap Vue、Buefy、Bulma、Element、Framevuerk、iView、Tachyons、Tailwind CSS、Vuesax、Vuetify.js\n7. Choose custom server framework => AdonisJs、Express、Fastify、Feathers、hapi、Koa、Micro\n8. Choose Nuxt.js modules(多選) => Axios、Progressive Web App (PWA) Support、DotEnv\n9. Choose linting tools(多選) => ESLint、Prettier、Lint staged files、StyleLint\n10. Choose test framework => None、Jest、AVA\n11. Choose rendering mode => Universal (SSR)、Single Page App\n12. Choose development tools(多選) => jsconfig.json(Recommended for VS Code)、Semantic Pull Requests\n\n完成以上設定就會開始安裝相關的 packages  \n我在測試建立專案時出現了一個錯誤訊息  \n![create nuxt app error](//images.ctfassets.net/64scck6nxm6l/6bttOHnEXYwzxHSHUxOScY/e2717129384a99e5ea1472b1353612bd/create-nuxt-app-error.png)  \n依據 [Failed to load plugin 'unicorn' #6963](https://github.com/nuxt/nuxt.js/issues/6963) 解決方法為將 nodejs 版本改為 10.x 即可解決此問題  \n除了上述的方式之外也可自行從頭開始新建專案，但設定上就相對的要花費更多時間，建議還是使用上述方式建立之後再去做調整會比較快  \n\n建立完成後，執行以下指令即可啟動網站供開發使用\n\n``` bash\nnpm run dev\n```\n\n啟動完成後開啟瀏覽器輸入網址 http://localhost:3000 ，即可看到以下畫面表示啟動成功\n\n![nuxt-default-page](//images.ctfassets.net/64scck6nxm6l/2pI6kwYfPkFij8nVf2HniZ/575914724c17027772eb15a5d93c1306/nuxt-default-page.png)\n\n#### 專案目錄結構\n**assets** - 未編譯的靜態資源檔案，例如樣式、圖片或字型檔案。  \n**components** - 用於頁面的 Vue.js 組件，這些組件不會像 pages 組件那樣有 asyncData 方法。  \n**layouts** - 用於設定應用程式的佈局。  \n**middleware** - 自訂在進入 layouts 或是 pages 開始渲染的方法，例如頁面需要驗證登入狀態的方法。  \n**pages** - 用於組織應用程式的路由與頁面。Nuxt.js 會依據此資料夾內的所有檔案自動生成對應的路由配置。  \n**plugins** - 注入 vue instance 的插件，例如 UI framework、filter。  \n**static** - 不需經過 webpack 編譯的靜態檔案，例如 robots.txt。  \n**store** - 用於 Vuex 相關功能的配置。  \n**nuxt.config.js** - Nuxt.js 設定檔，可依據需要自行調整。\n\n#### 別名\n~ 或 @ 表示為 srcDir 目錄  \n~~ 或 @@ 表示為 rootDir 目錄  \n(預設 srcDir 與 rootDir 相同)  \n``` javascript\nimport Logo from '~/components/Logo'\nimport Logo from '@/compoments/Logo'\n```\n\n> 在 vue template 中，如果需要引入 assets 或 static 目錄內的檔案，使用 \"\\~/assets/image.png\" 和 \"\\~/static/image.png\"。\n\n#### 參考資料\n[Nuxt.js](https://nuxtjs.org/)  \n"},prevPost:{id:"sass-with-bem",createDate:"2019-09-02",title:"使用 BEM 與 SCSS 讓 css 不再眼花撩亂"},nextPost:{id:"a-series-of-nuxtjs-02",createDate:"2020-04-10",title:"Nuxt 系列 - #2 關於 nuxt.config.js 的設定"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/a-series-of-nuxtjs-01"}}("a-series-of-nuxtjs-01")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

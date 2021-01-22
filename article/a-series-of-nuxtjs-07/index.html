@@ -1,0 +1,142 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>Nuxt 系列 - #7 啟用 ESLint 跟 stylelint 保持良好的 Coding Style - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-07/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,Nuxt 系列 - #7 啟用 ESLint 跟 stylelint 保持良好的 Coding Style"><meta data-n-head="ssr" data-hid="description" property="description" content="無論是一人開發或是多人協作，寫出來的程式碼可能會有一些差異。為了讓程式碼比較好維護、閱讀，可以利用 ESLint 與 stylelint 這兩個工具來幫助我們保持良好的 Coding Style。本篇主旨是要說明在 Nuxt.js 專案中使用的方式、設定與筆者選用的規則。"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="無論是一人開發或是多人協作，寫出來的程式碼可能會有一些差異。為了讓程式碼比較好維護、閱讀，可以利用 ESLint 與 stylelint 這兩個工具來幫助我們保持良好的 Coding Style。本篇主旨是要說明在 Nuxt.js 專案中使用的方式、設定與筆者選用的規則。"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="Nuxt 系列 - #7 啟用 ESLint 跟 stylelint 保持良好的 Coding Style - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-07/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      July 1, 2020
+    </span> <a href="/tag/Nuxt.js" title="Nuxt.js" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      Nuxt.js
+    </a></div> <h1 data-v-3c54882c><a href="/article/a-series-of-nuxtjs-07" title="Nuxt 系列 - #7 啟用 ESLint 跟 stylelint 保持良好的 Coding Style" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      Nuxt 系列 - #7 啟用 ESLint 跟 stylelint 保持良好的 Coding Style
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    無論是一人開發或是多人協作，寫出來的程式碼可能會有一些差異。為了讓程式碼比較好維護、閱讀，可以利用 ESLint 與 stylelint 這兩個工具來幫助我們保持良好的 Coding Style。本篇主旨是要說明在 Nuxt.js 專案中使用的方式、設定與筆者選用的規則。
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><h4 id="安裝-visual-studio-code-擴充套件">安裝 Visual Studio Code 擴充套件</h4>
+<ul>
+<li><a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint" title="null">ESLint</a> - 整合 ESLint 到 VS Code，在開發過程中會馬上顯示不符合規範的 javascript 程式碼，並且提供自動修正程式碼功能。<br><img src="///images.ctfassets.net/64scck6nxm6l/3wxlR2mx6ixUiOig6FqFeN/225dd21f0f0830ca07568f49c847a24f/eslint.jpg" alt="eslint"></li>
+<li><a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint" title="null">stylelint</a> - 整合 stylelint 到 VS Code，在開發過程中會馬上顯示不符合規範的 CSS/SCSS/Less 程式碼，並且提供自動修正程式碼功能。<br><img src="///images.ctfassets.net/64scck6nxm6l/6ICNKlVSQ5ZC9Wyw1xPXfR/1c40013e31aa9b2def36564402ccbf01/stylelint.jpg" alt="stylelint"></li>
+</ul>
+<p>以上兩個擴充套件在前端專案都是必備的工具，工具非常有彈性可視需要自行調整規範。前端專案都應該要使用這兩個工具來規範程式碼風格，並依照自已團隊的需要調整制定自已的規範。</p>
+<h4 id="eslint-安裝設定">ESLint 安裝設定</h4>
+<p>目前專案選用規則</p>
+<ul>
+<li>ESLint 推薦規則 - <a target="_blank" href="https://eslint.org/docs/rules/" title="null">https://eslint.org/docs/rules/</a> ，網頁內清單前方有打勾的項目</li>
+<li>Vue.js 官方推薦規則 - <a target="_blank" href="https://eslint.vuejs.org/rules/" title="null">https://eslint.vuejs.org/rules/</a> ，網頁內 Priority C: Recommended for Vue.js 2.x 還有 Uncategorized 的項目</li>
+<li>JavaScript Standard Style 規則 - <a target="_blank" href="https://standardjs.com/rules.html" title="null">https://standardjs.com/rules.html</a></li>
+</ul>
+<h5 id="step-1：安裝-eslint-與-webpack-loader-套件">Step 1：安裝 ESLint 與 webpack loader 套件</h5>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm install --save-dev babel-eslint eslint eslint-loader</code></pre></code></pre>
+<h5 id="step-2：安裝-vuejs-官方制定的檢查規則套件">Step 2：安裝 Vue.js 官方制定的檢查規則套件</h5>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm install --save-dev eslint-plugin-vue</code></pre></code></pre>
+<h5 id="step-3：安裝-javascript-standard-style-檢查規則套件">Step 3：安裝 Javascript Standard Style 檢查規則套件</h5>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm install --save-dev eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node</code></pre></code></pre>
+<p>步驟1~3可以一次安裝，分開寫是為了更清楚了解安裝套件的用途為何</p>
+<h5 id="step-4：於專案根目錄建立-eslint-設定檔-eslintrcjs，設定內容如下">Step 4：於專案根目錄建立 ESLint 設定檔 .eslintrc.js，設定內容如下</h5>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">root</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">env</span>: {
+    <span class="hljs-attr">browser</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">node</span>: <span class="hljs-literal">true</span>
+  },
+  <span class="hljs-attr">parserOptions</span>: {
+    <span class="hljs-attr">parser</span>: <span class="hljs-string">'babel-eslint'</span>
+  },
+  <span class="hljs-attr">extends</span>: [
+    <span class="hljs-string">'eslint:recommended'</span>,
+    <span class="hljs-string">'plugin:vue/recommended'</span>,
+    <span class="hljs-string">'standard'</span>
+  ],
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-string">'vue'</span>
+  ],
+  <span class="hljs-attr">rules</span>: {},
+  <span class="hljs-attr">globals</span>: {
+    <span class="hljs-attr">$</span>: <span class="hljs-string">'readonly'</span>,
+    <span class="hljs-attr">moment</span>: <span class="hljs-string">'readonly'</span>
+  }
+}</code></pre></code></pre>
+<p>extends 設定啟用檢查的規則，可使用共享配置的套件或 plugins 的設定。共享配置的套件名稱的前綴會是 eslint-config-，設定時可以省略前綴。plugins 設定則為 plugin:套件名稱去掉前綴/規則組合(例如：plugin:vue/recommended)。</p>
+<p>plugins 設定要使用的 plugins 套件，一般套件名稱的前綴會是 eslint-plugins-，設定時可以省略前綴進行設定，此處的 vue 指的就是第二步驟安裝的 eslint-plugins-vue</p>
+<p>rules 已啟用的規則需要調整的話可以在這邊增加設定，這裡的設定會覆蓋原設定</p>
+<p>globals 用來設定全域載入的套件。由於在 nuxt.config.js 有設定 webpack.ProvidePlugin 載入 jquery 跟 moment 因此在所有程式碼都可直接使用 $ 與 moment 不需另外 import</p>
+<h4 id="stylelint-安裝設定">stylelint 安裝設定</h4>
+<p>目前專案選用規則</p>
+<ul>
+<li>stylelint 預設規則 - <a target="_blank" href="https://stylelint.io/user-guide/rules/about" title="null">https://stylelint.io/user-guide/rules/about</a></li>
+<li>搭配 stylelint 規則使用的 scss 規則 - <a target="_blank" href="https://github.com/kristerkari/stylelint-scss#readme" title="null">https://github.com/kristerkari/stylelint-scss#readme</a></li>
+<li>stylelint-config-standard 規則 - <a target="_blank" href="https://github.com/stylelint/stylelint-config-standard" title="null">https://github.com/stylelint/stylelint-config-standard</a></li>
+<li>stylelint-config-prettier - <a target="_blank" href="https://github.com/prettier/stylelint-config-prettier#readme" title="null">https://github.com/prettier/stylelint-config-prettier#readme</a> ，排除與 prettier 衝突的規則(prettier 為用來排版的 vs code 擴充套件)</li>
+<li>Sass Guidelines - <a target="_blank" href="https://sass-guidelin.es/" title="null">https://sass-guidelin.es/</a></li>
+<li>樣式屬性依首字字母排序(a 到 z) - <a target="_blank" href="https://github.com/hudochenkov/stylelint-order#readme" title="null">https://github.com/hudochenkov/stylelint-order#readme</a></li>
+</ul>
+<h5 id="step-1：安裝-stylelint-與-scss-規則套件">Step 1：安裝 stylelint 與 scss 規則套件</h5>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm install --save-dev stylelint stylelint-scss</code></pre></code></pre>
+<h5 id="step-2：安裝-stylelint-config-standard-規則套件">Step 2：安裝 stylelint-config-standard 規則套件</h5>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm install --save-dev stylelint-config-standard</code></pre></code></pre>
+<h5 id="step-3：安裝排除與-prettier-衝突的規則套件">Step 3：安裝排除與 prettier 衝突的規則套件</h5>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm install --save-dev stylelint-config-prettier</code></pre></code></pre>
+<h5 id="step-4：安裝樣式屬性依首字字母排序a-到-z套件">Step 4：安裝樣式屬性依首字字母排序(a 到 z)套件</h5>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm install --save-dev stylelint-order</code></pre></code></pre>
+<h5 id="step-5：於專案根目錄建立-stylelint-設定檔-stylelintrcjson，設定內容如下">Step 5：於專案根目錄建立 stylelint 設定檔 .stylelintrc.json，設定內容如下</h5>
+<pre><code class="language-json"><pre><code class="hljs json">{
+  <span class="hljs-attr">"extends"</span>: [
+    <span class="hljs-string">"stylelint-config-standard"</span>,
+    <span class="hljs-string">"stylelint-config-prettier"</span>,
+    <span class="hljs-string">"stylelint-config-sass-guidelines"</span>
+  ],
+  <span class="hljs-attr">"plugins"</span>: [<span class="hljs-string">"stylelint-scss"</span>, <span class="hljs-string">"stylelint-order"</span>],
+  <span class="hljs-attr">"rules"</span>: {
+    <span class="hljs-attr">"max-nesting-depth"</span>: <span class="hljs-number">3</span>
+  },
+  <span class="hljs-attr">"ignoreFiles"</span>: [
+    <span class="hljs-string">"./node_modules/**/*.{css,scss,sass}"</span>,
+    <span class="hljs-string">"./dist/**/*.{css,scss,sass}"</span>
+  ]
+}</code></pre></code></pre>
+<p>extends 設定啟用檢查的規則，可使用共享配置的套件</p>
+<p>plugins 增加 stylelint 規則的套件</p>
+<p>rules 已啟用的規則需要調整的話可以在這邊增加設定，這裡的設定會覆蓋原設定</p>
+<p>ignoreFiles 排除要檢查的檔案，目前排除的是 npm 安裝的套件與 webpack 打包後產出的資料夾</p>
+<h4 id="visual-studio-code-設定">Visual Studio Code 設定</h4>
+<p>工作區設定(/.vscode/settings.json) - 啟用儲存檔案時，自動修正 eslint 與 stylelint 問題</p>
+<pre><code class="language-json"><pre><code class="hljs json">{
+  <span class="hljs-attr">"editor.codeActionsOnSave"</span>: {
+    <span class="hljs-attr">"source.fixAll.eslint"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"source.fixAll.stylelint"</span>: <span class="hljs-literal">true</span>
+  }
+}</code></pre></code></pre>
+<h4 id="增加-lint-指令">增加 lint 指令</h4>
+<p>開啟 package.json 檔案，在 scripts 內增加以下設定  </p>
+<pre><code class="language-json"><pre><code class="hljs json">{
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"lint:js"</span>: <span class="hljs-string">"eslint --ext .js,.vue --ignore-path .gitignore ."</span>,
+    <span class="hljs-attr">"lintfix:js"</span>: <span class="hljs-string">"eslint --fix --ext .js,.vue --ignore-path .gitignore ."</span>,
+    <span class="hljs-attr">"lint:css"</span>: <span class="hljs-string">"npx stylelint '**/*.{css,scss,sass,vue}'"</span>,
+    <span class="hljs-attr">"lintfix:css"</span>: <span class="hljs-string">"npx stylelint '**/*.{css,scss,sass,vue}' --fix"</span>
+  }
+}</code></pre></code></pre>
+<p>使用指令執行 eslint 檢查  </p>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm run lint:js</code></pre></code></pre>
+<p>使用指令執行 eslint 檢查，並修復可自動修復問題</p>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm run lintfix:js</code></pre></code></pre>
+<p>使用指令執行 stylelint 檢查  </p>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm run lint:css</code></pre></code></pre>
+<p>使用指令執行 stylelint 檢查，並修復可自動修復問題</p>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm run lintfix:css</code></pre></code></pre>
+<p>注意事項：要使用 stylelint 指令需要將 nodejs 版本必需為 10.13 以上(含10.13)版本，因為目前的 stylelint 版本只支援 nodejs 10.13 以上，但這不影響 vs code 擴充套件 stylelint 檢查的結果。在較低版本的 nodejs 還是可以使用 vs code 擴充套件 stylelint 來檢查，只是規則的來源是 .stylelintrc.json 的設定。</p>
+<h4 id="參考資料">參考資料</h4>
+<p><a target="_blank" href="https://nuxtjs.org/guide/development-tools#eslint-and-prettier" title="null">Nuxt.js - ESLint and Prettier</a><br><a target="_blank" href="https://eslint.org/" title="null">ESLint</a><br><a target="_blank" href="https://standardjs.com/" title="null">JavaScript Standard Style</a><br><a target="_blank" href="https://eslint.vuejs.org/" title="null">eslint-plugin-vue</a><br><a target="_blank" href="https://github.com/standard/eslint-config-standard" title="null">eslint-config-standard</a><br><a target="_blank" href="https://stylelint.io/" title="null">stylelint</a><br><a target="_blank" href="https://github.com/stylelint/stylelint-config-standard" title="null">stylelint-config-standard</a><br><a target="_blank" href="https://github.com/prettier/stylelint-config-prettier" title="null">stylelint-config-prettier</a><br><a target="_blank" href="https://github.com/bjankord/stylelint-config-sass-guidelines" title="null">stylelint-config-sass-guidelines</a><br><a target="_blank" href="https://github.com/hudochenkov/stylelint-order" title="null">stylelint-order</a><br><a target="_blank" href="https://github.com/kristerkari/stylelint-scss" title="null">stylelint-scss</a>  </p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-06" title="Nuxt 系列 - #6 整合 CMS 服務 contentful" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>Nuxt 系列 - #6 整合 CMS 服務 contentful</span></div></a></div> <div class="col-6" data-v-ca6cce78><!----></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-07" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(n){return{layout:"default",data:[{id:n,post:{title:"Nuxt 系列 - #7 啟用 ESLint 跟 stylelint 保持良好的 Coding Style",id:n,slug:"無論是一人開發或是多人協作，寫出來的程式碼可能會有一些差異。為了讓程式碼比較好維護、閱讀，可以利用 ESLint 與 stylelint 這兩個工具來幫助我們保持良好的 Coding Style。本篇主旨是要說明在 Nuxt.js 專案中使用的方式、設定與筆者選用的規則。",categoryList:["Nuxt.js"],createDate:"2020-07-01",articleContent:'#### 安裝 Visual Studio Code 擴充套件\n* [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - 整合 ESLint 到 VS Code，在開發過程中會馬上顯示不符合規範的 javascript 程式碼，並且提供自動修正程式碼功能。  \n  ![eslint](//images.ctfassets.net/64scck6nxm6l/3wxlR2mx6ixUiOig6FqFeN/225dd21f0f0830ca07568f49c847a24f/eslint.jpg)\n* [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) - 整合 stylelint 到 VS Code，在開發過程中會馬上顯示不符合規範的 CSS/SCSS/Less 程式碼，並且提供自動修正程式碼功能。  \n  ![stylelint](//images.ctfassets.net/64scck6nxm6l/6ICNKlVSQ5ZC9Wyw1xPXfR/1c40013e31aa9b2def36564402ccbf01/stylelint.jpg)\n\n以上兩個擴充套件在前端專案都是必備的工具，工具非常有彈性可視需要自行調整規範。前端專案都應該要使用這兩個工具來規範程式碼風格，並依照自已團隊的需要調整制定自已的規範。\n\n#### ESLint 安裝設定\n目前專案選用規則\n* ESLint 推薦規則 - https://eslint.org/docs/rules/ ，網頁內清單前方有打勾的項目\n* Vue.js 官方推薦規則 - https://eslint.vuejs.org/rules/ ，網頁內 Priority C: Recommended for Vue.js 2.x 還有 Uncategorized 的項目\n* JavaScript Standard Style 規則 - https://standardjs.com/rules.html\n\n##### Step 1：安裝 ESLint 與 webpack loader 套件\n``` bash\nnpm install --save-dev babel-eslint eslint eslint-loader\n```\n\n##### Step 2：安裝 Vue.js 官方制定的檢查規則套件\n``` bash\nnpm install --save-dev eslint-plugin-vue\n```\n\n##### Step 3：安裝 Javascript Standard Style 檢查規則套件\n``` bash\nnpm install --save-dev eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node\n```\n步驟1~3可以一次安裝，分開寫是為了更清楚了解安裝套件的用途為何\n\n##### Step 4：於專案根目錄建立 ESLint 設定檔 .eslintrc.js，設定內容如下\n``` javascript\nmodule.exports = {\n  root: true,\n  env: {\n    browser: true,\n    node: true\n  },\n  parserOptions: {\n    parser: \'babel-eslint\'\n  },\n  extends: [\n    \'eslint:recommended\',\n    \'plugin:vue/recommended\',\n    \'standard\'\n  ],\n  plugins: [\n    \'vue\'\n  ],\n  rules: {},\n  globals: {\n    $: \'readonly\',\n    moment: \'readonly\'\n  }\n}\n```  \nextends 設定啟用檢查的規則，可使用共享配置的套件或 plugins 的設定。共享配置的套件名稱的前綴會是 eslint-config-，設定時可以省略前綴。plugins 設定則為 plugin:套件名稱去掉前綴/規則組合(例如：plugin:vue/recommended)。\n\nplugins 設定要使用的 plugins 套件，一般套件名稱的前綴會是 eslint-plugins-，設定時可以省略前綴進行設定，此處的 vue 指的就是第二步驟安裝的 eslint-plugins-vue\n\nrules 已啟用的規則需要調整的話可以在這邊增加設定，這裡的設定會覆蓋原設定\n\nglobals 用來設定全域載入的套件。由於在 nuxt.config.js 有設定 webpack.ProvidePlugin 載入 jquery 跟 moment 因此在所有程式碼都可直接使用 $ 與 moment 不需另外 import\n\n#### stylelint 安裝設定\n目前專案選用規則\n* stylelint 預設規則 - https://stylelint.io/user-guide/rules/about\n* 搭配 stylelint 規則使用的 scss 規則 - https://github.com/kristerkari/stylelint-scss#readme\n* stylelint-config-standard 規則 - https://github.com/stylelint/stylelint-config-standard\n* stylelint-config-prettier - https://github.com/prettier/stylelint-config-prettier#readme ，排除與 prettier 衝突的規則(prettier 為用來排版的 vs code 擴充套件)\n* Sass Guidelines - https://sass-guidelin.es/\n* 樣式屬性依首字字母排序(a 到 z) - https://github.com/hudochenkov/stylelint-order#readme\n\n##### Step 1：安裝 stylelint 與 scss 規則套件\n``` bash\nnpm install --save-dev stylelint stylelint-scss\n```\n\n##### Step 2：安裝 stylelint-config-standard 規則套件\n``` bash\nnpm install --save-dev stylelint-config-standard\n```\n\n##### Step 3：安裝排除與 prettier 衝突的規則套件\n``` bash\nnpm install --save-dev stylelint-config-prettier\n```\n\n##### Step 4：安裝樣式屬性依首字字母排序(a 到 z)套件\n``` bash\nnpm install --save-dev stylelint-order\n```\n\n##### Step 5：於專案根目錄建立 stylelint 設定檔 .stylelintrc.json，設定內容如下\n``` json\n{\n  "extends": [\n    "stylelint-config-standard",\n    "stylelint-config-prettier",\n    "stylelint-config-sass-guidelines"\n  ],\n  "plugins": ["stylelint-scss", "stylelint-order"],\n  "rules": {\n    "max-nesting-depth": 3\n  },\n  "ignoreFiles": [\n    "./node_modules/**/*.{css,scss,sass}",\n    "./dist/**/*.{css,scss,sass}"\n  ]\n}\n```\nextends 設定啟用檢查的規則，可使用共享配置的套件\n\nplugins 增加 stylelint 規則的套件\n\nrules 已啟用的規則需要調整的話可以在這邊增加設定，這裡的設定會覆蓋原設定\n\nignoreFiles 排除要檢查的檔案，目前排除的是 npm 安裝的套件與 webpack 打包後產出的資料夾\n\n#### Visual Studio Code 設定\n工作區設定(/.vscode/settings.json) - 啟用儲存檔案時，自動修正 eslint 與 stylelint 問題\n``` json\n{\n  "editor.codeActionsOnSave": {\n    "source.fixAll.eslint": true,\n    "source.fixAll.stylelint": true\n  }\n}\n```\n\n#### 增加 lint 指令\n開啟 package.json 檔案，在 scripts 內增加以下設定  \n``` json\n{\n  "scripts": {\n    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",\n    "lintfix:js": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",\n    "lint:css": "npx stylelint \'**/*.{css,scss,sass,vue}\'",\n    "lintfix:css": "npx stylelint \'**/*.{css,scss,sass,vue}\' --fix"\n  }\n}\n```\n\n使用指令執行 eslint 檢查  \n``` bash\nnpm run lint:js\n```\n\n使用指令執行 eslint 檢查，並修復可自動修復問題\n``` bash\nnpm run lintfix:js\n```\n\n使用指令執行 stylelint 檢查  \n``` bash\nnpm run lint:css\n```\n\n使用指令執行 stylelint 檢查，並修復可自動修復問題\n``` bash\nnpm run lintfix:css\n```\n\n注意事項：要使用 stylelint 指令需要將 nodejs 版本必需為 10.13 以上(含10.13)版本，因為目前的 stylelint 版本只支援 nodejs 10.13 以上，但這不影響 vs code 擴充套件 stylelint 檢查的結果。在較低版本的 nodejs 還是可以使用 vs code 擴充套件 stylelint 來檢查，只是規則的來源是 .stylelintrc.json 的設定。\n\n#### 參考資料\n[Nuxt.js - ESLint and Prettier](https://nuxtjs.org/guide/development-tools#eslint-and-prettier)  \n\b[ESLint](https://eslint.org/)  \n[JavaScript Standard Style](https://standardjs.com/)  \n[eslint-plugin-vue](https://eslint.vuejs.org/)  \n[eslint-config-standard](https://github.com/standard/eslint-config-standard)  \n[stylelint](https://stylelint.io/)  \n[stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)  \n[stylelint-config-prettier](https://github.com/prettier/stylelint-config-prettier)  \n[stylelint-config-sass-guidelines](https://github.com/bjankord/stylelint-config-sass-guidelines)  \n[stylelint-order](https://github.com/hudochenkov/stylelint-order)  \n[stylelint-scss](https://github.com/kristerkari/stylelint-scss)  \n'},prevPost:{id:"a-series-of-nuxtjs-06",createDate:"2020-06-04",title:"Nuxt 系列 - #6 整合 CMS 服務 contentful"},nextPost:void 0}],fetch:[],error:null,serverRendered:!0,routePath:"/article/a-series-of-nuxtjs-07"}}("a-series-of-nuxtjs-07")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

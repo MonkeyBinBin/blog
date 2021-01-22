@@ -1,0 +1,232 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>Nuxt 系列 - #5 Pages 開發大小事 - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-05/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,Nuxt 系列 - #5 Pages 開發大小事"><meta data-n-head="ssr" data-hid="description" property="description" content="詳細說明 Nuxt Pages 開發的細節，包含 api 資料取得、資源檔案位置如何引用、樣式配置與設定。"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="詳細說明 Nuxt Pages 開發的細節，包含 api 資料取得、資源檔案位置如何引用、樣式配置與設定。"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="Nuxt 系列 - #5 Pages 開發大小事 - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-05/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      May 19, 2020
+    </span> <a href="/tag/Nuxt.js" title="Nuxt.js" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      Nuxt.js
+    </a></div> <h1 data-v-3c54882c><a href="/article/a-series-of-nuxtjs-05" title="Nuxt 系列 - #5 Pages 開發大小事" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      Nuxt 系列 - #5 Pages 開發大小事
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    詳細說明 Nuxt Pages 開發的細節，包含 api 資料取得、資源檔案位置如何引用、樣式配置與設定。
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><h4 id="async-data">Async Data</h4>
+<p>Nuxt.js 增加了一個 asyncData 的方法，在 Vue 組件初始化前執行，用來取得 api 資料，因此在這個方法內無法使用 this 來引用組件的實體對象，僅能使用傳入的 <a target="_blank" href="https://nuxtjs.org/api/context" title="null">context</a> 來獲得相關的資訊與方法。官方建議呼叫 api 使用 axios 套件，因此接下來的程式碼範例將會使用 axios。</p>
+<p>asyncData 使用方式有兩種，可以挑選自已熟悉的方式來使用，方法如下：</p>
+<ol>
+<li>返回 Promise<pre><code class="language-javascript"><pre><code class="hljs javascript"> <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+     asyncData ({ params }) {
+         <span class="hljs-keyword">return</span> axios.get(<span class="hljs-string">`https://my-api/posts/<span class="hljs-subst">${params.id}</span>`</span>)
+         .then(<span class="hljs-function">(<span class="hljs-params">res</span>) =></span> {
+             <span class="hljs-keyword">return</span> { <span class="hljs-attr">title</span>: res.data.title }
+         })
+     }
+ }</code></pre></code></pre>
+</li>
+<li>使用 async、await<pre><code class="language-javascript"><pre><code class="hljs javascript"> <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+     <span class="hljs-keyword">async</span> asyncData ({ params }) {
+         <span class="hljs-keyword">const</span> { data } = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">`https://my-api/posts/<span class="hljs-subst">${params.id}</span>`</span>)
+         <span class="hljs-keyword">return</span> { <span class="hljs-attr">title</span>: data.title }
+     }
+ }</code></pre></code></pre>
+</li>
+</ol>
+<p>asyncData 回覆的結果將會與 Vue 組件中 data 方法回傳的 json 物件合併，提供給組件使用。與開發一般 Vue 應用程式時，通常都在 mounted 生命周期中去呼叫 api 有些許不同。</p>
+<p>asyncData 傳入的 context 包含三大類可用屬性與方法，分別為 Universal、Server-side、Client-side。</p>
+<p>除了 asyncData 有 context 可用，還有其他 Nuxt.js 的方法 fetch、plugins、middleware、nuxtServerInit 也都會傳入 context。在上述這些方法中還可以使用 process.server 判斷是否為 Server-side 或 process.client 判斷是否為 Client-side。</p>
+<p>以下程式碼可以看出目前 context 內包含了那些屬性與方法  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>{
+    <span class="hljs-comment">// Universal keys</span>
+    <span class="hljs-keyword">const</span> {
+        app,
+        store,
+        route,
+        params,
+        query,
+        env,
+        isDev,
+        isHMR,
+        redirect,
+        error
+    } = context
+    <span class="hljs-comment">// Server-side</span>
+    <span class="hljs-keyword">if</span> (process.server) {
+        <span class="hljs-keyword">const</span> { req, res, beforeNuxtRender } = context
+    }
+    <span class="hljs-comment">// Client-side</span>
+    <span class="hljs-keyword">if</span> (process.client) {
+        <span class="hljs-keyword">const</span> { <span class="hljs-keyword">from</span>, nuxtState } = context
+    }
+}</code></pre></code></pre>
+<p>如何在 asyncData 取得動態路由傳入的參數？<br>解構 context 取得 params，"params.參數名稱"即可取得傳入參數值   </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    asyncData ({ params }) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'pages/article/_id.vue 傳入參數 id => '</span>, params.id)
+    }
+}</code></pre></code></pre>
+<p>錯誤處理<br>解構 context 取得 error 方法，當需要拋出錯誤時呼叫 error 方法，Nuxt.js 就會顯示錯誤頁面  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    asyncData ({ params, error }) {
+        <span class="hljs-keyword">return</span> axios.get(<span class="hljs-string">`https://my-api/posts/<span class="hljs-subst">${params.id}</span>`</span>)
+            .then(<span class="hljs-function">(<span class="hljs-params">res</span>) =></span> {
+                <span class="hljs-keyword">return</span> { <span class="hljs-attr">title</span>: res.data.title }
+            })
+            .catch(<span class="hljs-function">(<span class="hljs-params">e</span>) =></span> {
+                error({ <span class="hljs-attr">statusCode</span>: <span class="hljs-number">404</span>, <span class="hljs-attr">message</span>: <span class="hljs-string">'Post not found'</span> })
+            })
+    }
+}</code></pre></code></pre>
+<h4 id="plugins">Plugins</h4>
+<p>當需要使用 Vue.use、Vue.filter、Vue.component 時，應在 plugins 資料夾建立程式檔案並且在 nuxt.config.js 增加載入 plugins 的設定。</p>
+<p>目前專案有使用 <a target="_blank" href="https://bootstrap-vue.org/" title="null">bootstrap-vue</a>、<a target="_blank" href="https://github.com/ktquez/vue-disqus#readme" title="null">vue-disqus</a> 與 <a target="_blank" href="https://github.com/FortAwesome/vue-fontawesome" title="null">@fortawesome/vue-fontawesome</a> 套件，另外也增加了一些 filter 的設定，都是透過 plugins 方式載入。套件的使用方式基本上都參照套件內的說明，filter 的設定方式也跟原本 Vue 的寫法一樣，只是在 Nuxt.js 需要在 nuxt.config.js 中設定 plugins。</p>
+<p>目前 blog 文章內容格式是使用 Markdown，因此必需將 Markdown 轉換為 HTML 的內容，利用 <a target="_blank" href="https://marked.js.org/#/README.md#README.md" title="null">marked</a> 套件來做轉換，搭配 Vue filter 的方式使用。另外還有增加一個顯示日期的 filter。</p>
+<p>新增 plugins/filters.js 檔案  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+<span class="hljs-keyword">import</span> highlightjs <span class="hljs-keyword">from</span> <span class="hljs-string">'highlight.js'</span>
+<span class="hljs-keyword">import</span> marked, { Renderer } <span class="hljs-keyword">from</span> <span class="hljs-string">'marked'</span>
+<span class="hljs-keyword">import</span> pathHelper <span class="hljs-keyword">from</span> <span class="hljs-string">'~/helpers/path'</span>
+
+<span class="hljs-comment">// Create your custom renderer.</span>
+<span class="hljs-keyword">const</span> renderer = <span class="hljs-keyword">new</span> Renderer()
+renderer.link = <span class="hljs-function">(<span class="hljs-params">href, title, text</span>) =></span> <span class="hljs-string">`&lt;a target="_blank" href="<span class="hljs-subst">${href}</span>" title="<span class="hljs-subst">${title}</span>"><span class="hljs-subst">${text}</span>&lt;/a>`</span>
+renderer.table = <span class="hljs-function">(<span class="hljs-params">header, body</span>) =></span> <span class="hljs-string">`&lt;table class="table table-striped"><span class="hljs-subst">${header}</span><span class="hljs-subst">${body}</span>&lt;/table>`</span>
+
+<span class="hljs-comment">// Set the renderer to marked.</span>
+marked.setOptions({
+        renderer,
+        <span class="hljs-attr">baseUrl</span>: pathHelper.getBaseUrl(),
+        <span class="hljs-attr">highlight</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">code, language</span>) </span>{
+        <span class="hljs-comment">// Check whether the given language is valid for highlight.js.</span>
+        <span class="hljs-keyword">const</span> validLang = !!(language && highlightjs.getLanguage(language))
+        <span class="hljs-comment">// Highlight only if the language is valid.</span>
+        <span class="hljs-keyword">const</span> highlighted = validLang ? highlightjs.highlight(language, code).value : code
+        <span class="hljs-comment">// Render the highlighted code with `hljs` class.</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;pre>&lt;code class="hljs <span class="hljs-subst">${language}</span>"><span class="hljs-subst">${highlighted}</span>&lt;/code>&lt;/pre>`</span>
+    }
+})
+
+Vue.filter(<span class="hljs-string">'parseMd'</span>, marked)
+
+Vue.filter(<span class="hljs-string">'parseDatetime'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">datetime</span>) </span>{
+    <span class="hljs-keyword">const</span> parseDate = moment(datetime, <span class="hljs-string">'YYYY-MM-DD'</span>)
+    <span class="hljs-keyword">return</span> parseDate.format(<span class="hljs-string">'LL'</span>)
+})</code></pre></code></pre>
+<p>在 nuxt.config.js 增加 plugins 設定  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-attr">plugins</span>: [
+        <span class="hljs-string">'~/plugins/filters.js'</span>,
+        <span class="hljs-comment">// or</span>
+        { <span class="hljs-attr">src</span>: <span class="hljs-string">'~/plugins/filters.js'</span> }
+    ]
+}</code></pre></code></pre>
+<p>載入 plugins 也是可以選擇要在 client、server 或者都要使用，只需要在 nuxt.config.js 設定即可。設定方式有2種：</p>
+<ol>
+<li>傳入物件包含 src 與 mode 設定  <pre><code class="language-javascript"><pre><code class="hljs javascript"> <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+     <span class="hljs-attr">plugins</span>: [
+         { <span class="hljs-attr">src</span>: <span class="hljs-string">'~/plugins/both-sides.js'</span> }, <span class="hljs-comment">// both client & server</span>
+         { <span class="hljs-attr">src</span>: <span class="hljs-string">'~/plugins/client-only.js'</span>, <span class="hljs-attr">mode</span>: <span class="hljs-string">'client'</span> }, <span class="hljs-comment">// only in client side</span>
+         { <span class="hljs-attr">src</span>: <span class="hljs-string">'~/plugins/server-only.js'</span>, <span class="hljs-attr">mode</span>: <span class="hljs-string">'server'</span> } <span class="hljs-comment">// only in server side</span>
+     ]
+ }</code></pre></code></pre>
+</li>
+<li>檔案命名  <pre><code class="language-javascript"><pre><code class="hljs javascript"> <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+     <span class="hljs-attr">plugins</span>: [
+         <span class="hljs-string">'~/plugins/baz.js'</span>, <span class="hljs-comment">// both client & server</span>
+         <span class="hljs-string">'~/plugins/foo.client.js'</span>, <span class="hljs-comment">// only in client side</span>
+         <span class="hljs-string">'~/plugins/bar.server.js'</span> <span class="hljs-comment">// only in server side</span>
+     ]
+ }</code></pre></code></pre>
+</li>
+</ol>
+<h4 id="assets">Assets</h4>
+<p>Nuxt 預設使用 file-loader 與 url-loader 來處理圖片與字型檔案的載入與使用。如果有不需要透過 webpack 處理的靜態資源檔案，可以放置在 static 資料夾，執行打包後會將檔案複製到產出結果的資料夾。需要透過 webpack 處理的圖片與字型檔案則統一放置於 assets 資料夾。</p>
+<p>Webpack Assets 檔案位置：<br>assets/<br> ∟ image.png</p>
+<p>Webpack Assets 使用方式：</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"~/assets/image.png"</span>></span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>></span></span></code></pre></code></pre>
+<p>Static Assets 檔案位置：<br>static/<br> ∟ image.png</p>
+<p>Static Assets 使用方式：</p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;template>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/image.png"</span>></span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>></span></span></code></pre></code></pre>
+<p>注意事項：<br>從 Nuxt 2.0 後，在 css 使用路徑別名 ~/ 時必需移除斜線，才能正確的載入檔案。例如：background: url("~assets/img/avatar.jpg");</p>
+<h4 id="樣式配置">樣式配置</h4>
+<p>使用 SCSS 撰寫樣式  </p>
+<p>SCSS 樣式檔案結構<br>assets/<br> ∟ sass/<br>  ∟ helpers/<br>   ∟ _functions.scss<br>   ∟ _mixins.scss<br>   ∟ _variables.scss<br>  ∟ main.scss  </p>
+<p>將 SCSS functions、mixins 與 variables 分檔案放置方便管理與維護<br>Global 樣式放置於 assets/sass/main.scss<br>Pages 與 Components 自身樣式設定於各自的 .vue 檔案內，並且啟用 scoped 設定</p>
+<p>目前規畫的 _variables.scss 內容，主要是顏色的設定  </p>
+<pre><code class="language-scss"><pre><code class="hljs scss"><span class="hljs-variable">$primary-color</span>: <span class="hljs-number">#1dc8cd</span>;
+<span class="hljs-variable">$secondary-color</span>: lighten(saturate(<span class="hljs-variable">$primary-color</span>, <span class="hljs-number">25</span>), <span class="hljs-number">50</span>);
+<span class="hljs-variable">$tertiary-color</span>: <span class="hljs-number">#1de099</span>;
+<span class="hljs-variable">$marked-primary-color</span>: <span class="hljs-number">#c91414</span>;
+<span class="hljs-variable">$marked-secondary-color</span>: lighten(saturate(<span class="hljs-variable">$marked-primary-color</span>, <span class="hljs-number">25</span>), <span class="hljs-number">50</span>);</code></pre></code></pre>
+<p>若要讓 _functions.scss、_mixins.scss 與 _variables.scss 能夠在整個應用程式的樣式中使用，必需使用 <a target="_blank" href="https://github.com/nuxt-community/style-resources-module#readme" title="null">@nuxtjs/style-resources</a> 套件引入上述3個檔案</p>
+<p>@nuxtjs/style-resources 使用方式：  </p>
+<ol>
+<li>安裝 @nuxtjs/style-resources 套件<pre><code class="language-shell"><pre><code class="hljs shell"> npm add -D @nuxtjs/style-resources</code></pre></code></pre>
+</li>
+<li>在 nuxt.config.js 增加 buildModules 與 styleResources 設定  <pre><code class="language-javascript"><pre><code class="hljs javascript"> <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+     <span class="hljs-attr">buildModules</span>: [
+         <span class="hljs-string">'@nuxtjs/style-resources'</span>,
+     ],
+     <span class="hljs-attr">styleResources</span>: {
+         <span class="hljs-comment">// your settings here</span>
+         <span class="hljs-attr">scss</span>: [
+             path.resolve(__dirname, <span class="hljs-string">'assets/sass/helpers/_variables.scss'</span>),
+             path.resolve(__dirname, <span class="hljs-string">'assets/sass/helpers/_functions.scss'</span>),
+             path.resolve(__dirname, <span class="hljs-string">'assets/sass/helpers/_mixins.scss'</span>)
+         ]
+     }
+ }</code></pre></code></pre>
+</li>
+</ol>
+<p>設置完成後即可在任何 .scss 檔案、Pages 與 Components 使用 functions、mixins 與 variables。以下為目前 blog 專案內 pages/article/_id.vue style 設定範例  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript">&lt;style lang=<span class="hljs-string">"scss"</span> scoped>
+.md-content {
+    & <span class="hljs-regexp">/deep/</span> img {
+        max-width: <span class="hljs-number">100</span>%;
+    }
+}
+.article__date::after {
+    <span class="hljs-attr">content</span>: <span class="hljs-string">""</span>;
+}
+.other_article_link {
+    <span class="hljs-attr">color</span>: $primary-color;
+}
+&lt;/style></code></pre></code></pre>
+<p>最後在 nuxt.config.js 設定全站要使用的所有樣式檔案  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-attr">css</span>: [
+        <span class="hljs-string">'@fortawesome/fontawesome-svg-core/styles.css'</span>,
+        <span class="hljs-comment">// 載入bootstrap</span>
+        <span class="hljs-string">'bootstrap/scss/bootstrap.scss'</span>,
+        <span class="hljs-string">'bootstrap-vue/dist/bootstrap-vue.css'</span>,
+        <span class="hljs-comment">// 載入highlight.js樣式(可選擇不同theme)</span>
+        <span class="hljs-string">'highlight.js/styles/zenburn.css'</span>,
+        <span class="hljs-comment">// 載入aos樣式</span>
+        <span class="hljs-string">'aos/src/sass/aos.scss'</span>,
+        <span class="hljs-comment">// 主要css樣式(customer)</span>
+        <span class="hljs-string">'~/assets/sass/main.scss'</span>
+    ]
+}</code></pre></code></pre>
+<p>針對 Pages 的說明大概到這邊，下一篇要介紹內容管理的服務 <a target="_blank" href="https://www.contentful.com/" title="null">contentful</a>，如何在上面建立、管理 blog 的內容與如何跟 Nuxt.js 整合。</p>
+<h4 id="參考資料">參考資料</h4>
+<p><a target="_blank" href="https://nuxtjs.org/guide/async-data" title="null">Nuxt.js - Async Data</a><br><a target="_blank" href="https://nuxtjs.org/guide/assets" title="null">Nuxt.js - Assets</a><br><a target="_blank" href="https://nuxtjs.org/guide/plugins" title="null">Nuxt.js - Plugins</a><br><a target="_blank" href="https://github.com/nuxt-community/style-resources-module#readme" title="null">@nuxtjs/style-resources</a></p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-04" title="Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages</span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-06" title="Nuxt 系列 - #6 整合 CMS 服務 contentful" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              Nuxt 系列 - #6 整合 CMS 服務 contentful
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-05" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(e){return{layout:"default",data:[{id:e,post:{title:"Nuxt 系列 - #5 Pages 開發大小事",id:e,slug:"詳細說明 Nuxt Pages 開發的細節，包含 api 資料取得、資源檔案位置如何引用、樣式配置與設定。",categoryList:["Nuxt.js"],createDate:"2020-05-19",articleContent:"#### Async Data\nNuxt.js 增加了一個 asyncData 的方法，在 Vue 組件初始化前執行，用來取得 api 資料，因此在這個方法內無法使用 this 來引用組件的實體對象，僅能使用傳入的 [context](https://nuxtjs.org/api/context) 來獲得相關的資訊與方法。官方建議呼叫 api 使用 axios 套件，因此接下來的程式碼範例將會使用 axios。\n\nasyncData 使用方式有兩種，可以挑選自已熟悉的方式來使用，方法如下：\n1. 返回 Promise\n    ``` javascript\n    export default {\n        asyncData ({ params }) {\n            return axios.get(`https://my-api/posts/${params.id}`)\n            .then((res) => {\n                return { title: res.data.title }\n            })\n        }\n    }\n    ```\n2. 使用 async、await\n    ``` javascript\n    export default {\n        async asyncData ({ params }) {\n            const { data } = await axios.get(`https://my-api/posts/${params.id}`)\n            return { title: data.title }\n        }\n    }\n    ```\n\nasyncData 回覆的結果將會與 Vue 組件中 data 方法回傳的 json 物件合併，提供給組件使用。與開發一般 Vue 應用程式時，通常都在 mounted 生命周期中去呼叫 api 有些許不同。\n\nasyncData 傳入的 context 包含三大類可用屬性與方法，分別為 Universal、Server-side、Client-side。\n\n除了 asyncData 有 context 可用，還有其他 Nuxt.js 的方法 fetch、plugins、middleware、nuxtServerInit 也都會傳入 context。在上述這些方法中還可以使用 process.server 判斷是否為 Server-side 或 process.client 判斷是否為 Client-side。\n\n以下程式碼可以看出目前 context 內包含了那些屬性與方法  \n``` javascript\nfunction (context) {\n    // Universal keys\n    const {\n        app,\n        store,\n        route,\n        params,\n        query,\n        env,\n        isDev,\n        isHMR,\n        redirect,\n        error\n    } = context\n    // Server-side\n    if (process.server) {\n        const { req, res, beforeNuxtRender } = context\n    }\n    // Client-side\n    if (process.client) {\n        const { from, nuxtState } = context\n    }\n}\n```\n\n如何在 asyncData 取得動態路由傳入的參數？  \n解構 context 取得 params，\"params.參數名稱\"即可取得傳入參數值   \n``` javascript\nexport default {\n    asyncData ({ params }) {\n        console.log('pages/article/_id.vue 傳入參數 id => ', params.id)\n    }\n}\n```\n\n錯誤處理  \n解構 context 取得 error 方法，當需要拋出錯誤時呼叫 error 方法，Nuxt.js 就會顯示錯誤頁面  \n``` javascript\nexport default {\n    asyncData ({ params, error }) {\n        return axios.get(`https://my-api/posts/${params.id}`)\n            .then((res) => {\n                return { title: res.data.title }\n            })\n            .catch((e) => {\n                error({ statusCode: 404, message: 'Post not found' })\n            })\n    }\n}\n```\n\n#### Plugins\n當需要使用 Vue.use、Vue.filter、Vue.component 時，應在 plugins 資料夾建立程式檔案並且在 nuxt.config.js 增加載入 plugins 的設定。\n\n目前專案有使用 [bootstrap-vue](https://bootstrap-vue.org/)、[vue-disqus](https://github.com/ktquez/vue-disqus#readme) 與 [@fortawesome/vue-fontawesome](https://github.com/FortAwesome/vue-fontawesome) 套件，另外也增加了一些 filter 的設定，都是透過 plugins 方式載入。套件的使用方式基本上都參照套件內的說明，filter 的設定方式也跟原本 Vue 的寫法一樣，只是在 Nuxt.js 需要在 nuxt.config.js 中設定 plugins。\n\n目前 blog 文章內容格式是使用 Markdown，因此必需將 Markdown 轉換為 HTML 的內容，利用 [marked](https://marked.js.org/#/README.md#README.md) 套件來做轉換，搭配 Vue filter 的方式使用。另外還有增加一個顯示日期的 filter。\n\n新增 plugins/filters.js 檔案  \n``` javascript\nimport Vue from 'vue'\nimport highlightjs from 'highlight.js'\nimport marked, { Renderer } from 'marked'\nimport pathHelper from '~/helpers/path'\n\n// Create your custom renderer.\nconst renderer = new Renderer()\nrenderer.link = (href, title, text) => `<a target=\"_blank\" href=\"${href}\" title=\"${title}\">${text}</a>`\nrenderer.table = (header, body) => `<table class=\"table table-striped\">${header}${body}</table>`\n\n// Set the renderer to marked.\nmarked.setOptions({\n        renderer,\n        baseUrl: pathHelper.getBaseUrl(),\n        highlight: function (code, language) {\n        // Check whether the given language is valid for highlight.js.\n        const validLang = !!(language && highlightjs.getLanguage(language))\n        // Highlight only if the language is valid.\n        const highlighted = validLang ? highlightjs.highlight(language, code).value : code\n        // Render the highlighted code with `hljs` class.\n        return `<pre><code class=\"hljs ${language}\">${highlighted}</code></pre>`\n    }\n})\n\nVue.filter('parseMd', marked)\n\nVue.filter('parseDatetime', function (datetime) {\n    const parseDate = moment(datetime, 'YYYY-MM-DD')\n    return parseDate.format('LL')\n})\n```\n\n在 nuxt.config.js 增加 plugins 設定  \n``` javascript\nexport default {\n    plugins: [\n        '~/plugins/filters.js',\n        // or\n        { src: '~/plugins/filters.js' }\n    ]\n}\n```\n\n載入 plugins 也是可以選擇要在 client、server 或者都要使用，只需要在 nuxt.config.js 設定即可。設定方式有2種：\n1. 傳入物件包含 src 與 mode 設定  \n    ``` javascript\n    export default {\n        plugins: [\n            { src: '~/plugins/both-sides.js' }, // both client & server\n            { src: '~/plugins/client-only.js', mode: 'client' }, // only in client side\n            { src: '~/plugins/server-only.js', mode: 'server' } // only in server side\n        ]\n    }\n    ```\n2. 檔案命名  \n    ``` javascript\n    export default {\n        plugins: [\n            '~/plugins/baz.js', // both client & server\n            '~/plugins/foo.client.js', // only in client side\n            '~/plugins/bar.server.js' // only in server side\n        ]\n    }\n    ```\n\n#### Assets\nNuxt 預設使用 file-loader 與 url-loader 來處理圖片與字型檔案的載入與使用。如果有不需要透過 webpack 處理的靜態資源檔案，可以放置在 static 資料夾，執行打包後會將檔案複製到產出結果的資料夾。需要透過 webpack 處理的圖片與字型檔案則統一放置於 assets 資料夾。\n\nWebpack Assets 檔案位置：  \nassets/  \n&emsp;∟ image.png\n\nWebpack Assets 使用方式：\n``` javascript\n<template>\n  <img src=\"~/assets/image.png\">\n</template>\n```\n\nStatic Assets 檔案位置：  \nstatic/  \n&emsp;∟ image.png\n\nStatic Assets 使用方式：\n``` javascript\n<template>\n  <img src=\"/image.png\">\n</template>\n```\n\n注意事項：  \n從 Nuxt 2.0 後，在 css 使用路徑別名 \\~/ 時必需移除斜線，才能正確的載入檔案。例如：background: url(\"~assets/img/avatar.jpg\");\n\n#### 樣式配置\n使用 SCSS 撰寫樣式  \n\nSCSS 樣式檔案結構  \nassets/  \n&emsp;∟ sass/  \n&emsp;&emsp;∟ helpers/  \n&emsp;&emsp;&emsp;∟ \\_functions.scss  \n&emsp;&emsp;&emsp;∟ \\_mixins.scss  \n&emsp;&emsp;&emsp;∟ \\_variables.scss  \n&emsp;&emsp;∟ main.scss  \n\n將 SCSS functions、mixins 與 variables 分檔案放置方便管理與維護   \nGlobal 樣式放置於 assets/sass/main.scss  \nPages 與 Components 自身樣式設定於各自的 .vue 檔案內，並且啟用 scoped 設定\n\n目前規畫的 \\_variables.scss 內容，主要是顏色的設定  \n``` scss\n$primary-color: #1dc8cd;\n$secondary-color: lighten(saturate($primary-color, 25), 50);\n$tertiary-color: #1de099;\n$marked-primary-color: #c91414;\n$marked-secondary-color: lighten(saturate($marked-primary-color, 25), 50);\n```\n\n若要讓 \\_functions.scss、\\_mixins.scss 與 \\_variables.scss 能夠在整個應用程式的樣式中使用，必需使用 [@nuxtjs/style-resources](https://github.com/nuxt-community/style-resources-module#readme) 套件引入上述3個檔案\n\n@nuxtjs/style-resources 使用方式：  \n1. 安裝 @nuxtjs/style-resources 套件\n    ``` shell\n    npm add -D @nuxtjs/style-resources\n    ```\n2. 在 nuxt.config.js 增加 buildModules 與 styleResources 設定  \n    ``` javascript\n    export default {\n        buildModules: [\n            '@nuxtjs/style-resources',\n        ],\n        styleResources: {\n            // your settings here\n            scss: [\n                path.resolve(__dirname, 'assets/sass/helpers/_variables.scss'),\n                path.resolve(__dirname, 'assets/sass/helpers/_functions.scss'),\n                path.resolve(__dirname, 'assets/sass/helpers/_mixins.scss')\n            ]\n        }\n    }\n    ```\n\n設置完成後即可在任何 .scss 檔案、Pages 與 Components 使用 functions、mixins 與 variables。以下為目前 blog 專案內 pages/article/_id.vue style 設定範例  \n``` javascript\n<style lang=\"scss\" scoped>\n.md-content {\n    & /deep/ img {\n        max-width: 100%;\n    }\n}\n.article__date::after {\n    content: \"\";\n}\n.other_article_link {\n    color: $primary-color;\n}\n</style>\n```\n\n最後在 nuxt.config.js 設定全站要使用的所有樣式檔案  \n``` javascript\nexport default {\n    css: [\n        '@fortawesome/fontawesome-svg-core/styles.css',\n        // 載入bootstrap\n        'bootstrap/scss/bootstrap.scss',\n        'bootstrap-vue/dist/bootstrap-vue.css',\n        // 載入highlight.js樣式(可選擇不同theme)\n        'highlight.js/styles/zenburn.css',\n        // 載入aos樣式\n        'aos/src/sass/aos.scss',\n        // 主要css樣式(customer)\n        '~/assets/sass/main.scss'\n    ]\n}\n```\n\n針對 Pages 的說明大概到這邊，下一篇要介紹內容管理的服務 [contentful](https://www.contentful.com/)，如何在上面建立、管理 blog 的內容與如何跟 Nuxt.js 整合。\n\n#### 參考資料\n[Nuxt.js - Async Data](https://nuxtjs.org/guide/async-data)  \n[Nuxt.js - Assets](https://nuxtjs.org/guide/assets)  \n[Nuxt.js - Plugins](https://nuxtjs.org/guide/plugins)  \n[@nuxtjs/style-resources](https://github.com/nuxt-community/style-resources-module#readme)\n"},prevPost:{id:"a-series-of-nuxtjs-04",createDate:"2020-05-01",title:"Nuxt 系列 - #4 自訂 HTML 模板、Header、佈局與 Pages"},nextPost:{id:"a-series-of-nuxtjs-06",createDate:"2020-06-04",title:"Nuxt 系列 - #6 整合 CMS 服務 contentful"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/a-series-of-nuxtjs-05"}}("a-series-of-nuxtjs-05")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html data-n-head-ssr>
+  <head>
+    <title>Nuxt 系列 - #6 整合 CMS 服務 contentful - 被程式設計的猴子</title><meta data-n-head="ssr" http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta data-n-head="ssr" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta data-n-head="ssr" name="author" content="MonkeyBinBin"><meta data-n-head="ssr" property="fb:app_id" content="1816214708495848"><meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="被程式設計的猴子 - 記錄日常工作、開發遇到的大小事"><meta data-n-head="ssr" data-hid="og:type" property="og:type" content="article"><meta data-n-head="ssr" data-hid="og:image" property="og:image" content="https://monkeybinbin.github.io/img/share.jpg"><meta data-n-head="ssr" data-hid="og:image:width" property="og:image:width" content="1080"><meta data-n-head="ssr" data-hid="og:image:height" property="og:image:height" content="1080"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge"><meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-06/"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="被程式設計的猴子,Nuxt.js,Bootstrap 4,MonkeyBinBin,blog,Nuxt 系列 - #6 整合 CMS 服務 contentful"><meta data-n-head="ssr" data-hid="description" property="description" content="contentful 是一個內容管理的服務，提供了 RESTful API、友善的編輯介面、排程發佈、Webhooks…等功能，並且提供了一個免費空間(有上限)。如有更進階的需要可付費購買，收費方式是每月依購買的方案收取指定的費用。"><meta data-n-head="ssr" data-hid="og:description" property="og:description" content="contentful 是一個內容管理的服務，提供了 RESTful API、友善的編輯介面、排程發佈、Webhooks…等功能，並且提供了一個免費空間(有上限)。如有更進階的需要可付費購買，收費方式是每月依購買的方案收取指定的費用。"><meta data-n-head="ssr" data-hid="og:title" property="og:title" content="Nuxt 系列 - #6 整合 CMS 服務 contentful - 被程式設計的猴子"><link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" data-hid="canonical" rel="canonical" href="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-06/"><script data-n-head="ssr" src="//www.googletagmanager.com/gtm.js?id=GTM-N24F89P&l=dataLayer" async></script><script data-n-head="ssr" src="//assets.codepen.io/assets/embed/ei.js"></script><base href="/"><link rel="preload" href="/_nuxt/833d02823e9f4f97e566.js" as="script"><link rel="preload" href="/_nuxt/7a95626833f181c796a9.js" as="script"><link rel="preload" href="/_nuxt/896cb395c38d4cce0fa4.css" as="style"><link rel="preload" href="/_nuxt/085a037e8aeb61e0ac80.js" as="script"><link rel="preload" href="/_nuxt/d7e894be7746a4b639c1.css" as="style"><link rel="preload" href="/_nuxt/47e9ca0556d0af89164e.js" as="script"><link rel="preload" href="/_nuxt/ab65f7be0a21035d80a3.css" as="style"><link rel="preload" href="/_nuxt/f668b8b871b5dcaf9911.js" as="script"><link rel="stylesheet" href="/_nuxt/896cb395c38d4cce0fa4.css"><link rel="stylesheet" href="/_nuxt/d7e894be7746a4b639c1.css"><link rel="stylesheet" href="/_nuxt/ab65f7be0a21035d80a3.css">
+  </head>
+  <body>
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="layout-inner top" data-v-371effbb><header class="intro text-center" data-v-d7473412 data-v-371effbb><a href="/" title="HOME" class="intro__avatar nuxt-link-active" data-v-d7473412><img alt="MonkeyBinBin" src="/_nuxt/img/09bf39d.jpg" class="img-thumbnail rounded-circle" data-v-d7473412></a> <div class="intro__text" data-v-d7473412><h1 class="text-white" data-v-d7473412>
+      被程式設計的猴子
+    </h1></div> <nav class="menu" data-v-e4e5a50c data-v-d7473412><ul class="menu__container" data-v-e4e5a50c><li class="menu__item" data-v-e4e5a50c><a href="/" title="HOME" class="menu__link nuxt-link-active" data-v-e4e5a50c>
+        HOME
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/archives" title="ARCHIVES" class="menu__link" data-v-e4e5a50c>
+        ARCHIVES
+      </a></li> <li class="menu__item" data-v-e4e5a50c><a href="/about" title="ABOUT" class="menu__link" data-v-e4e5a50c>
+        ABOUT
+      </a></li></ul></nav></header> <div class="container" data-v-371effbb><section class="section" data-v-ca6cce78 data-v-371effbb><div data-aos="fade-left" class="container aos-init" data-v-ca6cce78><div class="row" data-v-ca6cce78><div class="col-12" data-v-ca6cce78><div class="article" data-v-3c54882c data-v-ca6cce78><div class="tags" data-v-3c54882c><span class="small text-secondary article__date" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-calendar-alt fa-w-14" data-v-3c54882c data-v-3c54882c><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z" data-v-3c54882c data-v-3c54882c></path></svg>
+      June 4, 2020
+    </span> <a href="/tag/Nuxt.js" title="Nuxt.js" class="small tag-link" data-v-3c54882c><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16" data-v-3c54882c><path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" data-v-3c54882c></path></svg>
+      Nuxt.js
+    </a></div> <h1 data-v-3c54882c><a href="/article/a-series-of-nuxtjs-06" title="Nuxt 系列 - #6 整合 CMS 服務 contentful" class="nuxt-link-exact-active nuxt-link-active" data-v-3c54882c>
+      Nuxt 系列 - #6 整合 CMS 服務 contentful
+    </a></h1> <hr class="article__divider my-4 mx-0" data-v-3c54882c> <p class="article__slug text-black-50 ml-4" data-v-3c54882c>
+    contentful 是一個內容管理的服務，提供了 RESTful API、友善的編輯介面、排程發佈、Webhooks…等功能，並且提供了一個免費空間(有上限)。如有更進階的需要可付費購買，收費方式是每月依購買的方案收取指定的費用。
+  </p> <!----></div> <div class="md-content" data-v-ca6cce78><h4 id="註冊登入-contentful">註冊/登入 contentful</h4>
+<p>contentful 網站 <a target="_blank" href="https://www.contentful.com/" title="null">https://www.contentful.com/</a><br><img src="///images.ctfassets.net/64scck6nxm6l/26a2exirWOGmwk30A7Y9BH/d5e4cd4d457c477af7f86e6bfa0520fc/contentful_website.jpg" alt="contentful website"></p>
+<p>註冊頁 <a target="_blank" href="https://www.contentful.com/sign-up/" title="null">https://www.contentful.com/sign-up/</a><br>可使用 Github、Google 帳號登入或直接填表單進行註冊<br><img src="///images.ctfassets.net/64scck6nxm6l/54tBwxmDE80y7GlICKFqHG/1140995b967a9d9d5f4322b10d41347f/contentful_signup.jpg" alt="contentful signup"></p>
+<h4 id="建立-space">建立 Space</h4>
+<p>建立方案的第一個步驟選擇類型，如未填寫付款資訊就不能選擇需付費的方案<br>這邊就直接選擇 Free 的方案，上面也會清楚標示可用上限之資訊<br><img src="///images.ctfassets.net/64scck6nxm6l/Pp95dHDApE6wGqn04rl28/c58111aa61c1707e418107e6ad168bd7/create_space_1.jpg" alt="create space 1"></p>
+<p>步驟二就是給 Space 一個名字，並選擇建立一個空的 space<br><img src="///images.ctfassets.net/64scck6nxm6l/1U1qExvH0Dl5NsubVnizB6/5fd213afd7e19175dd815fbfa438f957/create_space_2.jpg" alt="create space 2"></p>
+<p>步驟三確認後 Space 就建立完成<br><img src="///images.ctfassets.net/64scck6nxm6l/7BsEepzYQAhgcW1CeDqwx1/874bea2a71b62be238ac2ac7b78d7404/create_space_3.jpg" alt="create space 3"></p>
+<h4 id="在-content-model-建立-content-type">在 Content model 建立 content type</h4>
+<p>點選畫面上方的 Content model 功能，新增 content type<br>相當於建立一個資料表的欄位名稱與型態<br>一個 content type 最多可定義50個欄位，資料型態也有11種<br>每種資料型態都會有一些限制，可能是長度、數字最大最小值、日期時間格式…等等<br>詳細規格可以直接參考 <a target="_blank" href="https://www.contentful.com/developers/docs/concepts/data-model/" title="null">Content data model</a>，裡面有非常詳細的說明  </p>
+<p>新增欄位時，介面提供以下幾種欄位型態<br><img src="///images.ctfassets.net/64scck6nxm6l/6UzDsbhnOcpMTuFbv5LYbh/ee4a16645a271949a98a8a8607e2206b/content_model_field.jpg" alt="content model field"><br>欄位全部設定完成後，按下畫面右側 Save 即可開始依照剛剛的欄位設定建立資料內容</p>
+<p>目前 blog 文章的欄位規畫一共有6個欄位，如下圖所示<br><img src="///images.ctfassets.net/64scck6nxm6l/5cKrtOK8s2qyIBoSKGCGOU/9f1de59e345fd6d5cbfcba67f342b177/blog_post_model_field.jpg" alt="blog post model field"><br>主要的文章內容儲存於 Article Content 欄位，內容格式使用 markdown 所以欄位型態選擇 Long Text 即可<br>文章分類標籤儲存於 Category List 欄位，由於可能有多個分類，所以在設定時要特別勾選是多筆。<br><strong>使用此方式的好處是後續在使用 api 時，可以直接使用參數的方式過濾資料，因此可節省資料傳輸的大小。如果使用 Json object 方式儲存，則需要將所有資料撈回再過濾。</strong><br>如下圖所示紅框部份要勾選<br><img src="///images.ctfassets.net/64scck6nxm6l/7yZFS4uRHy4HR9hLcEuKly/7f3dc7f4020160c499fbff26cd20d4ec/text_field_with_list.jpg" alt="text field with list"></p>
+<h4 id="新增-content">新增 Content</h4>
+<p>點選畫面上方的 Content 功能，新增指定 content type 的資料內容<br>新增資料內容頁面會依據先前建立的 content type 呈現表單<br>編輯過程中會自動存檔<br>不同欄位型態會呈現不同輸入方式(日期選單、markdown 編輯器)，也有基本檢核(例如長度、必填)<br><img src="///images.ctfassets.net/64scck6nxm6l/viO2V70c50nbD0j0msSTu/0d5937a6a412c4639dc7f3c9baa29bf5/add_content.jpg" alt="add content"><br>完成編輯後可選擇排程或是立即 Publish  </p>
+<h4 id="設定-api-key">設定 API Key</h4>
+<p>點選畫面上方的 Settings 選擇 API keys 開啟設定畫面，按下 "Add API key"<br><img src="///images.ctfassets.net/64scck6nxm6l/6LN5A4npOzeVbRxiQ9Jy07/17161f0a9241877802134390ff77c8fd/add_api_key.jpg" alt="add api key"><br>編輯完成後按下 Save 即完成設定<br>畫面上有3個不可編輯的欄位，由系統自動產生的資訊，分別是</p>
+<ul>
+<li>Space ID</li>
+<li>Content Delivery API - access token</li>
+<li>Content Preview API - access token  </li>
+</ul>
+<p>後續在專案中呼叫 contentful api 時，需要用到 Space ID 與 access token，其中 Content Delivery API - access token 是用來取得正式發佈的資料，而 Content Preview API - access toke 除了取得正式發佈的資料還有也會取得狀態為 "Draft"的資料。方便你在開發環境使用，可快速切換。</p>
+<h4 id="在-nuxtjs-專案中使用-contentful-服務">在 Nuxt.js 專案中使用 contentful 服務</h4>
+<p>執行下列指令安裝 contentful 套件</p>
+<pre><code class="language-bash"><pre><code class="hljs bash">npm install contentful --save</code></pre></code></pre>
+<p>在 plugins 資料夾新增一個檔案 contentful.js 用來建立呼叫 contentful api 的 client<br>建立時必需提供 space id 與 access token<br>如果有切換環境的需要，則可設定 environment 屬性，此設定預設值為 master  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-comment">// plugins/contentful.js</span>
+
+<span class="hljs-keyword">const</span> contentful = <span class="hljs-built_in">require</span>(<span class="hljs-string">'contentful'</span>)
+<span class="hljs-comment">// use default environment config for convenience</span>
+<span class="hljs-comment">// these will be set via `env` property in nuxt.config.js</span>
+<span class="hljs-keyword">const</span> config = {
+  <span class="hljs-attr">space</span>: process.env.CTF_SPACE_ID,
+  <span class="hljs-attr">accessToken</span>: process.env.CTF_CDA_ACCESS_TOKEN
+}
+
+<span class="hljs-comment">// export `createClient` to use it in page components</span>
+<span class="hljs-built_in">module</span>.exports = {
+  createClient () {
+    <span class="hljs-keyword">return</span> contentful.createClient(config)
+  }
+}</code></pre></code></pre>
+<p>在 nuxt.config.js 設定環境變數 CTF_SPACE_ID、CTF_CDA_ACCESS_TOKEN 與 CTF_BLOG_POST_TYPE_ID，供程式中取用  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-comment">// ./nuxt.config.js</span>
+<span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./config'</span>)
+
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">env</span>: {
+    <span class="hljs-attr">CTF_SPACE_ID</span>: config.CTF_SPACE_ID,
+    <span class="hljs-attr">CTF_CDA_ACCESS_TOKEN</span>: config.CTF_CDA_ACCESS_TOKEN,
+    <span class="hljs-attr">CTF_BLOG_POST_TYPE_ID</span>: config.CTF_BLOG_POST_TYPE_ID
+  }
+  <span class="hljs-comment">// ...</span>
+}</code></pre></code></pre>
+<p>利用 plugins/contentful.js 的 createClient 方法建立呼叫 api 的物件使用 getEntries 進行 api 呼叫<br>以下為簡易的呼叫 api 範例  </p>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> contentful <span class="hljs-keyword">from</span> <span class="hljs-string">'~/plugins/contentful.js'</span>
+<span class="hljs-keyword">const</span> client = contentful.createClient()
+
+<span class="hljs-keyword">const</span> getArticles = <span class="hljs-function">() =></span> {
+  <span class="hljs-keyword">return</span> client.getEntries({
+    <span class="hljs-comment">// 設定要取得的 content type id</span>
+    <span class="hljs-attr">content_type</span>: config.CTF_BLOG_POST_TYPE_ID,
+    <span class="hljs-comment">// 指定呼叫 api 回傳的欄位有那些</span>
+    <span class="hljs-attr">select</span>: <span class="hljs-string">'fields.id,fields.createDate,fields.title,fields.slug,fields.categoryList'</span>,
+    <span class="hljs-comment">// 指定回傳資料排序的欄位與排序方式(由大至小 or 由小至大)</span>
+    <span class="hljs-attr">order</span>: <span class="hljs-string">'-fields.createDate'</span>
+  })
+    .then(<span class="hljs-function"><span class="hljs-params">res</span> =></span> map(res.items, <span class="hljs-function"><span class="hljs-params">item</span> =></span> item.fields))
+    .catch(<span class="hljs-function">() =></span> <span class="hljs-built_in">Promise</span>.resolve([]))
+}</code></pre></code></pre>
+<p>完成以上步驟之後即可在 Nuxt.js 專案內呼叫 contentful 的 api<br>為了方便維護與管理我在專案中建立 services/api.js，並且於檔案內建立需使用的呼叫 api 方法提供程式使用  </p>
+<h4 id="blog-專案使用-getentries-查詢資料參數使用說明">blog 專案使用 getEntries 查詢資料參數使用說明</h4>
+<p>在 Content 新增的資料稱為 Entry，而 getEntries 則是用來取得這些 Content 資料的方法，回傳為 Promise 物件<br>getEntries 方法提供了非常多的參數可供開發人員設定使用，以下針對目前專案有使用的參數進行說明<br>其他詳細的使用方式也可參考<a target="_blank" href="https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters" title="null">官方文件</a>，點擊參數說明內的"Query entries"可看到該參數使用的程式碼(可選平台)並且模擬查詢(參數可自行調整)</p>
+<h5 id="首頁文章清單資料">首頁文章清單資料</h5>
+<ol>
+<li>顯示最新10筆資料</li>
+<li>文章排列方式為由新到舊</li>
+<li>不回傳"文章內容"欄位資料，節省傳輸量</li>
+</ol>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> contentful <span class="hljs-keyword">from</span> <span class="hljs-string">'~/plugins/contentful.js'</span>
+<span class="hljs-keyword">const</span> client = contentful.createClient()
+client.getEntries({
+    <span class="hljs-attr">content_type</span>: <span class="hljs-string">'post'</span>,
+    <span class="hljs-attr">select</span>: <span class="hljs-string">'fields.id,fields.createDate,fields.title,fields.slug,fields.categoryList'</span>,
+    <span class="hljs-attr">order</span>: <span class="hljs-string">'-fields.createDate'</span>,
+    <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>
+})</code></pre></code></pre>
+<h5 id="依分類搜尋文章清單資料">依分類搜尋文章清單資料</h5>
+<ol>
+<li>取得所有文章分類包含"Nuxt.js"的文章資料</li>
+<li>文章排列方式為由新到舊</li>
+<li>不回傳"文章內容"欄位資料，節省傳輸量</li>
+</ol>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> contentful <span class="hljs-keyword">from</span> <span class="hljs-string">'~/plugins/contentful.js'</span>
+<span class="hljs-keyword">const</span> client = contentful.createClient()
+client.getEntries({
+    <span class="hljs-attr">content_type</span>: <span class="hljs-string">'post'</span>,
+    <span class="hljs-attr">select</span>: <span class="hljs-string">'fields.id,fields.createDate,fields.title,fields.slug,fields.categoryList'</span>,
+    <span class="hljs-attr">order</span>: <span class="hljs-string">'-fields.createDate'</span>,
+    <span class="hljs-string">'fields.categoryList'</span>: <span class="hljs-string">'Nuxt.js'</span>
+})</code></pre></code></pre>
+<h5 id="使用-id-取得文章詳細內容頁的資料">使用 id 取得文章詳細內容頁的資料</h5>
+<ol>
+<li>取得 id 為"a-series-of-nuxtjs-01"的文章資料</li>
+<li>回傳所有欄位</li>
+</ol>
+<pre><code class="language-javascript"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> contentful <span class="hljs-keyword">from</span> <span class="hljs-string">'~/plugins/contentful.js'</span>
+<span class="hljs-keyword">const</span> client = contentful.createClient()
+client.getEntries({
+    <span class="hljs-attr">content_type</span>: <span class="hljs-string">'post'</span>,
+    <span class="hljs-string">'fields.id'</span>: <span class="hljs-string">'a-series-of-nuxtjs-01'</span>
+})</code></pre></code></pre>
+<h4 id="參考資料">參考資料</h4>
+<p><a target="_blank" href="https://www.contentful.com/" title="null">contentful</a><br><a target="_blank" href="https://www.contentful.com/help/contentful-101/" title="null">contentful Guides</a><br><a target="_blank" href="https://www.contentful.com/developers/docs/concepts/data-model/" title="null">contentful Content data model</a><br><a target="_blank" href="https://www.contentful.com/developers/docs/references/" title="null">contentful API reference</a><br><a target="_blank" href="https://www.npmjs.com/package/contentful" title="null">contentful.js - Contentful JavaScript Delivery SDK</a><br><a target="_blank" href="https://www.contentful.com/developers/docs/javascript/tutorials/integrate-contentful-with-vue-and-nuxt/" title="null">Integrate Contentful with Nuxt.js</a></p>
+</div></div></div> <div class="row" data-v-ca6cce78><div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-05" title="Nuxt 系列 - #5 Pages 開發大小事" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-start align-items-center" data-v-ca6cce78><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x mr-1 svg-inline--fa fa-arrow-alt-circle-left fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" data-v-ca6cce78></path></svg> <span data-v-ca6cce78>Nuxt 系列 - #5 Pages 開發大小事</span></div></a></div> <div class="col-6" data-v-ca6cce78><a href="/article/a-series-of-nuxtjs-07" title="Nuxt 系列 - #7 啟用 ESLint 跟 stylelint 保持良好的 Coding Style" class="other-article-link" data-v-ca6cce78><div class="d-flex justify-content-end align-items-center" data-v-ca6cce78><span class="text-right" data-v-ca6cce78>
+              Nuxt 系列 - #7 啟用 ESLint 跟 stylelint 保持良好的 Coding Style
+            </span> <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fa-2x ml-1 svg-inline--fa fa-arrow-alt-circle-right fa-w-16" data-v-ca6cce78><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" data-v-ca6cce78></path></svg></div></a></div> <div class="col-12" data-v-ca6cce78><hr data-v-ca6cce78> <div class="comments" data-v-ca6cce78><div id="disqus_thread" url="https://monkeybinbin.github.io/article/a-series-of-nuxtjs-06" style="min-height:200px" data-v-ca6cce78></div></div></div></div></div></section> <button type="button" class="btn scrolltop-button" data-v-371effbb><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14" data-v-371effbb data-v-371effbb><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" data-v-371effbb data-v-371effbb></path></svg></button></div> <footer class="footer" data-v-fde07c60 data-v-371effbb><div class="container" data-v-fde07c60><div class="row align-items-center" data-v-fde07c60><div class="col-12 text-center" data-v-fde07c60>
+        © 2018 MonkeyBinBin. <br class="d-block d-sm-none" data-v-fde07c60>Built with Nuxt.js and Bootstrap 4.
+      </div></div></div></footer></div></div></div><script>window.__NUXT__=function(n){return{layout:"default",data:[{id:n,post:{title:"Nuxt 系列 - #6 整合 CMS 服務 contentful",id:n,slug:"contentful 是一個內容管理的服務，提供了 RESTful API、友善的編輯介面、排程發佈、Webhooks…等功能，並且提供了一個免費空間(有上限)。如有更進階的需要可付費購買，收費方式是每月依購買的方案收取指定的費用。",categoryList:["Nuxt.js"],createDate:"2020-06-04",articleContent:"#### 註冊/登入 contentful\ncontentful 網站 [https://www.contentful.com/](https://www.contentful.com/)  \n![contentful website](//images.ctfassets.net/64scck6nxm6l/26a2exirWOGmwk30A7Y9BH/d5e4cd4d457c477af7f86e6bfa0520fc/contentful_website.jpg)\n\n註冊頁 [https://www.contentful.com/sign-up/](https://www.contentful.com/sign-up/)  \n可使用 Github、Google 帳號登入或直接填表單進行註冊  \n![contentful signup](//images.ctfassets.net/64scck6nxm6l/54tBwxmDE80y7GlICKFqHG/1140995b967a9d9d5f4322b10d41347f/contentful_signup.jpg)\n\n#### 建立 Space\n建立方案的第一個步驟選擇類型，如未填寫付款資訊就不能選擇需付費的方案  \n這邊就直接選擇 Free 的方案，上面也會清楚標示可用上限之資訊  \n![create space 1](//images.ctfassets.net/64scck6nxm6l/Pp95dHDApE6wGqn04rl28/c58111aa61c1707e418107e6ad168bd7/create_space_1.jpg)\n\n步驟二就是給 Space 一個名字，並選擇建立一個空的 space  \n![create space 2](//images.ctfassets.net/64scck6nxm6l/1U1qExvH0Dl5NsubVnizB6/5fd213afd7e19175dd815fbfa438f957/create_space_2.jpg)\n\n步驟三確認後 Space 就建立完成  \n![create space 3](//images.ctfassets.net/64scck6nxm6l/7BsEepzYQAhgcW1CeDqwx1/874bea2a71b62be238ac2ac7b78d7404/create_space_3.jpg)\n\n#### 在 Content model 建立 content type\n點選畫面上方的 Content model 功能，新增 content type  \n相當於建立一個資料表的欄位名稱與型態  \n一個 content type 最多可定義50個欄位，資料型態也有11種  \n每種資料型態都會有一些限制，可能是長度、數字最大最小值、日期時間格式…等等  \n詳細規格可以直接參考 [Content data model](https://www.contentful.com/developers/docs/concepts/data-model/)，裡面有非常詳細的說明  \n\n新增欄位時，介面提供以下幾種欄位型態  \n![content model field](//images.ctfassets.net/64scck6nxm6l/6UzDsbhnOcpMTuFbv5LYbh/ee4a16645a271949a98a8a8607e2206b/content_model_field.jpg)  \n欄位全部設定完成後，按下畫面右側 Save 即可開始依照剛剛的欄位設定建立資料內容\n\n目前 blog 文章的欄位規畫一共有6個欄位，如下圖所示  \n![blog post model field](//images.ctfassets.net/64scck6nxm6l/5cKrtOK8s2qyIBoSKGCGOU/9f1de59e345fd6d5cbfcba67f342b177/blog_post_model_field.jpg)  \n主要的文章內容儲存於 Article Content 欄位，內容格式使用 markdown 所以欄位型態選擇 Long Text 即可  \n文章分類標籤儲存於 Category List 欄位，由於可能有多個分類，所以在設定時要特別勾選是多筆。  \n**使用此方式的好處是後續在使用 api 時，可以直接使用參數的方式過濾資料，因此可節省資料傳輸的大小。如果使用 Json object 方式儲存，則需要將所有資料撈回再過濾。**  \n如下圖所示紅框部份要勾選  \n![text field with list](//images.ctfassets.net/64scck6nxm6l/7yZFS4uRHy4HR9hLcEuKly/7f3dc7f4020160c499fbff26cd20d4ec/text_field_with_list.jpg)\n\n#### 新增 Content\n點選畫面上方的 Content 功能，新增指定 content type 的資料內容  \n新增資料內容頁面會依據先前建立的 content type 呈現表單  \n編輯過程中會自動存檔  \n不同欄位型態會呈現不同輸入方式(日期選單、markdown 編輯器)，也有基本檢核(例如長度、必填)  \n![add content](//images.ctfassets.net/64scck6nxm6l/viO2V70c50nbD0j0msSTu/0d5937a6a412c4639dc7f3c9baa29bf5/add_content.jpg)  \n完成編輯後可選擇排程或是立即 Publish  \n\n#### 設定 API Key\n點選畫面上方的 Settings 選擇 API keys 開啟設定畫面，按下 \"Add API key\"  \n![add api key](//images.ctfassets.net/64scck6nxm6l/6LN5A4npOzeVbRxiQ9Jy07/17161f0a9241877802134390ff77c8fd/add_api_key.jpg)  \n編輯完成後按下 Save 即完成設定  \n畫面上有3個不可編輯的欄位，由系統自動產生的資訊，分別是\n* Space ID\n* Content Delivery API - access token\n* Content Preview API - access token  \n\n後續在專案中呼叫 contentful api 時，需要用到 Space ID 與 access token，其中 Content Delivery API - access token 是用來取得正式發佈的資料，而 Content Preview API - access toke 除了取得正式發佈的資料還有也會取得狀態為 \"Draft\"的資料。方便你在開發環境使用，可快速切換。\n\n#### 在 Nuxt.js 專案中使用 contentful 服務\n執行下列指令安裝 contentful 套件\n``` bash\nnpm install contentful --save\n```\n\n在 plugins 資料夾新增一個檔案 contentful.js 用來建立呼叫 contentful api 的 client  \n建立時必需提供 space id 與 access token  \n如果有切換環境的需要，則可設定 environment 屬性，此設定預設值為 master  \n``` javascript\n// plugins/contentful.js\n\nconst contentful = require('contentful')\n// use default environment config for convenience\n// these will be set via `env` property in nuxt.config.js\nconst config = {\n  space: process.env.CTF_SPACE_ID,\n  accessToken: process.env.CTF_CDA_ACCESS_TOKEN\n}\n\n// export `createClient` to use it in page components\nmodule.exports = {\n  createClient () {\n    return contentful.createClient(config)\n  }\n}\n```\n\n在 nuxt.config.js 設定環境變數 CTF_SPACE_ID、CTF_CDA_ACCESS_TOKEN 與 CTF_BLOG_POST_TYPE_ID，供程式中取用  \n``` javascript\n// ./nuxt.config.js\nconst config = require('./config')\n\nmodule.exports = {\n  // ...\n  env: {\n    CTF_SPACE_ID: config.CTF_SPACE_ID,\n    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,\n    CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID\n  }\n  // ...\n}\n```\n\n利用 plugins/contentful.js 的 createClient 方法建立呼叫 api 的物件使用 getEntries 進行 api 呼叫  \n以下為簡易的呼叫 api 範例  \n``` javascript\nimport contentful from '~/plugins/contentful.js'\nconst client = contentful.createClient()\n\nconst getArticles = () => {\n  return client.getEntries({\n    // 設定要取得的 content type id\n    content_type: config.CTF_BLOG_POST_TYPE_ID,\n    // 指定呼叫 api 回傳的欄位有那些\n    select: 'fields.id,fields.createDate,fields.title,fields.slug,fields.categoryList',\n    // 指定回傳資料排序的欄位與排序方式(由大至小 or 由小至大)\n    order: '-fields.createDate'\n  })\n    .then(res => map(res.items, item => item.fields))\n    .catch(() => Promise.resolve([]))\n}\n```\n\n完成以上步驟之後即可在 Nuxt.js 專案內呼叫 contentful 的 api  \n為了方便維護與管理我在專案中建立 services/api.js，並且於檔案內建立需使用的呼叫 api 方法提供程式使用  \n\n#### blog 專案使用 getEntries 查詢資料參數使用說明\n在 Content 新增的資料稱為 Entry，而 getEntries 則是用來取得這些 Content 資料的方法，回傳為 Promise 物件  \ngetEntries 方法提供了非常多的參數可供開發人員設定使用，以下針對目前專案有使用的參數進行說明  \n其他詳細的使用方式也可參考[官方文件](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters)，點擊參數說明內的\"Query entries\"可看到該參數使用的程式碼(可選平台)並且模擬查詢(參數可自行調整)\n\n##### 首頁文章清單資料\n1. 顯示最新10筆資料\n2. 文章排列方式為由新到舊\n3. 不回傳\"文章內容\"欄位資料，節省傳輸量\n\n``` javascript\nimport contentful from '~/plugins/contentful.js'\nconst client = contentful.createClient()\nclient.getEntries({\n    content_type: 'post',\n    select: 'fields.id,fields.createDate,fields.title,fields.slug,fields.categoryList',\n    order: '-fields.createDate',\n    limit: 10\n})\n```\n\n##### 依分類搜尋文章清單資料\n1. 取得所有文章分類包含\"Nuxt.js\"的文章資料\n2. 文章排列方式為由新到舊\n3. 不回傳\"文章內容\"欄位資料，節省傳輸量\n\n``` javascript\nimport contentful from '~/plugins/contentful.js'\nconst client = contentful.createClient()\nclient.getEntries({\n    content_type: 'post',\n    select: 'fields.id,fields.createDate,fields.title,fields.slug,fields.categoryList',\n    order: '-fields.createDate',\n    'fields.categoryList': 'Nuxt.js'\n})\n```\n\n##### 使用 id 取得文章詳細內容頁的資料\n1. 取得 id 為\"a-series-of-nuxtjs-01\"的文章資料\n2. 回傳所有欄位\n\n``` javascript\nimport contentful from '~/plugins/contentful.js'\nconst client = contentful.createClient()\nclient.getEntries({\n    content_type: 'post',\n    'fields.id': 'a-series-of-nuxtjs-01'\n})\n```\n\n#### 參考資料\n[contentful](https://www.contentful.com/)  \n[contentful Guides](https://www.contentful.com/help/contentful-101/)  \n[contentful Content data model](https://www.contentful.com/developers/docs/concepts/data-model/)  \n[contentful API reference](https://www.contentful.com/developers/docs/references/)  \n[contentful.js - Contentful JavaScript Delivery SDK](https://www.npmjs.com/package/contentful)  \n[Integrate Contentful with Nuxt.js](https://www.contentful.com/developers/docs/javascript/tutorials/integrate-contentful-with-vue-and-nuxt/)"},prevPost:{id:"a-series-of-nuxtjs-05",createDate:"2020-05-19",title:"Nuxt 系列 - #5 Pages 開發大小事"},nextPost:{id:"a-series-of-nuxtjs-07",createDate:"2020-07-01",title:"Nuxt 系列 - #7 啟用 ESLint 跟 stylelint 保持良好的 Coding Style"}}],fetch:[],error:null,serverRendered:!0,routePath:"/article/a-series-of-nuxtjs-06"}}("a-series-of-nuxtjs-06")</script><script src="/_nuxt/833d02823e9f4f97e566.js" defer></script><script src="/_nuxt/f668b8b871b5dcaf9911.js" defer></script><script src="/_nuxt/7a95626833f181c796a9.js" defer></script><script src="/_nuxt/085a037e8aeb61e0ac80.js" defer></script><script src="/_nuxt/47e9ca0556d0af89164e.js" defer></script>
+  </body>
+</html>
